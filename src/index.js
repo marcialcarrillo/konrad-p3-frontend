@@ -5,9 +5,9 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./components/Home/Home";
-import "./assets/fonts/newbaskerville/NewBaskervilleITCbyBT-Roman.otf";
 import ScrollToTop from "./utils/ScrollToTop";
 import SignUp from "./components/SignUp/SignUp";
+import SignIn from "./components/SignIn/SignIn";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +18,7 @@ root.render(
           <Route path="/" element={<App />}>
             <Route path="/" element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
+            <Route path="sign-in" element={<SignIn />} />
           </Route>
         </Routes>
       </ScrollToTop>

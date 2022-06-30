@@ -11,10 +11,4 @@
 @import "./components/HeaderMenuHamburger/HeaderMenuHamburger.scss";
 @import "./components/HomeHero/HomeHero.scss";
 @import "./components/SignUp/SignUp.scss";
-
-@font-face {
-  font-family: "NewBaskerville";
-  src: local("NewBaskerville"),
-    url("./assets/fonts/newbaskerville/NewBaskervilleITCbyBT-Roman.otf")
-      format("OpenType");
-}
+@import "./components/SignIn/SignIn.scss";

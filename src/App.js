@@ -1,8 +1,7 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "./components/Header/Header";
-import ShoppingCartContext from "./context/ShoppingCartContext";
-import Footer from "./components/Footer/Footer";
+// import Header from "./components/Header/Header";
+// import ShoppingCartContext from "./context/ShoppingCartContext";
+// import Footer from "./components/Footer/Footer";
 
 function App() {
   return (

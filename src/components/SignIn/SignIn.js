@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import CheckoutDeliveryInfo from "../SingUPForm/SingUpForm";
 
-const SignUp = () => {
-  const block = "sign-up";
+const SignIn = () => {
+  const block = "sign-in";
   return (
     <main className={`${block}__root`}>
       <div className={`${block}__container`}>
-        <CheckoutDeliveryInfo />
+        <p>Sing IN PAGE</p>
         <span>
-          Already have an account? <Link to="/sign-in">Sign in</Link>
+          Don't have an account yet? <Link to="/sign-up">Sign Up!</Link>
         </span>
       </div>
     </main>
   );
 };
 
-export default SignUp;
+export default SignIn;

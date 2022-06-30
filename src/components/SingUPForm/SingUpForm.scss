@@ -1,0 +1,102 @@
+.sing-up-form {
+  &__root {
+    background-color: white;
+    padding: 1rem;
+    margin: 0.3rem;
+    box-shadow: $shadow-default;
+  }
+  &__form {
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+    border-bottom: solid #ddd 0.0625rem;
+    &--delivery {
+      @extend .sing-up-form__form;
+    }
+    &--card {
+      @extend .sing-up-form__form;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+  &__label {
+    font-size: 0.9rem;
+    margin: 0.2rem 0;
+  }
+  &__input {
+    border: solid $neutral 0.0625rem;
+    border-radius: 0.1875rem;
+    &--card {
+      @extend .sing-up-form__input;
+      border-bottom: solid $neutral 0.0625rem;
+      border-top: solid $neutral 0.0625rem;
+      border-left: solid $neutral 0.0625rem;
+      border-right: solid $neutral 0.0625rem;
+      border-radius: 0.1875rem 0.1875rem 0rem 0rem;
+      width: 100%;
+      text-align: center;
+      &::-webkit-input-placeholder {
+        text-align: center;
+      }
+    }
+    &--exp {
+      @extend .sing-up-form__input;
+      border-bottom: solid $neutral 0.0625rem;
+      border-top: 0rem;
+      border-left: solid $neutral 0.0625rem;
+      border-right: solid $neutral 0.0625rem;
+      border-radius: 0 0 0rem 0.1875rem;
+      box-sizing: border-box;
+      width: 50%;
+      text-align: center;
+      &::-webkit-input-placeholder {
+        text-align: center;
+      }
+    }
+    &--cvv {
+      @extend .sing-up-form__input;
+      border-bottom: solid $neutral 0.0625rem;
+      border-top: 0;
+      border-left: 0;
+      border-radius: 0 0 0.1875rem 0rem;
+      border-right: solid $neutral 0.0625rem;
+      box-sizing: border-box;
+      width: 50%;
+      text-align: center;
+      &::-webkit-input-placeholder {
+        text-align: center;
+      }
+    }
+  }
+
+  &__button-wrapper {
+    margin: 1rem;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    @media (min-width: $breakpoint-tablet) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__button {
+    background-color: $secondary;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    @media (min-width: $breakpoint-tablet) {
+      width: 10rem;
+    }
+    &:disabled {
+      background-color: gray;
+      cursor: default;
+      @media (min-width: $breakpoint-tablet) {
+        width: 13rem;
+      }
+    }
+  }
+}

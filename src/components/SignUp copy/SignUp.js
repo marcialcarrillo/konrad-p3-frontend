@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CheckoutDeliveryInfo from "../SingUPForm/SingUpForm";
+import CheckoutDeliveryInfo from "../SingUPForm/CheckoutDeliveryInfo";
 
 const SignUp = () => {
   const block = "sign-up";
@@ -8,7 +8,7 @@ const SignUp = () => {
       <div className={`${block}__container`}>
         <CheckoutDeliveryInfo />
         <span>
-          Already have an account? <Link to="/sign-in">Sign in</Link>
+          Already have an account? <Link to="sign-in">Sign in</Link>
         </span>
       </div>
     </main>
