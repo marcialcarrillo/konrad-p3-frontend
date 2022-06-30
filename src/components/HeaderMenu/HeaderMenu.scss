@@ -1,0 +1,66 @@
+#menuToggle a {
+  text-decoration: none;
+  color: #232323;
+
+  transition: color 0.3s;
+}
+
+#menuToggle a:hover {
+  color: tomato;
+}
+
+.menu {
+  &__wrapper {
+    display: flex;
+    position: relative;
+    margin-right: 1rem;
+
+    z-index: 2;
+
+    @media (min-width: $breakpoint-mobile) {
+      display: none;
+    }
+  }
+  &__root {
+    position: absolute;
+    width: 85vw;
+    height: 95vh;
+    margin: -6.25rem 0 0 -3.125rem;
+    padding: 3.125rem;
+    padding-top: 9rem;
+
+    background: $primary;
+    opacity: 1;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+
+    display: flex;
+    flex-direction: column;
+
+    &--open {
+      @extend .menu__root;
+      transform: none;
+    }
+  }
+
+  &__item {
+    padding: 0.625rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: $neutral;
+    text-decoration: none;
+    transition: color 0.25s;
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+#menuToggle input:checked ~ ul {
+  transform: none;
+}

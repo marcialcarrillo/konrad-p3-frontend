@@ -1,0 +1,20 @@
+@import "./styles/variables/breakpoints.scss";
+@import "./styles/variables/colors.scss";
+@import "./styles/base/base.scss";
+@import "./styles/mixins/utils.scss";
+@import "./App.scss";
+@import "./components/Header/Header.scss";
+@import "./components/Home/Home.scss";
+@import "./components/Footer/Footer.scss";
+@import "./components/HeaderCartIcon/HeadercartIcon.scss";
+@import "./components/HeaderMenu/HeaderMenu.scss";
+@import "./components/HeaderMenuHamburger/HeaderMenuHamburger.scss";
+@import "./components/HomeHero/HomeHero.scss";
+@import "./components/SignUp/SignUp.scss";
+
+@font-face {
+  font-family: "NewBaskerville";
+  src: local("NewBaskerville"),
+    url("./assets/fonts/newbaskerville/NewBaskervilleITCbyBT-Roman.otf")
+      format("OpenType");
+}

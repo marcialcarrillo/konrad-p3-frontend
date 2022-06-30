@@ -1,0 +1,33 @@
+.header-cart {
+  &__root {
+    position: relative;
+    width: 1.75rem;
+  }
+
+  &__icon {
+    position: relative;
+    z-index: 0;
+    top: 0.25rem;
+    font-size: 1.5rem;
+    filter: invert(86%) sepia(11%) saturate(146%) hue-rotate(184deg)
+      brightness(96%) contrast(97%);
+    transition: filter 0.35s;
+    &:hover {
+      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+        brightness(102%) contrast(102%);
+    }
+  }
+  &__count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    font-size: 0.7rem;
+    border-radius: 50%;
+    background: $alert;
+    width: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+    color: white;
+  }
+}

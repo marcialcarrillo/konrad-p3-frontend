@@ -1,0 +1,16 @@
+@mixin flex-wide ($width: 100%) {
+    display: flex;
+    width: $width
+}
+
+@mixin flex-wrap-wide ($width: 100%) {
+    display: flex;
+    flex-wrap: wrap;
+    width: $width;
+}
+
+@mixin flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+
+}

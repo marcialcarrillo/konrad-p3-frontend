@@ -1,0 +1,20 @@
+.home {
+  &__root {
+    min-height: 66vh;
+    background-color: $background-white;
+  }
+  &__best-wrapper {
+    background-color: white;
+    margin: 0.5rem;
+    max-width: 72.8125rem;
+    margin: 2rem auto;
+    box-shadow: $shadow-default;
+  }
+  &__best-title {
+    border-bottom: solid #ddd 0.0625rem;
+    padding: 0.5rem;
+  }
+  &__best-container{
+      padding: 0.5rem;
+  }
+}

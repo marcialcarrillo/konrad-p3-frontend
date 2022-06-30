@@ -1,0 +1,59 @@
+.hamburger {
+  &__root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1000;
+  }
+  &__slice {
+    display: block;
+    width: 2rem;
+    height: 0.25rem;
+    margin-bottom: 0.3rem;
+    position: relative;
+
+    background: $neutral;
+    border-radius: 0.1875rem;
+
+    z-index: 1;
+
+    transform-origin: 0.25rem 0rem;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s;
+
+    &--first {
+      @extend .hamburger__slice;
+      transform-origin: 0% 0%;
+    }
+    &--second {
+      @extend .hamburger__slice;
+    }
+    &--third {
+      @extend .hamburger__slice;
+      transform-origin: 0% 100%;
+    }
+  }
+}
+
+.open-hamburger {
+  &__slice {
+    opacity: 1;
+    transform: rotate(45deg) translate(0.125rem, -0.1875rem);
+    background: $secondary;
+
+    &--first {
+      @extend .open-hamburger__slice;
+    }
+
+    &--second {
+      @extend .open-hamburger__slice;
+      opacity: 0;
+      transform: rotate(0deg) scale(0.2, 0.2);
+    }
+    &--third {
+      @extend .open-hamburger__slice;
+      transform: rotate(-45deg) translate(0, 0.25rem);
+    }
+  }
+}

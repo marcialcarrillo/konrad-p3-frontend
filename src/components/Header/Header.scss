@@ -1,0 +1,48 @@
+.header {
+  &__root {
+    display: flex;
+    justify-content: space-between;
+    background-color: #403042;
+    padding: 0.2rem 0.5rem;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0.2rem 2rem;
+    }
+  }
+  &__menu-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__links-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  &__link {
+    font-size: 1.1875rem;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 2rem;
+    color: $neutral;
+    display: none;
+    text-align: center;
+    padding: 0.6rem 0;
+    transition: color 0.35s;
+
+    @media (min-width: $breakpoint-mobile) {
+      display: flex;
+    }
+
+    &--cart {
+      @extend .header__link;
+      display: flex;
+      margin-right: 0;
+    }
+    &:hover {
+      color: white;
+    }
+  }
+  &__logo {
+    display: flex;
+    width: 10rem;
+  }
+}
