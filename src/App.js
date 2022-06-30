@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom";
 // import Header from "./components/Header/Header";
+import Header from "./components/Header/Header";
 // import ShoppingCartContext from "./context/ShoppingCartContext";
-// import Footer from "./components/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -1,44 +1,43 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const CheckoutDeliveryInfo = () => {
-  const block = "sing-up-form";
+const SignUpForm = () => {
+  const block = "sign-up-form";
   const [formValues, setFormValues] = useState({
     fullName: "",
-    line1: "",
-    line2: "",
-    city: "",
-    state: "",
+    id: "",
+    idPhoto: "",
+    sourceOfIncome: "",
+    email: "",
     zip: "",
-    pla: "",
-    plae: "",
-    plac: "",
+    password: "",
+    confirmPassword: "",
   });
 
   function SubmitButton() {
-    if (
-      formValues.fullName &&
-      formValues.line1 &&
-      formValues.line2 &&
-      formValues.city &&
-      formValues.state &&
-      formValues.zip &&
-      formValues.pla &&
-      formValues.plae &&
-      formValues.plac
-    ) {
+    // if (
+    //   formValues.fullName &&
+    //   formValues.line1 &&
+    //   formValues.line2 &&
+    //   formValues.city &&
+    //   formValues.state &&
+    //   formValues.zip &&
+    //   formValues.pla &&
+    //   formValues.plae &&
+    //   formValues.plac
+    // ) {
       return (
         <Link to="/process-payment" className={`${block}__button`}>
-          Make Purchase
+          Submit
         </Link>
       );
-    } else {
-      return (
-        <button disabled className={`${block}__button`}>
-          Fill out your information
-        </button>
-      );
-    }
+    // } else {
+    //   return (
+    //     <button disabled className={`${block}__button`}>
+    //       Fill out your information
+    //     </button>
+    //   );
+    // }
   }
 
   function handleChange(evt) {
@@ -47,6 +46,10 @@ const CheckoutDeliveryInfo = () => {
       ...formValues,
       [evt.target.name]: value,
     });
+  }
+
+  const handleSingUp = () => {
+    // formValues.idPhoto;
   }
 
   return (
@@ -63,7 +66,7 @@ const CheckoutDeliveryInfo = () => {
         <label className={`${block}__label`}>Id</label>
         <input
           onChange={(e) => handleChange(e)}
-          name="Id"
+          name="id"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
@@ -71,7 +74,7 @@ const CheckoutDeliveryInfo = () => {
         <input
           type="file"
           onChange={(e) => handleChange(e)}
-          name="ID Photo"
+          name="idPhoto"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
@@ -94,21 +97,23 @@ const CheckoutDeliveryInfo = () => {
         <label className={`${block}__label`}>Email</label>
         <input
           onChange={(e) => handleChange(e)}
-          name="state"
+          name="email"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
         <label className={`${block}__label`}>Password</label>
         <input
+        type="password"
           onChange={(e) => handleChange(e)}
-          name="zip"
+          name="password"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
         <label className={`${block}__label`}>Confirm Password</label>
         <input
+         type="password"
           onChange={(e) => handleChange(e)}
-          name="zip"
+          name="confirmPassword"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
@@ -121,4 +126,4 @@ const CheckoutDeliveryInfo = () => {
   );
 };
 
-export default CheckoutDeliveryInfo;
+export default SignUpForm;

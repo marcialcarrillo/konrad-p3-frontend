@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import ShoppingCartContext from "../../context/ShoppingCartContext";
+// import ShoppingCartContext from "../../context/ShoppingCartContext";
 import { useContext } from "react";
 import HeaderCartIcon from "../HeaderCartIcon/HeaderCartIcon";
 import logo from "../../assets/icons/logo.png";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 
 const Header = () => {
-  const [cartContext] = useContext(ShoppingCartContext);
+  // const [cartContext] = useContext(ShoppingCartContext);
   const block = "header";
 
-  let itemsInCart = [...cartContext].reduce(
-    (acc, current) => acc + Number(current.productQuantity),
-    0
-  );
+  // let itemsInCart = [...cartContext].reduce(
+  //   (acc, current) => acc + Number(current.productQuantity),
+  //   0
+  // );
 
   return (
     <div className={`${block}__root`}>
@@ -24,12 +24,12 @@ const Header = () => {
         <Link to="/sign-up" className={`${block}__link`}>
           Sign Up
         </Link>
-        <Link to="/product-list" className={`${block}__link`}>
-          Product List
+        <Link to="/sign-in" className={`${block}__link`}>
+          Sign In
         </Link>
-        <Link to="/cart-page" className={`${block}__link--cart`}>
+        {/* <Link to="/cart-page" className={`${block}__link--cart`}>
           <HeaderCartIcon itemsInCart={itemsInCart} />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

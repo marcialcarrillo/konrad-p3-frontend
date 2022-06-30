@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CheckoutDeliveryInfo from "../SingUPForm/SingUpForm";
+// import SingUpForm from "../SingUPForm/SingUpForm";
 
 const SignIn = () => {
   const block = "sign-in";
