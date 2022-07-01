@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
@@ -7,39 +8,30 @@ const SignUpForm = () => {
     fullName: "",
     id: "",
     idPhoto: "",
-    sourceOfIncome: "",
+    sourceOfIncome: "Employed / Salaried",
     email: "",
     zip: "",
     password: "",
     confirmPassword: "",
   });
+  const [imageData, setImageData] = useState({
+    imageFile: null,
+    imagePreview: "",
+  });
 
-  function SubmitButton() {
-    // if (
-    //   formValues.fullName &&
-    //   formValues.line1 &&
-    //   formValues.line2 &&
-    //   formValues.city &&
-    //   formValues.state &&
-    //   formValues.zip &&
-    //   formValues.pla &&
-    //   formValues.plae &&
-    //   formValues.plac
-    // ) {
-      return (
-        <Link to="/process-payment" className={`${block}__button`}>
-          Submit
-        </Link>
-      );
-    // } else {
-    //   return (
-    //     <button disabled className={`${block}__button`}>
-    //       Fill out your information
-    //     </button>
-    //   );
-    // }
-  }
+  console.log("rerendering");
 
+  const handleImagePreview = (e) => {
+    let imageAsBase64 = URL.createObjectURL(e.target.files[0]);
+    let imageAsFiles = e.target.files[0];
+
+    setImageData({
+      imagePreview: imageAsBase64,
+      imageFile: imageAsFiles,
+    });
+  };
+
+  
   function handleChange(evt) {
     const value = evt.target.value;
     setFormValues({
@@ -48,8 +40,62 @@ const SignUpForm = () => {
     });
   }
 
-  const handleSingUp = () => {
-    // formValues.idPhoto;
+  const handleSignUp = async () => {
+    //make the first fetch for the image
+    let formData = new FormData();
+    formData.append("idImage", imageData.imageFile);
+    
+    let res = await fetch("http://127.0.0.1:3002/uploads/", {
+      method: "POST",
+      body: formData
+    });
+    
+    const resJson = await res.json();
+
+    console.log(resJson);
+    
+    //save the url
+
+    //construct the json request
+    const data = {
+      fullName: formValues.fullName,
+      idNumber: formValues.id,
+      idImage: resJson.url,
+      incomeSource: formValues.sourceOfIncome,
+      email: formValues.email,
+      password: formValues.password,
+      accounts: [
+        {
+          accountCountry: "CR",
+          currency: "CRC",
+        },
+        {
+          accountCountry: "CR",
+          currency: "CRC",
+        },
+      ],
+    };
+
+    console.log("sending:", JSON.stringify(data));
+
+    //make the second fetch to create a new user
+      res = await fetch("http://127.0.0.1:3002/users/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      console.log(await res.json());
+  };
+  
+  function SubmitButton() {
+    return (
+      <button onClick={() => handleSignUp()} className={`${block}__button`}>
+        Submit
+      </button>
+    );
   }
 
   return (
@@ -63,6 +109,7 @@ const SignUpForm = () => {
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
+
         <label className={`${block}__label`}>Id</label>
         <input
           onChange={(e) => handleChange(e)}
@@ -70,16 +117,25 @@ const SignUpForm = () => {
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
+
+        <img className={`${block}__id-preview`} src={imageData.imagePreview} alt="id upload preview" />
+
         <label className={`${block}__label`}>ID Photo</label>
         <input
           type="file"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => handleImagePreview(e)}
           name="idPhoto"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
+
         <label className={`${block}__label`}>Source of Income</label>
-        <select name="sourceOfIncome" id="sourceOfIncome">
+        <select
+          name="sourceOfIncome"
+          id="sourceOfIncome"
+          onChange={(e) => handleChange(e)}
+          className={`${block}__select`}
+        >
           <option value="Employed / Salaried">Employed / Salaried</option>
           <option value="Business Owner">Business Owner</option>
           <option value="Self-Employed">Self-Employed</option>
@@ -87,13 +143,8 @@ const SignUpForm = () => {
           <option value="Investor">Investor</option>
           <option value="Other">Other</option>
         </select>
+        <p className={`${block}__helper-text`}></p>
 
-        {/* <input
-          onChange={(e) => handleChange(e)}
-          name="city"
-          className={`${block}__input`}
-        ></input>
-        <p className={`${block}__helper-text`}></p> */}
         <label className={`${block}__label`}>Email</label>
         <input
           onChange={(e) => handleChange(e)}
@@ -103,7 +154,7 @@ const SignUpForm = () => {
         <p className={`${block}__helper-text`}></p>
         <label className={`${block}__label`}>Password</label>
         <input
-        type="password"
+          type="password"
           onChange={(e) => handleChange(e)}
           name="password"
           className={`${block}__input`}
@@ -111,14 +162,14 @@ const SignUpForm = () => {
         <p className={`${block}__helper-text`}></p>
         <label className={`${block}__label`}>Confirm Password</label>
         <input
-         type="password"
+          type="password"
           onChange={(e) => handleChange(e)}
           name="confirmPassword"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
       </form>
-      
+
       <div className={`${block}__button-wrapper`}>
         <SubmitButton />
       </div>

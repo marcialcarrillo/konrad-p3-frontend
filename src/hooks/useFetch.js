@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const useFetchData = ({
+const useFetch = ({
   url,
   _method = "GET",
   data = "",
@@ -9,6 +9,11 @@ const useFetchData = ({
   },
 }) => {
   const [res, setRes] = useState({ data: null, error: null, isLoading: true });
+  const [params, setParams] = useState({
+    data: null,
+    error: null,
+    isLoading: true,
+  });
 
   const callAPI = useCallback(() => {
     setRes((prevState) => ({ ...prevState, isLoading: true }));
@@ -29,8 +34,8 @@ const useFetchData = ({
     fetch(url, payload)
       .then((res) => res.json())
       .then((_data) => setRes({ data: _data, isLoading: false, error: null }));
-  }, [url, _method, data]);
-  return [res, callAPI];
+  }, [url, _method, data, _headers]);
+  return {res, callAPI};
 };
 
-export default useFetchData;
+export default useFetch;
