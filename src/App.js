@@ -1,15 +1,19 @@
 import { Outlet } from "react-router-dom";
-// import Header from "./components/Header/Header";
+import UserDataContext from "./context/UserDataContext";
 import Header from "./components/Header/Header";
-// import ShoppingCartContext from "./context/ShoppingCartContext";
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
 
 function App() {
+  const [userData, setUserData] = useState(null);
+
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <UserDataContext.Provider value={{userData, setUserData}}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserDataContext.Provider>
     </>
   );
 }

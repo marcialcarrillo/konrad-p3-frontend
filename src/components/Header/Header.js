@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
-// import ShoppingCartContext from "../../context/ShoppingCartContext";
 import { useContext } from "react";
+import userDataContext from "../../context/UserDataContext";
 import HeaderCartIcon from "../HeaderCartIcon/HeaderCartIcon";
-import logo from "../../assets/icons/logo.png";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
+import logo from "../../assets/icons/logo.png";
 
 const Header = () => {
-  // const [cartContext] = useContext(ShoppingCartContext);
+  const { setUserData } = useContext(userDataContext);
   const block = "header";
 
-  const handleLogOut = async () => {    
+  const handleLogOut = async () => {
     let res = await fetch("http://127.0.0.1:3002/users/logout", {
       credentials: "include",
-    });};
+    });
+     setUserData(null);
+  };
 
   return (
     <div className={`${block}__root`}>
@@ -21,11 +23,14 @@ const Header = () => {
         <img className={`${block}__logo`} src={logo} alt="big3 logo" />
       </Link>
       <div className={`${block}__links-wrapper`}>
+        <Link to="/add-money" className={`${block}__link`}>
+          Add Money
+        </Link>
         <Link to="/sign-up" className={`${block}__link`}>
           Sign Up
         </Link>
         <Link to="/sign-in" className={`${block}__link`}>
-          Sign In
+          Log In
         </Link>
         <button onClick={() => handleLogOut()} className={`${block}__link`}>
           Log Out

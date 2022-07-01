@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import UserDataContext from "../../context/UserDataContext";
 // import SingUpForm from "../SingUPForm/SingUpForm";
 
 const SignIn = () => {
   const block = "sign-in";
+
+  const {userData, setUserData} = useContext(UserDataContext);
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -31,14 +35,23 @@ const SignIn = () => {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true"
+        "Access-Control-Allow-Credentials": "true",
       },
       body: JSON.stringify(rawJson),
     });
 
+    
+    res = await fetch(`http://127.0.0.1:3002/users/`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true",
+      },
+    });
+    
     const jsonRes = await res.json();
-    console.log(jsonRes.token);
-
+    setUserData(jsonRes);
+    
   };
 
   return (

@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import ScrollToTop from "./utils/ScrollToTop";
 import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
+import AddMoney from "./components/AddMoney/AddMoney";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
+            <Route path="add-money" element={<AddMoney />} />
           </Route>
         </Routes>
       </ScrollToTop>
