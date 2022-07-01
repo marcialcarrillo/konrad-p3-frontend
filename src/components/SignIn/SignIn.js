@@ -28,14 +28,17 @@ const SignIn = () => {
 
     let res = await fetch("http://127.0.0.1:3002/users/login", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "true"
       },
       body: JSON.stringify(rawJson),
     });
 
     const jsonRes = await res.json();
     console.log(jsonRes.token);
+
   };
 
   return (

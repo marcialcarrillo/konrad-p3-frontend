@@ -9,10 +9,10 @@ const Header = () => {
   // const [cartContext] = useContext(ShoppingCartContext);
   const block = "header";
 
-  // let itemsInCart = [...cartContext].reduce(
-  //   (acc, current) => acc + Number(current.productQuantity),
-  //   0
-  // );
+  const handleLogOut = async () => {    
+    let res = await fetch("http://127.0.0.1:3002/users/logout", {
+      credentials: "include",
+    });};
 
   return (
     <div className={`${block}__root`}>
@@ -27,6 +27,9 @@ const Header = () => {
         <Link to="/sign-in" className={`${block}__link`}>
           Sign In
         </Link>
+        <button onClick={() => handleLogOut()} className={`${block}__link`}>
+          Log Out
+        </button>
         {/* <Link to="/cart-page" className={`${block}__link--cart`}>
           <HeaderCartIcon itemsInCart={itemsInCart} />
         </Link> */}
