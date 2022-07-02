@@ -23,6 +23,9 @@ const Header = () => {
         <img className={`${block}__logo`} src={logo} alt="big3 logo" />
       </Link>
       <div className={`${block}__links-wrapper`}>
+        <Link to="/money-transfer" className={`${block}__link`}>
+          Money Xfer
+        </Link>
         <Link to="/add-money" className={`${block}__link`}>
           Add Money
         </Link>
