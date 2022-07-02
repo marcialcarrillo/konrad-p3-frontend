@@ -25,10 +25,13 @@ const AddMoney = () => {
       ...formValues,
       [evt.target.name]: value,
     });
+    if(evt.target.name === "destinationAccount"){
+        setCurrentAccount(value);
+    }
   }
 
-  const handleSelectChange = (e) => {
-    const value = e.target.value;
+  const handleSelectChange = (evt) => {
+    const value = evt.target.value;
     setCurrentAccount(value);
   };
 
@@ -41,38 +44,9 @@ const AddMoney = () => {
     );
   }
 
-  //try to grab the user's account information
-  //   try {
-  //     useEffect(() => {
-  //       const fetch = async () => {
-  //         const res = await fetch(`http://127.0.0.1:3002/users/`, {
-  //           credentials: "include",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "Access-Control-Allow-Credentials": "true",
-  //           },
-  //         });
-
-  //         const jsonRes = await res.json();
-  //         console.log(jsonRes);
-  //         setUserData(jsonRes);
-  //       };
-  //       fetch();
-  //     }, []);
-  //   } catch (e) {
-  //     console.log("got error", e);
-  //   }
 
   //construct option elements with the accounts
   const optionsArray = userData?.accounts.map((acc, i) => {
-    //keep the previously selected acc
-    // let selected = false;
-    // if (formValues.destinationAccount === 0 && i === 0) {
-    //   //if no value has yet been selected and this is the first acc
-    //   selected = true;
-    // } else if (acc.destinationAccount === formValues.destinationAccount) {
-    //   selected = true;
-    // }
     return (
       <option value={acc.accountNumber} key={acc.accountNumber}>
         {acc.iban}
@@ -83,7 +57,7 @@ const AddMoney = () => {
   console.log(formValues);
 
     const currentAccObject = userData.accounts.find(
-      (acc) => acc.accountNumber === currentAccount
+      (acc) => acc.accountNumber === Number(currentAccount)
     );
 
 //   let balanceToShow = 0;
@@ -129,7 +103,7 @@ const AddMoney = () => {
         name="destinationAccount"
         id="destinationAccount"
         value={currentAccount}
-        onChange={(e) => handleSelectChange(e)}
+        onChange={(e) => handleChange(e)}
         className={`${block}__select`}
       >
         {optionsArray}
