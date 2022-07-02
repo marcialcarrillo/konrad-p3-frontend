@@ -6,10 +6,13 @@ import { useState } from "react";
 
 function App() {
   const [userData, setUserData] = useState(null);
+  const [services, setServices] = useState(null);
 
   return (
     <>
-      <UserDataContext.Provider value={{userData, setUserData}}>
+      <UserDataContext.Provider
+        value={{ userData, setUserData, services, setServices }}
+      >
         <Header />
         <Outlet />
         <Footer />

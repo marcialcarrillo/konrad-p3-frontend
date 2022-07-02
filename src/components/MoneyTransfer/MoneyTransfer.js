@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import Cookies from "js-cookie";
 import userDataContext from "../../context/UserDataContext";
 
 const MoneyTransfer = () => {
   const block = "money-transfer";
   const { userData, setUserData } = useContext(userDataContext);
 
+  console.log("mt: ", userData);
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
     userData.accounts[0].accountNumber

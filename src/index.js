@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import AddMoney from "./components/AddMoney/AddMoney";
 import MoneyTransfer from "./components/MoneyTransfer/MoneyTransfer";
+import PayServices from "./components/PayServices/PayServices";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
             <Route path="sign-in" element={<SignIn />} />
             <Route path="add-money" element={<AddMoney />} />
             <Route path="money-transfer" element={<MoneyTransfer />} />
+            <Route path="pay-services" element={<PayServices />} />
           </Route>
         </Routes>
       </ScrollToTop>

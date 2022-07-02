@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import Cookies from "js-cookie";
 import userDataContext from "../../context/UserDataContext";
 
 const AddMoney = () => {
