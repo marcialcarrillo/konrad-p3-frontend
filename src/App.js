@@ -3,15 +3,17 @@ import UserDataContext from "./context/UserDataContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { useState } from "react";
+import useSessionState from "./hooks/useSessionState";
 
 function App() {
-  const [userData, setUserData] = useState(null);
-  const [services, setServices] = useState(null);
+  // const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useSessionState("userData", null);
+  // const [services, setServices] = useState(null);
 
   return (
     <>
       <UserDataContext.Provider
-        value={{ userData, setUserData, services, setServices }}
+        value={{ userData, setUserData }}
       >
         <Header />
         <Outlet />

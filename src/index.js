@@ -12,6 +12,7 @@ import SignIn from "./components/SignIn/SignIn";
 import AddMoney from "./components/AddMoney/AddMoney";
 import MoneyTransfer from "./components/MoneyTransfer/MoneyTransfer";
 import PayServices from "./components/PayServices/PayServices";
+import LogOut from "./components/LogOut/LogOut";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
+            <Route path="log-out" element={<LogOut />} />
             <Route
               path="add-money"
               element={

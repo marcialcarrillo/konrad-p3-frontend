@@ -4,16 +4,38 @@ import userDataContext from "../../context/UserDataContext";
 import HeaderCartIcon from "../HeaderCartIcon/HeaderCartIcon";
 import HeaderMenu from "../HeaderMenu/HeaderMenu";
 import logo from "../../assets/icons/logo.png";
+import linkHelper from "../../helpers/navigation";
 
 const Header = () => {
-  const { setUserData } = useContext(userDataContext);
+  const { userData, setUserData } = useContext(userDataContext);
   const block = "header";
 
-  const handleLogOut = async () => {
-    let res = await fetch("http://127.0.0.1:3002/users/logout", {
-      credentials: "include",
-    });
-     setUserData(null);
+  // const handleLogOut = async () => {
+  //   let res = await fetch("http://127.0.0.1:3002/users/logout", {
+  //     credentials: "include",
+  //   });
+  //   setUserData(null);
+  // };
+
+  //construct links to be used on the header
+  const linkConstructor = () => {
+    //if user is authenticated
+    if (userData) {
+      const links = linkHelper.authLinks.map((item) => (
+        <Link key={item.key} to={item.link} className={`${block}__link`}>
+          {item.name}
+        </Link>
+      ));
+      return links;
+    } else {
+      //if user is not authenticated
+      const links = linkHelper.nonAuthLinks.map((item) => (
+        <Link key={item.key} to={item.link} className={`${block}__link`}>
+          {item.name}
+        </Link>
+      ));
+      return links;
+    }
   };
 
   return (
@@ -23,7 +45,8 @@ const Header = () => {
         <img className={`${block}__logo`} src={logo} alt="big3 logo" />
       </Link>
       <div className={`${block}__links-wrapper`}>
-        <Link to="/pay-services" className={`${block}__link`}>
+        {linkConstructor()}
+        {/* <Link to="/pay-services" className={`${block}__link`}>
           Pay Services
         </Link>
         <Link to="/money-transfer" className={`${block}__link`}>
@@ -37,10 +60,11 @@ const Header = () => {
         </Link>
         <Link to="/sign-in" className={`${block}__link`}>
           Log In
-        </Link>
-        <button onClick={() => handleLogOut()} className={`${block}__link`}>
+        </Link> */}
+
+        {/* <button onClick={() => handleLogOut()} className={`${block}__link`}>
           Log Out
-        </button>
+        </button> */}
         {/* <Link to="/cart-page" className={`${block}__link--cart`}>
           <HeaderCartIcon itemsInCart={itemsInCart} />
         </Link> */}
