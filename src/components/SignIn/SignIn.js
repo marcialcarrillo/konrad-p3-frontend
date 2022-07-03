@@ -52,19 +52,19 @@ const SignIn = () => {
     const jsonRes = await res.json();
 
 
-    //inject user services
-    res = await fetch("http://127.0.0.1:3002/bills/", {
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // //inject user services
+    // res = await fetch("http://127.0.0.1:3002/bills/", {
+    //   credentials: "include",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    const services = await res.json();
+    // const services = await res.json();
 
-    jsonRes["services"] = services;
+    // jsonRes["services"] = services;
 
-    console.log("login: ", jsonRes);
+    // console.log("login: ", jsonRes);
 
     setUserData(jsonRes);
     

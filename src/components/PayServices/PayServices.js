@@ -156,19 +156,19 @@ const PayServices = () => {
 
     let resJson = await res.json();
 
-    //inject user services
-    res = await fetch("http://127.0.0.1:3002/bills/", {
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // //inject user services
+    // res = await fetch("http://127.0.0.1:3002/bills/", {
+    //   credentials: "include",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    const services = await res.json();
+    // const services = await res.json();
 
-    resJson["services"] = services;
+    // resJson["services"] = services;
 
-    if (services.length <= 0) {
+    if (resJson.services.length <= 0) {
       //user has no services to work with
       setCurrentService(null);
     } else {

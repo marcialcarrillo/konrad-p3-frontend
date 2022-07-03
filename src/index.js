@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.scss";
 import App from "./App";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import reportWebVitals from "./reportWebVitals";
 import Home from "./components/Home/Home";
 import ScrollToTop from "./utils/ScrollToTop";
@@ -22,9 +23,30 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
-            <Route path="add-money" element={<AddMoney />} />
-            <Route path="money-transfer" element={<MoneyTransfer />} />
-            <Route path="pay-services" element={<PayServices />} />
+            <Route
+              path="add-money"
+              element={
+                <ProtectedRoute>
+                  <AddMoney />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="money-transfer"
+              element={
+                <ProtectedRoute>
+                  <MoneyTransfer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="pay-services"
+              element={
+                <ProtectedRoute>
+                  <PayServices />
+                </ProtectedRoute>
+              }
+            />
           </Route>
         </Routes>
       </ScrollToTop>
