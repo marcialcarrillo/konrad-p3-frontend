@@ -1,9 +1,15 @@
 import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
+import TransferResultContext from "../../context/TransferResultContext";
+import TransferResult from "../TransferResult/TransferResult";
 
 const AddMoney = () => {
   const block = "add-money";
   const { userData, setUserData } = useContext(userDataContext);
+  const { setTransferResult, redirect, setRedirect } = useContext(
+    TransferResultContext
+  );
 
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
@@ -15,7 +21,7 @@ const AddMoney = () => {
     transactionType: "External",
     currency: "CRC",
     transferAmount: 0,
-    destinationAccount: 0,
+    destinationAccount: userData.accounts[0].accountNumber,
   });
 
   function handleChange(evt) {
@@ -24,8 +30,8 @@ const AddMoney = () => {
       ...formValues,
       [evt.target.name]: value,
     });
-    if(evt.target.name === "destinationAccount"){
-        setCurrentAccount(value);
+    if (evt.target.name === "destinationAccount") {
+      setCurrentAccount(value);
     }
   }
 
@@ -43,7 +49,6 @@ const AddMoney = () => {
     );
   }
 
-
   //construct option elements with the accounts
   const optionsArray = userData?.accounts.map((acc, i) => {
     return (
@@ -55,28 +60,26 @@ const AddMoney = () => {
 
   console.log(formValues);
 
-    const currentAccObject = userData.accounts.find(
-      (acc) => acc.accountNumber === Number(currentAccount)
-    );
+  const currentAccObject = userData.accounts.find(
+    (acc) => acc.accountNumber === Number(currentAccount)
+  );
 
-//   let balanceToShow = 0;
-    let balanceToShow = currentAccObject.balance;
+  //   let balanceToShow = 0;
+  let balanceToShow = currentAccObject.balance;
 
-  const handleTransfer = async () => {
-    const res = await fetch("http://127.0.0.1:3002/transactions", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formValues),
+  const handleRedirect = () => {
+    setTransferResult({
+      ...TransferResult,
+      backlink: "/add-money",
+      formValues: formValues,
     });
 
-    const resJson = await res.json();
+    setRedirect({
+      ...redirect,
+      toVerify: true,
+    });
 
-    console.log(resJson);
-    setUserData(resJson);
-  };
+  }
 
   return (
     <main>
@@ -111,9 +114,13 @@ const AddMoney = () => {
 
       <p>Available Balance: {balanceToShow} </p>
 
-      <button onClick={() => handleTransfer()} className={`${block}__button`}>
+      <button onClick={() => handleRedirect()} className={`${block}__button`}>
         Submit
       </button>
+
+      {redirect.toVerify && (
+        <Navigate to="/transfer-verify" replace={true} />
+      )}
     </main>
   );
 };

@@ -1,12 +1,11 @@
-import { render } from "@testing-library/react";
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 import { serviceIdToName, serviceIdToPrice } from "../../helpers/transfers";
 
 const PayServices = () => {
   const block = "pay-services";
-  const { userData, setUserData, services, setServices } =
-    useContext(userDataContext);
+  const { userData, setUserData } = useContext(userDataContext);
 
   console.log(userData);
 
@@ -17,18 +16,18 @@ const PayServices = () => {
 
   //initialize the currently selected account by picking the customer's first
   //TODO handle no services scenario
-  const [currentService, setCurrentService] = useState(userData.services[0].id);
+  const [currentService, setCurrentService] = useState(userData.bills[0].id);
 
   const [formValues, setFormValues] = useState({
     originAccount: currentAccount,
     transactionType: "Service",
     currency: "CRC",
-    transferAmount: serviceIdToPrice(userData.services, currentService),
-    destinationAccount: serviceIdToName(userData.services, currentService),
+    transferAmount: serviceIdToPrice(userData.bills, currentService),
+    destinationAccount: serviceIdToName(userData.bills, currentService),
   });
 
   //check if the service doesn't exist anymore (just paid?)
-  const match = userData.services.find(
+  const match = userData.bills.find(
     (serv) => Number(serv.id) === Number(currentService)
   );
   if (currentService === null) {
@@ -46,29 +45,6 @@ const PayServices = () => {
     "current service is: ",
     currentService
   );
-  //set services
-
-  // //load services if we don't have any yet
-  // if (!userData.services) {
-  //   const fetchServices = async () => {
-  //     const res = await fetch("http://127.0.0.1:3002/bills/", {
-  //       method: "POST",
-  //       credentials: "include",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const jsonRes = await res.json();
-  //     return jsonRes;
-  //   };
-
-  //   const res = await fetchServices();
-
-  //   setUserData({
-  //     ...userData,
-  //     ["services"]: res,
-  //   });
-  // }
 
   function handleAccChange(evt) {
     const value = evt.target.value;
@@ -85,8 +61,8 @@ const PayServices = () => {
     const value = evt.target.value;
     setFormValues({
       ...formValues,
-      ["transferAmount"]: serviceIdToPrice(userData.services, value),
-      ["destinationAccount"]: serviceIdToName(userData.services, value),
+      ["transferAmount"]: serviceIdToPrice(userData.bills, value),
+      ["destinationAccount"]: serviceIdToName(userData.bills, value),
     });
     setCurrentService(value);
   };
@@ -100,23 +76,16 @@ const PayServices = () => {
     );
   }
 
-  //construct option elements with the accounts
-  const optionsArray = userData?.accounts.map((acc, i) => {
+  //construct an array of services for the user to pay
+  const serviceElementsArray = userData.bills.map((serv) => {
     return (
-      <option value={acc.accountNumber} key={acc.accountNumber}>
-        {acc.iban}
-      </option>
+      <Link to={`${serv.id}`} key={serv.id}>
+        <p>{serv.serviceName}</p>
+        <p>{serv.amountToPay}</p>
+      </Link>
     );
   });
 
-  //construct an array of services for the user to pay
-  const optionsServicesArray = userData?.services.map((serv) => {
-    return (
-      <option value={serv.id} key={serv.id}>
-        {serv.serviceName}
-      </option>
-    );
-  });
   console.log(formValues);
 
   const currentAccObject = userData.accounts.find(
@@ -125,16 +94,14 @@ const PayServices = () => {
 
   let balanceToShow = currentAccObject.balance;
 
-  const currentServiceObj = userData.services.find(
+  const currentServiceObj = userData.bills.find(
     (serv) => serv.id === Number(currentService)
   );
 
   let amountToPayForService = currentServiceObj.amountToPay;
 
   const handleTransfer = async () => {
-    const billToPay = userData.services.find(
-      (bill) => bill.id === currentService
-    );
+    const billToPay = userData.bills.find((bill) => bill.id === currentService);
 
     //construct payload to send in the fetch request
     // const payload = {
@@ -156,61 +123,34 @@ const PayServices = () => {
 
     let resJson = await res.json();
 
-    // //inject user services
-    // res = await fetch("http://127.0.0.1:3002/bills/", {
-    //   credentials: "include",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-
-    // const services = await res.json();
-
-    // resJson["services"] = services;
-
     if (resJson.services.length <= 0) {
       //user has no services to work with
       setCurrentService(null);
     } else {
       //grab the first one and use it
-      setCurrentService(services[0].id);
+      setCurrentService(userData.bills[0].id);
     }
 
     setUserData(resJson);
   };
 
+  //construct a list of services?
+
   return (
     <main>
-      <h1>Pay Services Page</h1>
-      <label className={`${block}__label`}>Origin Account</label>
-      <select
-        name="originAccount"
-        id="originAccount"
-        value={currentAccount}
-        onChange={(e) => handleAccChange(e)}
-        className={`${block}__select`}
-      >
-        {optionsArray}
-      </select>
-      <p className={`${block}__helper-text`}></p>
+      <h1>Pay Services</h1>
+      {currentService ?
+      <>
+        <p>
+          Below are the services available for payment linked to this customer
+          ID.
+        </p>
 
-      <p>Available Balance: {balanceToShow} </p>
+        <div>{serviceElementsArray}</div>
+      </>
+      :
+      <p>You don't have any pending services for payment, check back later!</p>}
 
-      <label className={`${block}__label`}>Service To Pay</label>
-      <select
-        name="destinationAccount"
-        id="destinationAccount"
-        value={currentService}
-        onChange={(e) => handleServiceChange(e)}
-        className={`${block}__select`}
-      >
-        {optionsServicesArray}
-      </select>
-      <p>Bill Amount: {amountToPayForService} </p>
-
-      <button onClick={() => handleTransfer()} className={`${block}__button`}>
-        Submit
-      </button>
     </main>
   );
 };

@@ -1,18 +1,23 @@
 import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
+import TransferResultContext from "../../context/TransferResultContext";
+import TransferResult from "../TransferResult/TransferResult";
 
 const MoneyTransfer = () => {
   const block = "money-transfer";
   const { userData, setUserData } = useContext(userDataContext);
+    const { setTransferResult, redirect, setRedirect } = useContext(
+      TransferResultContext
+    );
 
-  console.log("mt: ", userData);
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
     userData.accounts[0].accountNumber
   );
 
   const [formValues, setFormValues] = useState({
-    originAccount: 0,
+    originAccount: userData.accounts[0].accountNumber,
     transactionType: "Internal",
     currency: "CRC",
     transferAmount: 0,
@@ -62,20 +67,17 @@ const MoneyTransfer = () => {
   //   let balanceToShow = 0;
   let balanceToShow = currentAccObject.balance;
 
-  const handleTransfer = async () => {
-    const res = await fetch("http://127.0.0.1:3002/transactions", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formValues),
+  const handleRedirect = () => {
+    setTransferResult({
+      ...TransferResult,
+      backlink: "/money-transfer",
+      formValues: formValues,
     });
 
-    const resJson = await res.json();
-
-    console.log(resJson);
-    setUserData(resJson);
+    setRedirect({
+      ...redirect,
+      toVerify: true,
+    });
   };
 
   return (
@@ -111,9 +113,11 @@ const MoneyTransfer = () => {
       ></input>
       <p className={`${block}__helper-text`}></p>
 
-      <button onClick={() => handleTransfer()} className={`${block}__button`}>
+      <button onClick={() => handleRedirect()} className={`${block}__button`}>
         Submit
       </button>
+
+      {redirect.toVerify && <Navigate to="/transfer-verify" replace={true} />}
     </main>
   );
 };

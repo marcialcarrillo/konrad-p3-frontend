@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import useFetch from "../../hooks/useFetch";
+import { useState } from "react";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
@@ -19,7 +17,10 @@ const SignUpForm = () => {
     imagePreview: "",
   });
 
-  console.log("rerendering");
+  const [profileData, setProfileData] = useState({
+    imageFile: null,
+    imagePreview: "",
+  });
 
   const handleImagePreview = (e) => {
     let imageAsBase64 = URL.createObjectURL(e.target.files[0]);
@@ -31,7 +32,16 @@ const SignUpForm = () => {
     });
   };
 
-  
+  const handleProfilePreview = (e) => {
+    let imageAsBase64 = URL.createObjectURL(e.target.files[0]);
+    let imageAsFiles = e.target.files[0];
+
+    setProfileData({
+      imagePreview: imageAsBase64,
+      imageFile: imageAsFiles,
+    });
+  };
+
   function handleChange(evt) {
     const value = evt.target.value;
     setFormValues({
@@ -41,19 +51,28 @@ const SignUpForm = () => {
   }
 
   const handleSignUp = async () => {
-    //make the first fetch for the image
-    let formData = new FormData();
-    formData.append("idImage", imageData.imageFile);
-    
+    //make the first fetch for the imageID
+    let formDataID = new FormData();
+    formDataID.append("idImage", imageData.imageFile);
+
     let res = await fetch("http://127.0.0.1:3002/uploads/", {
       method: "POST",
-      body: formData
+      body: formDataID,
     });
-    
+
     const resJson = await res.json();
 
-    console.log(resJson);
-    
+    //Get the url for the profile as well
+    let formDataProfile = new FormData();
+    formDataProfile.append("idImage", profileData.imageFile);
+
+    let profileUrl = await fetch("http://127.0.0.1:3002/uploads/", {
+      method: "POST",
+      body: formDataProfile,
+    });
+
+    const parsedProfileUrl = await profileUrl.json();
+
     //save the url
 
     //construct the json request
@@ -61,6 +80,7 @@ const SignUpForm = () => {
       fullName: formValues.fullName,
       idNumber: formValues.id,
       idImage: resJson.url,
+      profilePicture: parsedProfileUrl.url,
       incomeSource: formValues.sourceOfIncome,
       email: formValues.email,
       password: formValues.password,
@@ -76,20 +96,20 @@ const SignUpForm = () => {
       ],
     };
 
-    console.log("sending:", JSON.stringify(data));
+    console.log("sending:", data);
 
     //make the second fetch to create a new user
-      res = await fetch("http://127.0.0.1:3002/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    res = await fetch("http://127.0.0.1:3002/users/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-      console.log(await res.json());
+    console.log(await res.json());
   };
-  
+
   function SubmitButton() {
     return (
       <button onClick={() => handleSignUp()} className={`${block}__button`}>
@@ -118,13 +138,32 @@ const SignUpForm = () => {
         ></input>
         <p className={`${block}__helper-text`}></p>
 
-        <img className={`${block}__id-preview`} src={imageData.imagePreview} alt="id upload preview" />
+        <img
+          className={`${block}__id-preview`}
+          src={imageData.imagePreview}
+          alt="id upload preview"
+        />
 
         <label className={`${block}__label`}>ID Photo</label>
         <input
           type="file"
           onChange={(e) => handleImagePreview(e)}
           name="idPhoto"
+          className={`${block}__input`}
+        ></input>
+        <p className={`${block}__helper-text`}></p>
+
+        <img
+          className={`${block}__id-preview`}
+          src={profileData.imagePreview}
+          alt="id upload preview"
+        />
+
+        <label className={`${block}__label`}>Profile Picture</label>
+        <input
+          type="file"
+          onChange={(e) => handleProfilePreview(e)}
+          name="profilePicture"
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>

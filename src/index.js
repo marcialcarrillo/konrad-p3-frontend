@@ -13,6 +13,12 @@ import AddMoney from "./components/AddMoney/AddMoney";
 import MoneyTransfer from "./components/MoneyTransfer/MoneyTransfer";
 import PayServices from "./components/PayServices/PayServices";
 import LogOut from "./components/LogOut/LogOut";
+import AccountHistory from "./components/AccountHistory/AccountHistory";
+import PayServicesVerify from "./components/PayServiceVerify/PayServiceVerify";
+import Dashboard from "./components/Dashboard/Dashboard";
+import TransferResult from "./components/TransferResult/TransferResult";
+import TransferVerify from "./components/TransferVerify/TransferVerify";
+import Profile from "./components/Profile/Profile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,6 +31,7 @@ root.render(
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
             <Route path="log-out" element={<LogOut />} />
+            <Route path="account-history" element={<AccountHistory />} />
             <Route
               path="add-money"
               element={
@@ -46,6 +53,46 @@ root.render(
               element={
                 <ProtectedRoute>
                   <PayServices />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="pay-services/:service"
+              element={
+                <ProtectedRoute>
+                  <PayServicesVerify />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="transaction-result"
+              element={
+                <ProtectedRoute>
+                  <TransferResult />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="transfer-verify"
+              element={
+                <ProtectedRoute>
+                  <TransferVerify />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
                 </ProtectedRoute>
               }
             />
