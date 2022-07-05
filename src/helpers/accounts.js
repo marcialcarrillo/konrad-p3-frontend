@@ -8,24 +8,32 @@ const ibanToAccNumber = (iban) => {
 };
 
 const accNumberToIban = (accNumber) => {
-  //TODO: use env variables
-  const account = BigInt(accNumber) + BigInt(41015201001092741156);
-  const iban = `CR${account}`;
-  return iban;
+  try {
+    //trying to cast an accNumber already in Iban format will throw an error, just return the original account in that case
+    const account = BigInt(accNumber) + BigInt(41015201001092741156);
+    const iban = `CR${account}`;
+    return iban;
+  } catch {}
+  return accNumber;
 };
 
 const findAccount = (accountsArray, accountNumber) => {
-  return accountsArray.find((acc) => acc.accountNumber === Number(accountNumber));
-}
+  return accountsArray.find(
+    (acc) => acc.accountNumber === Number(accountNumber)
+  );
+};
 
-const convertAccountsHistory = (originAccount, destAccount, transactionType) => {
+const convertAccountsHistory = (
+  originAccount,
+  destAccount,
+  transactionType
+) => {
   let newOriginAccount = originAccount;
   let newDestAccount = destAccount;
-  if(transactionType !== "External") {
+  if (transactionType !== "External") {
     newOriginAccount = accNumberToIban(originAccount);
   }
-  if(transactionType !== "Service")
-  {
+  if (transactionType !== "Service") {
     newDestAccount = accNumberToIban(destAccount);
   }
 
@@ -33,13 +41,9 @@ const convertAccountsHistory = (originAccount, destAccount, transactionType) => 
     originAccount: newOriginAccount,
     destinationAccount: newDestAccount,
   };
-}
+};
 
-const convertAccounts = (
-  originAccount,
-  destAccount,
-  transactionType
-) => {
+const convertAccounts = (originAccount, destAccount, transactionType) => {
   let newOriginAccount = originAccount;
   let newDestAccount = destAccount;
   if (transactionType !== "External") {

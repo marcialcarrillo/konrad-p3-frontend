@@ -13,6 +13,7 @@ const TransferVerify = () => {
     redirect.toVerify && setRedirect({ ...redirect, toVerify: false });
   }, [setRedirect, redirect]);
 
+  console.log(transferResult.formValues);
   //get the information to make the transfer with in a state (transfer Result)
   //   transferResult.formValues;
 

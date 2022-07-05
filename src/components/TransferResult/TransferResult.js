@@ -12,7 +12,6 @@ const TransferResult = () => {
   );
 
   useEffect(() => {
-    console.log("running use effect again!");
     (redirect.toVerify || redirect.toResult) &&
       setRedirect({ toVerify: false, toResult: false });
     setUserData(transferResult.pendingUserData);
@@ -25,8 +24,6 @@ const TransferResult = () => {
   } else {
     accountToGetBalanceFrom = transferResult.formValues.originAccount;
   }
-
-  // const newBalance = findAccount(userData.accounts, accountToGetBalanceFrom);
 
   console.log(transferResult);
 
