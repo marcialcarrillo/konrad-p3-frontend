@@ -22,14 +22,17 @@ const TransferVerify = () => {
   //have a method to send that information in a fetch
   //redirect after the fetch completes successfully to the result page
   const handleTransfer = async () => {
-    const res = await fetch("http://127.0.0.1:3002/transactions", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(transferResult.formValues),
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/transactions`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(transferResult.formValues),
+      }
+    );
 
     const resJson = await res.json();
 

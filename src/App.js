@@ -10,6 +10,7 @@ import Modal from "./components/Modal/Modal";
 
 function App() {
   // const [userData, setUserData] = useState(null);
+
   const [userData, setUserData] = useSessionState("userData", null);
   const [transferResult, setTransferResult] = useSessionState(
     "transferResult",

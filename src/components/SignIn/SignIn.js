@@ -30,7 +30,7 @@ const SignIn = () => {
       password: formValues.password,
     };
 
-    let res = await fetch("http://127.0.0.1:3002/users/login", {
+    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -41,7 +41,7 @@ const SignIn = () => {
     });
 
     
-    res = await fetch(`http://127.0.0.1:3002/users/`, {
+    res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",

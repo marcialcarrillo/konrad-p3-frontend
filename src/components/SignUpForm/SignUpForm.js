@@ -55,7 +55,7 @@ const SignUpForm = () => {
     let formDataID = new FormData();
     formDataID.append("idImage", imageData.imageFile);
 
-    let res = await fetch("http://127.0.0.1:3002/uploads/", {
+    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/uploads/`, {
       method: "POST",
       body: formDataID,
     });
@@ -66,10 +66,13 @@ const SignUpForm = () => {
     let formDataProfile = new FormData();
     formDataProfile.append("idImage", profileData.imageFile);
 
-    let profileUrl = await fetch("http://127.0.0.1:3002/uploads/", {
-      method: "POST",
-      body: formDataProfile,
-    });
+    let profileUrl = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/uploads/`,
+      {
+        method: "POST",
+        body: formDataProfile,
+      }
+    );
 
     const parsedProfileUrl = await profileUrl.json();
 
@@ -99,7 +102,7 @@ const SignUpForm = () => {
     console.log("sending:", data);
 
     //make the second fetch to create a new user
-    res = await fetch("http://127.0.0.1:3002/users/signup", {
+    res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

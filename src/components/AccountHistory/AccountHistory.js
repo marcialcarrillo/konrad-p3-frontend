@@ -28,7 +28,7 @@ const AccountHistory = () => {
   const handleTransactionLoad = async () => {
     setIsLoading(true);
     let res = await fetch(
-      `http://127.0.0.1:3002/transactions/${currentAccount}`,
+      `${process.env.REACT_APP_BACKEND_URL}/transactions/${currentAccount}`,
       {
         credentials: "include",
       }

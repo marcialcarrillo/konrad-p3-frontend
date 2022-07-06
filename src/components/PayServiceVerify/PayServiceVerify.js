@@ -65,14 +65,17 @@ const PayServicesVerify = () => {
 
   const makeTransfer = async () => {
     try {
-      let res = await fetch("http://127.0.0.1:3002/transactions", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formValues),
-      });
+      let res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/transactions`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formValues),
+        }
+      );
 
       const resJson = await res.json();
 
