@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SimpleFileUpload from "react-simple-file-upload";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
@@ -52,29 +53,29 @@ const SignUpForm = () => {
 
   const handleSignUp = async () => {
     //make the first fetch for the imageID
-    let formDataID = new FormData();
-    formDataID.append("idImage", imageData.imageFile);
+    // let formDataID = new FormData();
+    // formDataID.append("idImage", imageData.imageFile);
 
-    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/uploads/`, {
-      method: "POST",
-      body: formDataID,
-    });
+    // let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/uploads/`, {
+    //   method: "POST",
+    //   body: formDataID,
+    // });
 
-    const resJson = await res.json();
+    // const resJson = await res.json();
 
-    //Get the url for the profile as well
-    let formDataProfile = new FormData();
-    formDataProfile.append("idImage", profileData.imageFile);
+    // //Get the url for the profile as well
+    // let formDataProfile = new FormData();
+    // formDataProfile.append("idImage", profileData.imageFile);
 
-    let profileUrl = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/uploads/`,
-      {
-        method: "POST",
-        body: formDataProfile,
-      }
-    );
+    // let profileUrl = await fetch(
+    //   `${process.env.REACT_APP_BACKEND_URL}/uploads/`,
+    //   {
+    //     method: "POST",
+    //     body: formDataProfile,
+    //   }
+    // );
 
-    const parsedProfileUrl = await profileUrl.json();
+    // const parsedProfileUrl = await profileUrl.json();
 
     //save the url
 
@@ -82,8 +83,8 @@ const SignUpForm = () => {
     const data = {
       fullName: formValues.fullName,
       idNumber: formValues.id,
-      idImage: resJson.url,
-      profilePicture: parsedProfileUrl.url,
+      idImage: formValues.idImage,
+      profilePicture: formValues.profilePicture,
       incomeSource: formValues.sourceOfIncome,
       email: formValues.email,
       password: formValues.password,
@@ -102,7 +103,7 @@ const SignUpForm = () => {
     console.log("sending:", data);
 
     //make the second fetch to create a new user
-    res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
+    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,11 +115,30 @@ const SignUpForm = () => {
   };
 
   function SubmitButton() {
+    // return (
+    //   <button onClick={() => console.log("pressed")} className={`${block}__button`}>
+    //     Submit
+    //   </button>
+    // );
     return (
       <button onClick={() => handleSignUp()} className={`${block}__button`}>
         Submit
       </button>
     );
+  }
+
+  function handleIdPhotoUpload(url) {
+    setFormValues({
+      ...formValues,
+      idImage: url,
+    });
+  }
+
+  function handleProfilePictureUpload(url) {
+    setFormValues({
+      ...formValues,
+      profilePicture: url,
+    });
   }
 
   return (
@@ -141,7 +161,7 @@ const SignUpForm = () => {
         ></input>
         <p className={`${block}__helper-text`}></p>
 
-        <img
+        {/* <img
           className={`${block}__id-preview`}
           src={imageData.imagePreview}
           alt="id upload preview"
@@ -169,7 +189,21 @@ const SignUpForm = () => {
           name="profilePicture"
           className={`${block}__input`}
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}></p> */}
+
+        <label className={`${block}__label`}>ID Image</label>
+        <SimpleFileUpload
+          apiKey="d803a503b020e3fb0bdab4572cabdc79"
+          onSuccess={handleIdPhotoUpload}
+          preview="true"
+        />
+
+        <label className={`${block}__label`}>Profile Picture</label>
+        <SimpleFileUpload
+          apiKey="d803a503b020e3fb0bdab4572cabdc79"
+          onSuccess={handleProfilePictureUpload}
+          preview="true"
+        />
 
         <label className={`${block}__label`}>Source of Income</label>
         <select
