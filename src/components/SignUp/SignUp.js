@@ -7,9 +7,6 @@ const SignUp = () => {
     <main className={`${block}__root`}>
       <div className={`${block}__container`}>
         <SignUpForm />
-        <span>
-          Already have an account? <Link to="/sign-in">Sign in</Link>
-        </span>
       </div>
     </main>
   );

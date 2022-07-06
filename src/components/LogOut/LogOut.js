@@ -12,6 +12,7 @@ const LogOut = () => {
       credentials: "include",
     });
     setUserData(null);
+    //TODO set other data to null, delete cookie?
     setIsLoading(false);
   };
 

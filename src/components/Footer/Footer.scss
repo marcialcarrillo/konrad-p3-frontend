@@ -1,7 +1,6 @@
 .footer {
-
-  &__wrap{
-    flex-shrink: 0
+  &__wrap {
+    flex-shrink: 0;
   }
 
   &__root {
@@ -24,6 +23,8 @@
 
   &__column {
     list-style-type: none;
+    padding-left: 0;
+    text-align: left;
   }
 
   &__list-item {
@@ -31,9 +32,10 @@
   }
 
   &__link {
+    text-align: left;
     color: $neutral;
-    padding-left: 3rem;
-    text-shadow: $shadow-mild-dark;
+      font-weight: 500;
+    // text-shadow: $shadow-mild-dark;
     text-decoration: none;
     transition: color 0.35s;
     &:hover {
@@ -44,7 +46,8 @@
   &__title {
     color: $neutral;
     font-size: large;
-    text-shadow: $shadow-medium-dark;
+    font-weight: 700;
+    // text-shadow: $shadow-medium-dark;
   }
 
   &__icon {
@@ -54,7 +57,7 @@
       margin: 0rem 0.255rem;
       filter: invert(86%) sepia(11%) saturate(146%) hue-rotate(184deg)
         brightness(96%) contrast(97%);
-        transition: filter 0.35s;
+      transition: filter 0.35s;
       &:hover {
         filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
           brightness(102%) contrast(102%);

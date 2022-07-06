@@ -58,8 +58,6 @@ const AddMoney = () => {
     );
   });
 
-  console.log(formValues);
-
   const currentAccObject = userData.accounts.find(
     (acc) => acc.accountNumber === Number(currentAccount)
   );
@@ -78,49 +76,59 @@ const AddMoney = () => {
       ...redirect,
       toVerify: true,
     });
-
-  }
+  };
 
   return (
-    <main>
-      <h1>Add Money Page</h1>
-      <label className={`${block}__label`}>Origin Account</label>
-      <input
-        onChange={(e) => handleChange(e)}
-        name="originAccount"
-        className={`${block}__input`}
-      ></input>
-      <p className={`${block}__helper-text`}></p>
+    <main className={`${block}__root`}>
+      <div className={`${block}__wrapper`}>
+        <div className={`${block}__container`}>
+          <form className={`${block}__form`}>
+            <h1 className={`${block}__title--h1`}>Add Money Page</h1>
+            <label className={`${block}__label`}>Origin Account</label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="originAccount"
+              className={`${block}__input`}
+            ></input>
+            <p className={`${block}__helper-text`}></p>
 
-      <label className={`${block}__label`}>Transfer Amount</label>
-      <input
-        onChange={(e) => handleChange(e)}
-        name="transferAmount"
-        className={`${block}__input`}
-      ></input>
-      <p className={`${block}__helper-text`}></p>
+            <label className={`${block}__label`}>Transfer Amount</label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="transferAmount"
+              className={`${block}__input`}
+            ></input>
+            <p className={`${block}__helper-text`}></p>
 
-      <label className={`${block}__label`}>Destination Account</label>
-      <select
-        name="destinationAccount"
-        id="destinationAccount"
-        value={currentAccount}
-        onChange={(e) => handleChange(e)}
-        className={`${block}__select`}
-      >
-        {optionsArray}
-      </select>
-      <p className={`${block}__helper-text`}></p>
+            <label className={`${block}__label`}>Destination Account</label>
+            <select
+              name="destinationAccount"
+              id="destinationAccount"
+              value={currentAccount}
+              onChange={(e) => handleChange(e)}
+              className={`${block}__input`}
+            >
+              {optionsArray}
+            </select>
+            <p className={`${block}__helper-text`}></p>
 
-      <p>Available Balance: {balanceToShow} </p>
+            <p className={`${block}__label`}>Current Balance:</p>
+            <p> {balanceToShow} </p>
+          </form>
+          <div className={`${block}__button-wrapper`}>
+            <button
+              onClick={() => handleRedirect()}
+              className={`${block}__button`}
+            >
+              Submit
+            </button>
+          </div>
 
-      <button onClick={() => handleRedirect()} className={`${block}__button`}>
-        Submit
-      </button>
-
-      {redirect.toVerify && (
-        <Navigate to="/transfer-verify" replace={true} />
-      )}
+          {redirect.toVerify && (
+            <Navigate to="/transfer-verify" replace={true} />
+          )}
+        </div>
+      </div>
     </main>
   );
 };

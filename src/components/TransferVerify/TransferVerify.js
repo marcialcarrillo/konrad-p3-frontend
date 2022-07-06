@@ -13,7 +13,6 @@ const TransferVerify = () => {
     redirect.toVerify && setRedirect({ ...redirect, toVerify: false });
   }, [setRedirect, redirect]);
 
-  console.log(transferResult.formValues);
   //get the information to make the transfer with in a state (transfer Result)
   //   transferResult.formValues;
 
@@ -34,26 +33,26 @@ const TransferVerify = () => {
       }
     );
 
-    const resJson = await res.json();
+    if (res.ok) {
+      const resJson = await res.json();
 
-    console.log(resJson);
-
-    //Construct & set transferResult for an external transfer
-    setTransferResult({
-      ...transferResult,
-      //   destinationAccountBigInt: accNumberToIban(
-      //     transferResult.formValues.destinationAccount
-      //   ),
-      destinationLabel: "Destination Account",
-      amountLabel: "Transfer Amount",
-      backlinkLabel: "Make another transfer",
-      message: "The transfer has been made",
-      pendingUserData: resJson,
-    });
-    setRedirect({
-      ...redirect,
-      toResult: true,
-    });
+      //Construct & set transferResult for a transfer
+      setTransferResult({
+        ...transferResult,
+        title: "Transaction Completed",
+        destinationLabel: "Destination Account",
+        amountLabel: "Transfer Amount",
+        backlinkLabel: "Make another transfer",
+        message: "The transfer has been made successfully",
+        pendingUserData: resJson,
+      });
+      setRedirect({
+        ...redirect,
+        toResult: true,
+      });
+    } else {
+      console.error(res);
+    }
   };
 
   const convertedAccounts = convertAccounts(
@@ -62,28 +61,42 @@ const TransferVerify = () => {
     transferResult.formValues.transactionType
   );
 
-  console.log("converted accs: ", convertedAccounts);
-
   return (
-    <main>
-      <h1>Verifying transaction</h1>
+    <main className={`${block}__root`}>
+      <div className={`${block}__wrapper`}>
+        <div className={`${block}__container`}>
+          <form className={`${block}__form`}>
+            <h1 className={`${block}__title--h1`}>Verifying Transaction</h1>
 
-      <p>Origin Account:</p>
-      <p>{convertedAccounts.originAccount}</p>
-      {/* {transferResult.formValues.transactionType === "Internal" && <p></p>} */}
+            <p className={`${block}__label`}>Origin Account:</p>
+            <p>{convertedAccounts.originAccount}</p>
+            {/* {transferResult.formValues.transactionType === "Internal" && <p></p>} */}
 
-      <p>Transfer Amount</p>
-      <p>{transferResult.formValues.transferAmount}</p>
+            <p className={`${block}__label`}>Transfer Amount</p>
+            <p>₡{transferResult.formValues.transferAmount}</p>
 
-      <p>Destination Account</p>
-      <p>{convertedAccounts.destinationAccount}</p>
+            <p className={`${block}__label`}>Destination Account</p>
+            <p>{convertedAccounts.destinationAccount}</p>
+          </form>
 
-      <Link to="/add-money">Go Back</Link>
-      <button onClick={() => handleTransfer()}>Confirm</button>
-
-      {redirect.toResult && (
-        <Navigate to="/transaction-result" replace={true} />
-      )}
+          <div className={`${block}__button-wrapper`}>
+            <Link className={`${block}__button-back`} to="/add-money">
+              Go Back
+            </Link>
+            <button
+              tabIndex="0"
+              type="submit"
+              className={`${block}__button`}
+              onClick={() => handleTransfer()}
+            >
+              Confirm
+            </button>
+          </div>
+          {redirect.toResult && (
+            <Navigate to="/transaction-result" replace={true} />
+          )}
+        </div>
+      </div>
     </main>
   );
 };

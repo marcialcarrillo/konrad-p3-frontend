@@ -4,7 +4,6 @@ import userDataContext from "../../context/UserDataContext";
 const Profile = () => {
   const { userData, setUserData } = useContext(userDataContext);
 
-  console.log(userData);
   return (
     <main>
       <h1>Profile</h1>

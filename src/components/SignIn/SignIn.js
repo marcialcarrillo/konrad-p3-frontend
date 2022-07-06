@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import UserDataContext from "../../context/UserDataContext";
 // import SingUpForm from "../SingUPForm/SingUpForm";
 
 const SignIn = () => {
   const block = "sign-in";
 
-  const {userData, setUserData} = useContext(UserDataContext);
+  const { userData, setUserData } = useContext(UserDataContext);
+  const [redirect, setRedirect] = useState(null);
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -40,61 +41,66 @@ const SignIn = () => {
       body: JSON.stringify(rawJson),
     });
 
-    
-    res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true",
-      },
-    });
-    
-    const jsonRes = await res.json();
+    if (res.ok) {
+      res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
+        },
+      });
 
+      if (res.ok) {
+        const jsonRes = await res.json();
 
-    // //inject user services
-    // res = await fetch("http://127.0.0.1:3002/bills/", {
-    //   credentials: "include",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-
-    // const services = await res.json();
-
-    // jsonRes["services"] = services;
-
-    // console.log("login: ", jsonRes);
-
-    setUserData(jsonRes);
-    
+        setUserData(jsonRes);
+        setRedirect(true);
+      } else {
+        console.error(res);
+      }
+    } else {
+      console.error(res);
+    }
   };
 
   return (
     <main className={`${block}__root`}>
-      <div className={`${block}__container`}>
-        <h2 className={`${block}__title--h2`}>Login Page</h2>
-        <form className={`${block}__form--delivery`}>
-          <label className={`${block}__label`}>Email</label>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="email"
-            className={`${block}__input`}
-          ></input>
-          <p className={`${block}__helper-text`}></p>
+      {redirect && <Navigate to="/dashboard" />}
+      <div className={`${block}__wrapper`}>
+        <div className={`${block}__container`}>
+          <form className={`${block}__form`}>
+            <h1 className={`${block}__title--h1`}>Login</h1>
+            <label className={`${block}__label`}>Email</label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="email"
+              className={`${block}__input`}
+            ></input>
+            <p className={`${block}__helper-text`}></p>
 
-          <label className={`${block}__label`}>Password</label>
-          <input
-            onChange={(e) => handleChange(e)}
-            name="password"
-            className={`${block}__input`}
-          ></input>
-          <p className={`${block}__helper-text`}></p>
-          <button onClick={(e) => handleLogIn(e)}>Log In</button>
-        </form>
-        <span>
-          Don't have an account yet? <Link to="/sign-up">Sign Up!</Link>
-        </span>
+            <label className={`${block}__label`}>Password</label>
+            <input
+              onChange={(e) => handleChange(e)}
+              name="password"
+              className={`${block}__input`}
+            ></input>
+            <p className={`${block}__helper-text`}></p>
+          </form>
+          <div className={`${block}__button-wrapper`}>
+            <button
+              onClick={(e) => handleLogIn(e)}
+              className={`${block}__button`}
+            >
+              Log In
+            </button>
+            <span className={`${block}__alternate-link`}>
+              Don't have an account yet?
+              <u>
+                <Link to="/sign-up">Sign Up!</Link>
+              </u>
+            </span>
+          </div>
+        </div>
       </div>
     </main>
   );

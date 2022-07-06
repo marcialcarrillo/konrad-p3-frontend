@@ -2,11 +2,12 @@
   &__root {
     display: flex;
     justify-content: space-between;
-    background-color: #403042;
+    background-color: $primary;
     padding: 0.2rem 0.5rem;
+    align-items: center;
 
     @media (min-width: $breakpoint-tablet) {
-      padding: 0.2rem 2rem;
+      padding: 0.2rem 1rem;
     }
   }
   &__menu-wrapper {
@@ -21,7 +22,7 @@
     font-size: 1.1875rem;
     font-weight: bold;
     text-decoration: none;
-    margin-right: 2rem;
+    margin-right: 1rem;
     color: $neutral;
     display: none;
     text-align: center;
@@ -43,6 +44,6 @@
   }
   &__logo {
     display: flex;
-    width: 10rem;
+    height: 2.5rem
   }
 }

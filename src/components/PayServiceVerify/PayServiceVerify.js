@@ -16,13 +16,9 @@ const PayServicesVerify = () => {
     userData.accounts[0].accountNumber
   );
 
-  //   console.log(userData);
-
   const currentService = userData.bills.find(
     (item) => item.id === Number(service)
   );
-
-  //   console.log(currentService);
 
   const [formValues, setFormValues] = useState({
     originAccount: currentAccount,
@@ -43,8 +39,6 @@ const PayServicesVerify = () => {
     setCurrentAccount(value);
   }
 
-  //   console.log(formValues);
-
   //construct option elements with the accounts
   const optionsArray = userData?.accounts.map((acc, i) => {
     return (
@@ -61,8 +55,6 @@ const PayServicesVerify = () => {
 
   let balanceToShow = currentAccObject.balance;
 
-  console.log(formValues);
-
   const makeTransfer = async () => {
     try {
       let res = await fetch(
@@ -76,29 +68,31 @@ const PayServicesVerify = () => {
           body: JSON.stringify(formValues),
         }
       );
+      if (res.ok) {
+        const resJson = await res.json();
 
-      const resJson = await res.json();
+        //   setUserData(resJson);
 
-      //   setUserData(resJson);
+        //Construct transferResult for a service payment
+        const tResult = {
+          formValues: formValues,
+          title: "Payment Completed",
+          destinationLabel: "Service Paid",
+          amountLabel: "Amount Paid",
+          backlink: "/pay-services",
+          backlinkLabel: "Pay another service",
+          message: "The service selected has been paid successfully",
+          pendingUserData: resJson,
+        };
 
-      //Construct transferResult for a service payment
-      const tResult = {
-        formValues: formValues,
-        destinationLabel: "Service Paid",
-        amountLabel: "Amount Paid",
-        backlink: "/pay-services",
-        backlinkLabel: "Pay another service",
-        message: "The service selected has been paid correctly",
-        pendingUserData: resJson,
-      };
-
-      console.log(tResult);
-
-      setTransferResult(tResult);
-              setRedirect({
-                ...redirect,
-                toResult: true,
-              });
+        setTransferResult(tResult);
+        setRedirect({
+          ...redirect,
+          toResult: true,
+        });
+      } else{
+        console.error(res)
+      }
     } catch (e) {
       //TODO: show modal with error
     }
@@ -129,7 +123,9 @@ const PayServicesVerify = () => {
       <Link to="/pay-services">Go Back</Link>
       <button onClick={() => makeTransfer()}>Confirm</button>
 
-      {redirect.toResult && <Navigate to="/transaction-result" replace={true} />}
+      {redirect.toResult && (
+        <Navigate to="/transaction-result" replace={true} />
+      )}
     </main>
   );
 };

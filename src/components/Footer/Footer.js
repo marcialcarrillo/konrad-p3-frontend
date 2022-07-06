@@ -59,7 +59,7 @@ const Footer = () => {
           })}
         </nav>
         <div className="footer__copyright">
-          <span>© 2022 The Big 3 Depository</span>
+          <span>© 2022 The Vermilion Bank</span>
         </div>
       </footer>
     </div>

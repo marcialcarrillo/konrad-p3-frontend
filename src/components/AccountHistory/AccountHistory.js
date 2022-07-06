@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import userDataContext from "../../context/UserDataContext";
-import {
-  convertAccountsHistory,
-} from "../../helpers/accounts";
+import { convertAccountsHistory } from "../../helpers/accounts";
 import { handleDBDate } from "../../helpers/utils";
 
 const AccountHistory = () => {
@@ -33,9 +31,15 @@ const AccountHistory = () => {
         credentials: "include",
       }
     );
-    const jsonRes = await res.json();
-    setIsLoading(false);
-    setAccountTransactions(jsonRes);
+    if (res.ok) {
+      const jsonRes = await res.json();
+      setIsLoading(false);
+      setAccountTransactions(jsonRes);
+    }
+    else{
+      //TODO modal error
+      console.error(res);
+    }
   };
 
   const handleAccountSelection = async (e) => {
