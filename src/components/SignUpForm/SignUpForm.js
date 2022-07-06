@@ -152,7 +152,6 @@ const SignUpForm = () => {
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
-
         <label className={`${block}__label`}>Id</label>
         <input
           onChange={(e) => handleChange(e)}
@@ -160,7 +159,6 @@ const SignUpForm = () => {
           className={`${block}__input`}
         ></input>
         <p className={`${block}__helper-text`}></p>
-
         {/* <img
           className={`${block}__id-preview`}
           src={imageData.imagePreview}
@@ -193,18 +191,16 @@ const SignUpForm = () => {
 
         <label className={`${block}__label`}>ID Image</label>
         <SimpleFileUpload
-          apiKey="d803a503b020e3fb0bdab4572cabdc79"
+          apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           onSuccess={handleIdPhotoUpload}
           preview="true"
         />
-
         <label className={`${block}__label`}>Profile Picture</label>
         <SimpleFileUpload
-          apiKey="d803a503b020e3fb0bdab4572cabdc79"
+          apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           onSuccess={handleProfilePictureUpload}
           preview="true"
         />
-
         <label className={`${block}__label`}>Source of Income</label>
         <select
           name="sourceOfIncome"
@@ -220,7 +216,6 @@ const SignUpForm = () => {
           <option value="Other">Other</option>
         </select>
         <p className={`${block}__helper-text`}></p>
-
         <label className={`${block}__label`}>Email</label>
         <input
           onChange={(e) => handleChange(e)}
