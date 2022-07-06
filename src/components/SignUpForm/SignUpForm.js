@@ -194,14 +194,14 @@ const SignUpForm = () => {
           // apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           apiKey="d803a503b020e3fb0bdab4572cabdc79"
           onSuccess={handleIdPhotoUpload}
-          preview="false"
+          preview="true"
         />
         <label className={`${block}__label`}>Profile Picture</label>
         <SimpleFileUpload
           // apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           apiKey="d803a503b020e3fb0bdab4572cabdc79"
           onSuccess={handleProfilePictureUpload}
-          preview="false"
+          preview="true"
         />
         <label className={`${block}__label`}>Source of Income</label>
         <select
