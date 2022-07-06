@@ -43,7 +43,7 @@ const TransferResult = () => {
             <h1 className={`${block}__title--h1`}>{transferResult.title}</h1>
             <p className={`${block}__title--sub`}>{transferResult.message}</p>
 
-            <p className={`${block}__label`}>Origin Account:</p>
+            <p className={`${block}__label`}>Origin Account</p>
             <p>{convertedAccounts.originAccount}</p>
 
             <p className={`${block}__label`}>{transferResult.amountLabel}</p>

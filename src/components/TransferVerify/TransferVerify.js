@@ -68,7 +68,7 @@ const TransferVerify = () => {
           <form className={`${block}__form`}>
             <h1 className={`${block}__title--h1`}>Verifying Transaction</h1>
 
-            <p className={`${block}__label`}>Origin Account:</p>
+            <p className={`${block}__label`}>Origin Account</p>
             <p>{convertedAccounts.originAccount}</p>
             {/* {transferResult.formValues.transactionType === "Internal" && <p></p>} */}
 

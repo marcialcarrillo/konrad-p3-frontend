@@ -39,19 +39,18 @@ const SignIn = () => {
     if (Object.keys(errors).length === 0) {
       //no errors found on form, delete old errors
       setFormErrors(errors);
-      let res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL} /login`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": "true",
-          },
-          body: JSON.stringify(rawJson),
-        }
-      );
-
+      let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
+        },
+        body: JSON.stringify(rawJson),
+      });
+      const resJson = await res.json();
+      console.log(resJson);
+      
       if (res.ok) {
         res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/account`, {
           credentials: "include",
@@ -70,7 +69,7 @@ const SignIn = () => {
           console.error(res);
         }
       } else {
-        setModalState(await res.json());
+        setModalState(resJson);
       }
     } else {
       //show errors
