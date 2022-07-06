@@ -19,22 +19,38 @@ const LogOut = () => {
   if (isLoading && !userData) {
     return (
       <main className={`${block}__root`}>
-        <p>Logging you out... </p>
+        <div className={`${block}__wrapper`}>
+          <p>Logging you out... </p>
+        </div>
       </main>
     );
   } else if (!isLoading && !userData) {
     return (
       <main className={`${block}__root`}>
-        <p>You are logged out</p>
+        <div className={`${block}__wrapper`}>
+          <p>You are logged out</p>
+        </div>
       </main>
     );
   }
   if (userData) {
     return (
-      <main className={`${block}__root`}>
-        <p>Are you sure you want to log out?</p>
-        <button>Back</button>
-        <button onClick={() => handleLogOut()}>Log Out</button>
+      <main className={`${block}__main`}>
+        <div className={`${block}__root`}>
+          <div className={`${block}__wrapper`}>
+            <h1 className={`${block}__title--h1`}>Logging out...</h1>
+            <p>Are you sure you want to log out?</p>
+            <div className={`${block}__button-wrapper`}>
+              <button className={`${block}__button-back`}>Back</button>
+              <button
+                className={`${block}__button`}
+                onClick={() => handleLogOut()}
+              >
+                Log Out
+              </button>
+            </div>
+          </div>
+        </div>
       </main>
     );
   }

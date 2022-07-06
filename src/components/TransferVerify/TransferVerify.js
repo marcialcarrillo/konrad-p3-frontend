@@ -80,7 +80,10 @@ const TransferVerify = () => {
           </form>
 
           <div className={`${block}__button-wrapper`}>
-            <Link className={`${block}__button-back`} to="/add-money">
+            <Link
+              className={`${block}__button-back`}
+              to={transferResult.backlink}
+            >
               Go Back
             </Link>
             <button

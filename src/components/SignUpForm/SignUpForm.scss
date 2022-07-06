@@ -37,6 +37,14 @@
   &__input {
     border: solid $neutral 0.0625rem;
     border-radius: 0.1875rem;
+    &--error {
+      border: solid $error-red 0.0625rem;
+    }
+  }
+
+  &__helper-text {
+    color: $error-red;
+    font-size: 0.8125rem;
   }
 
   &__title {

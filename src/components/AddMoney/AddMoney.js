@@ -84,26 +84,34 @@ const AddMoney = () => {
         <div className={`${block}__container`}>
           <form className={`${block}__form`}>
             <h1 className={`${block}__title--h1`}>Add Money Page</h1>
-            <label className={`${block}__label`}>Origin Account</label>
+            <label id="originAccount" className={`${block}__label`}>
+              Origin Account
+            </label>
             <input
+              aria-labelledby="originAccount"
               onChange={(e) => handleChange(e)}
               name="originAccount"
               className={`${block}__input`}
             ></input>
             <p className={`${block}__helper-text`}></p>
 
-            <label className={`${block}__label`}>Transfer Amount</label>
+            <label id="transferAmount" className={`${block}__label`}>
+              Transfer Amount
+            </label>
             <input
               onChange={(e) => handleChange(e)}
               name="transferAmount"
+              aria-labelledby="transferAmount"
               className={`${block}__input`}
             ></input>
             <p className={`${block}__helper-text`}></p>
 
-            <label className={`${block}__label`}>Destination Account</label>
+            <label id="destinationAccount" className={`${block}__label`}>
+              Destination Account
+            </label>
             <select
+              aria-labelledby="destinationAccount"
               name="destinationAccount"
-              id="destinationAccount"
               value={currentAccount}
               onChange={(e) => handleChange(e)}
               className={`${block}__input`}
@@ -113,7 +121,7 @@ const AddMoney = () => {
             <p className={`${block}__helper-text`}></p>
 
             <p className={`${block}__label`}>Current Balance:</p>
-            <p> {balanceToShow} </p>
+            <p> ₡{balanceToShow} </p>
           </form>
           <div className={`${block}__button-wrapper`}>
             <button

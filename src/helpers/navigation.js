@@ -7,7 +7,7 @@ const linkHelper = {};
 const authenticatedLinks = [
   {key:uuidv4(), link: "/add-money", name: "Add Money" },
   {key:uuidv4(), link: "/money-transfer", name: "Transfer Money" },
-  {key:uuidv4(), link: "/pay-services", name: "Pay Services" },
+  {key:uuidv4(), link: "/pay-services", name: "Pay Bills" },
   {key:uuidv4(), link: "/account-history", name: "Account History" },
   {key:uuidv4(), link: "/dashboard", name: "Dashboard" },
   {key:uuidv4(), link: "/profile", name: "Profile" },

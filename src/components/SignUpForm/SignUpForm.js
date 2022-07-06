@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import SimpleFileUpload from "react-simple-file-upload";
+import ModalContext from "../../context/ModalContext";
+import { signUpValidator } from "../../helpers/validation";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
+  const { modalState, setModalState } = useContext(ModalContext);
   const [redirect, setRedirect] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
   const [formValues, setFormValues] = useState({
     fullName: "",
     id: "",
@@ -15,7 +19,6 @@ const SignUpForm = () => {
     password: "",
     confirmPassword: "",
   });
-
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -34,6 +37,7 @@ const SignUpForm = () => {
       incomeSource: formValues.sourceOfIncome,
       email: formValues.email,
       password: formValues.password,
+      confirmPassword: formValues.confirmPassword,
       accounts: [
         {
           accountCountry: "CR",
@@ -46,20 +50,32 @@ const SignUpForm = () => {
       ],
     };
 
-    //create the new user
-    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const errors = signUpValidator(data);
 
-    if (res.ok) {
-      setRedirect(true);
-    }
-    else{
-      console.error(res);
+    if (Object.keys(errors).length === 0) {
+      //no errors found on form, delete old errors
+      setFormErrors(errors);
+
+      //create the new user
+      let res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (res.ok) {
+        setRedirect(true);
+      } else {
+        setModalState(await res.json());
+      }
+    } else {
+      //show errors
+      setFormErrors(errors);
     }
   };
 
@@ -94,18 +110,22 @@ const SignUpForm = () => {
         <input
           onChange={(e) => handleChange(e)}
           name="fullName"
-          className={`${block}__input`}
+          className={
+            formErrors.fullName ? `${block}__input--error` : `${block}__input`
+          }
           placeholder="John Doe"
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}>{formErrors.fullName}</p>
         <label className={`${block}__label`}>Id</label>
         <input
           onChange={(e) => handleChange(e)}
           name="id"
-          className={`${block}__input`}
+          className={
+            formErrors.id ? `${block}__input--error` : `${block}__input`
+          }
           placeholder="11234567890"
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}>{formErrors.id}</p>
         <label className={`${block}__label`}>ID Image</label>
         <SimpleFileUpload
           apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
@@ -113,12 +133,14 @@ const SignUpForm = () => {
           preview="
           true"
         />
+        <p className={`${block}__helper-text`}>{formErrors.idImage}</p>
         <label className={`${block}__label`}>Profile Picture</label>
         <SimpleFileUpload
           apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           onSuccess={handleProfilePictureUpload}
           preview="true"
         />
+        <p className={`${block}__helper-text`}>{formErrors.profilePicture}</p>
 
         <label className={`${block}__label`}>Source of Income</label>
         <select
@@ -140,28 +162,36 @@ const SignUpForm = () => {
         <input
           onChange={(e) => handleChange(e)}
           name="email"
-          className={`${block}__input`}
+          className={
+            formErrors.email ? `${block}__input--error` : `${block}__input`
+          }
           placeholder="joe.doe@mail.com"
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}>{formErrors.email}</p>
 
         <label className={`${block}__label`}>Password</label>
         <input
           type="password"
           onChange={(e) => handleChange(e)}
           name="password"
-          className={`${block}__input`}
+          className={
+            formErrors.password ? `${block}__input--error` : `${block}__input`
+          }
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}>{formErrors.password}</p>
 
         <label className={`${block}__label`}>Confirm Password</label>
         <input
           type="password"
           onChange={(e) => handleChange(e)}
           name="confirmPassword"
-          className={`${block}__input`}
+          className={
+            formErrors.confirmPassword
+              ? `${block}__input--error`
+              : `${block}__input`
+          }
         ></input>
-        <p className={`${block}__helper-text`}></p>
+        <p className={`${block}__helper-text`}>{formErrors.confirmPassword}</p>
       </form>
 
       <div className={`${block}__button-wrapper`}>

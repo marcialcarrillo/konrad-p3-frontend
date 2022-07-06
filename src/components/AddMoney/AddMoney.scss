@@ -1,9 +1,17 @@
 .add-money {
   &__root {
+    min-height: 27.0625rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__wrapper {
     display: flex;
     justify-content: center;
   }
-  &__wrapper {
+
+  &__container {
     background-color: white;
     padding: 1rem;
     box-shadow: $shadow-default;

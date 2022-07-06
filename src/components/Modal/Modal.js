@@ -19,7 +19,7 @@ const Modal = ({ children, onClose }) => {
         <div className={`${block}__background`}>
           <div className={`${block}__root`} role="dialog" aria-modal="true">
             <div className={`${block}__header`}>
-              <h1>{modalState.title}</h1>
+              <h1 className={`${block}__title--h1`}>{modalState.title ? modalState.title : "Error" }</h1>
               <button
                 className={`${block}__btn-close`}
                 onClick={() => setModalState(null)}
@@ -27,8 +27,17 @@ const Modal = ({ children, onClose }) => {
                 <Cross />
               </button>
             </div>
-            <p>{modalState.message}</p>
-            <button onClick={() => setModalState(null)}>Close</button>
+            <div className={`${block}__body`}>
+              <p>{modalState.message}</p>
+            </div>
+            <div className={`${block}__footer`}>
+              <button
+                className={`${block}__button`}
+                onClick={() => setModalState(null)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -1,9 +1,17 @@
 .transfer-verify {
   &__root {
+    min-height: 27.0625rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__wrapper {
     display: flex;
     justify-content: center;
   }
-  &__wrapper {
+
+  &__container {
     background-color: white;
     padding: 1rem;
     box-shadow: $shadow-default;
@@ -88,8 +96,8 @@
   }
 
   &__button-back {
-    background-color: $highlight;
-    color: white;
+    border: $secondary solid 1px;
+    color: $secondary;
     padding: 0.5rem;
     border-radius: 0.25rem;
     width: 100%;

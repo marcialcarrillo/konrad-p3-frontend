@@ -116,7 +116,7 @@ const PayServicesVerify = () => {
       </select>
       <p className={`${block}__helper-text`}></p>
       <p>Available Balance</p>
-      <p>{balanceToShow}</p>
+      <p>₡{balanceToShow}</p>
       <p>Service Payment</p>
       <p>{currentService.amountToPay}</p>
 

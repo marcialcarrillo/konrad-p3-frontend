@@ -2,13 +2,16 @@ import { useContext } from "react";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import UserDataContext from "../../context/UserDataContext";
-// import SingUpForm from "../SingUPForm/SingUpForm";
+import { logInValidator } from "../../helpers/validation";
+import modalContext from "../../context/ModalContext";
 
 const SignIn = () => {
   const block = "sign-in";
 
+  const { modalState, setModalState } = useContext(modalContext);
   const { userData, setUserData } = useContext(UserDataContext);
   const [redirect, setRedirect] = useState(null);
+  const [formErrors, setFormErrors] = useState({});
 
   function handleChange(evt) {
     const value = evt.target.value;
@@ -31,35 +34,47 @@ const SignIn = () => {
       password: formValues.password,
     };
 
-    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": "true",
-      },
-      body: JSON.stringify(rawJson),
-    });
+    const errors = logInValidator(rawJson);
 
-    if (res.ok) {
-      res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/`, {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true",
-        },
-      });
+    if (Object.keys(errors).length === 0) {
+      //no errors found on form, delete old errors
+      setFormErrors(errors);
+      let res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL} /login`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": "true",
+          },
+          body: JSON.stringify(rawJson),
+        }
+      );
 
       if (res.ok) {
-        const jsonRes = await res.json();
+        res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/account`, {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": "true",
+          },
+        });
 
-        setUserData(jsonRes);
-        setRedirect(true);
+        if (res.ok) {
+          const jsonRes = await res.json();
+
+          setUserData(jsonRes);
+          setRedirect(true);
+        } else {
+          console.error(res);
+        }
       } else {
-        console.error(res);
+        setModalState(await res.json());
       }
     } else {
-      console.error(res);
+      //show errors
+      setFormErrors(errors);
     }
   };
 
@@ -74,18 +89,25 @@ const SignIn = () => {
             <input
               onChange={(e) => handleChange(e)}
               name="email"
-              className={`${block}__input`}
+              className={
+                formErrors.email ? `${block}__input--error` : `${block}__input`
+              }
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>{formErrors.email}</p>
 
             <label className={`${block}__label`}>Password</label>
             <input
               onChange={(e) => handleChange(e)}
               name="password"
-              className={`${block}__input`}
+              className={
+                formErrors.password
+                  ? `${block}__input--error`
+                  : `${block}__input`
+              }
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>{formErrors.password}</p>
           </form>
+
           <div className={`${block}__button-wrapper`}>
             <button
               onClick={(e) => handleLogIn(e)}

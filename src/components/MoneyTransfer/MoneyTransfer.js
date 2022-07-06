@@ -70,10 +70,12 @@ const MoneyTransfer = () => {
         <div className={`${block}__container`}>
           <form className={`${block}__form`}>
             <h1 className={`${block}__title--h1`}>Transfer Money</h1>
-            <label className={`${block}__label`}>Origin Account</label>
+            <label id="originAccount" className={`${block}__label`}>
+              Origin Account
+            </label>
             <select
+              aria-labelledby="originAccount"
               name="originAccount"
-              id="originAccount"
               value={currentAccount}
               onChange={(e) => handleChange(e)}
               className={`${block}__input`}
@@ -82,19 +84,25 @@ const MoneyTransfer = () => {
             </select>
             <p className={`${block}__helper-text`}></p>
 
-            <p className={`${block}__label`}>Available Balance:</p> 
-            <p> {balanceToShow} </p>
+            <p className={`${block}__label`}>Available Balance:</p>
+            <p> ₡{balanceToShow} </p>
 
-            <label className={`${block}__label`}>Transfer Amount</label>
+            <label id="transferAmount" className={`${block}__label`}>
+              Transfer Amount
+            </label>
             <input
+              aria-labelledby="transferAmount"
               onChange={(e) => handleChange(e)}
               name="transferAmount"
               className={`${block}__input`}
             ></input>
             <p className={`${block}__helper-text`}></p>
 
-            <label className={`${block}__label`}>Destination Account</label>
+            <label id="destinationAccount" className={`${block}__label`}>
+              Destination Account
+            </label>
             <input
+              aria-labelledby="destinationAccount"
               onChange={(e) => handleChange(e)}
               name="destinationAccount"
               className={`${block}__input`}

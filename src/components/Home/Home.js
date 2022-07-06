@@ -10,7 +10,17 @@ const Home = () => {
       <HomeHero />
       <div className={`${block}__best-container`}>
         <div className={`${block}__best-wrapper`}>
-          <button onClick={() => setModalState({title: "Database Error", message: "There are not enough funds in the account"})}>open modal</button>
+          <button
+            onClick={() =>
+              setModalState({
+                title: "Login Failed",
+                message:
+                  "The email or password entered were incorrect, please try again.",
+              })
+            }
+          >
+            open modal
+          </button>
         </div>
       </div>
     </main>
