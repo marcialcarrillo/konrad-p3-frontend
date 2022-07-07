@@ -1,16 +1,34 @@
 import { useContext, useState } from "react";
+import useSessionState from "../../hooks/useSessionState";
 import userDataContext from "../../context/UserDataContext";
-import { convertAccountsHistory } from "../../helpers/accounts";
+import {
+  convertAccountsHistory,
+  accNumberToIban,
+} from "../../helpers/accounts";
 import { handleDBDate } from "../../helpers/utils";
+import { FaSearchDollar } from "react-icons/fa";
+import {
+  SmallDate,
+  TransactionItem,
+  TransactionList,
+} from "../TransactionsList/TransactionsList";
 
 const AccountHistory = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { userData, setUserData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
+  // const [accountTransactions, setAccountTransactions] = useSessionState(
+  //   "transactions",
+  //   null
+  // );
   const block = "account-history";
 
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
+    userData.accounts[0].accountNumber
+  );
+
+  const [currentLoadedAccount, setCurrentLoadedAccount] = useState(
     userData.accounts[0].accountNumber
   );
 
@@ -35,8 +53,8 @@ const AccountHistory = () => {
       const jsonRes = await res.json();
       setIsLoading(false);
       setAccountTransactions(jsonRes);
-    }
-    else{
+      setCurrentLoadedAccount(currentAccount);
+    } else {
       //TODO modal error
       console.error(res);
     }
@@ -46,56 +64,58 @@ const AccountHistory = () => {
     setCurrentAccount(e.target.value);
   };
 
-  //construct transaction elements with the response gotten
-  const transactionsArray = accountTransactions?.map((tran) => {
-    const convertedAccounts = convertAccountsHistory(
-      tran.originAccount,
-      tran.destinationAccount,
-      tran.transactionType
-    );
-    return (
-      <tr key={tran.id}>
-        <td>{tran.id}</td>
-        <td>{convertedAccounts.originAccount}</td>
-        <td>{tran.currency}</td>
-        <td>{tran.transactionType}</td>
-        <td>{tran.transferAmount}</td>
-        <td>{handleDBDate(tran.createdAt)}</td>
-        <td>{convertedAccounts.destinationAccount}</td>
-      </tr>
-    );
-  });
-
   return (
     <main className={`${block}__root`}>
-      <h1>Account History</h1>
-
-      <label className={`${block}__label`}>Account: </label>
-      <select
-        name="selectedAccount"
-        value={currentAccount}
-        onChange={(e) => handleAccountSelection(e)}
-        className={`${block}__select`}
-      >
-        {optionsArray}
-      </select>
-
-      <button onClick={() => handleTransactionLoad()}>Load Transactions</button>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Transaction ID</th>
-            <th>Origin Account Number</th>
-            <th>Currency</th>
-            <th>Transaction Type</th>
-            <th>Amount</th>
-            <th>Transaction Date</th>
-            <th>Destination Account</th>
-          </tr>
-        </thead>
-        <tbody> {transactionsArray}</tbody>
-      </table>
+      <div className={`${block}__wrapper`}>
+        <div className={`${block}__container`}>
+          <h1 className={`${block}__title`}>Account History</h1>
+        </div>
+        <div className={`${block}__container`}>
+          <div className={`${block}__form`}>
+            <div className={`${block}__button-wrapper`}>
+              <div className={`${block}__select-wrapper`}>
+                <label id="selectedAccount" className={`${block}__label`}>
+                  Account:{" "}
+                </label>
+                <select
+                  aria-labelledby="selectedAccount"
+                  name="selectedAccount"
+                  value={currentAccount}
+                  onChange={(e) => handleAccountSelection(e)}
+                  className={`${block}__select`}
+                >
+                  {optionsArray}
+                </select>
+              </div>
+              <button
+                className={`${block}__button`}
+                onClick={() => handleTransactionLoad()}
+              >
+                Load Transactions
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className={`${block}__container--slim`}>
+          {accountTransactions ?
+          <TransactionList
+            selectedAccount={accNumberToIban(currentLoadedAccount)}
+            transactions={accountTransactions}
+          />
+          :
+          <>
+            <div className={`${block}__load-prompt`}>
+              <div className={`${block}__load-icon`}>
+                <FaSearchDollar size={70} />
+              </div>
+              <span className={`${block}__load-text`}>
+                Select an account and press "Load Transactions" to see a list of
+                the account's movements.
+              </span>
+            </div>
+          </>}
+        </div>
+      </div>
     </main>
   );
 };

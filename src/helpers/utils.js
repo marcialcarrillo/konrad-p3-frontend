@@ -10,4 +10,14 @@ const handleDBDate = (DBDate) => {
   return date.toLocaleString();
 };
 
-export { handleDBDate };
+const getSplitDate = (DBDate) => {
+  const date = new Date(DBDate);
+
+  const resultDate = {};
+  resultDate.month = date.toLocaleString("default", { month: "short" });
+  resultDate.day = date.toLocaleString("default", { day: "2-digit" });
+
+  return resultDate;
+};
+
+export { handleDBDate, getSplitDate };

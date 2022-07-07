@@ -43,6 +43,25 @@ const convertAccountsHistory = (
   };
 };
 
+const fixTransaction = (transaction) => {
+  let newOriginAccount = transaction.originAccount;
+  let newDestAccount = transaction.destinationAccount;
+  if (transaction.transactionType !== "External") {
+    newOriginAccount = accNumberToIban(transaction.originAccount);
+  }
+  if (transaction.transactionType !== "Service") {
+    newDestAccount = accNumberToIban(transaction.destinationAccount);
+  }
+
+  const fixedTransaction = {
+    ...transaction,
+    destinationAccount: newDestAccount,
+    originAccount: newOriginAccount,
+  };
+
+  return fixedTransaction;
+};
+
 const convertAccounts = (originAccount, destAccount, transactionType) => {
   let newOriginAccount = originAccount;
   let newDestAccount = destAccount;
@@ -65,4 +84,5 @@ export {
   findAccount,
   convertAccountsHistory,
   convertAccounts,
+  fixTransaction,
 };

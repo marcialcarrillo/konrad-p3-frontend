@@ -7,7 +7,6 @@ import { MdOutlinePayment } from "react-icons/md";
 import { RiBillLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
-
 const Dashboard = () => {
   const block = "dashboard";
   const { userData, setUserData } = useContext(userDataContext);
@@ -26,12 +25,13 @@ const Dashboard = () => {
           <h1 className={`${block}__title`}>Dashboard</h1>
         </div> */}
         <div className={`${block}__banner`}>
-          <Link to="/profile"></Link>
-          <img
-            alt="profile"
-            className={`${block}__profile-picture`}
-            src={userData.profilePicture}
-          ></img>
+          <Link to="/profile">
+            <img
+              alt="profile"
+              className={`${block}__profile-picture`}
+              src={userData.profilePicture}
+            ></img>
+          </Link>
 
           <div className={`${block}__banner-name`}>
             <p className={`${block}__name`}>

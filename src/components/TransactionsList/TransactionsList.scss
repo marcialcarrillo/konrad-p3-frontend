@@ -1,0 +1,81 @@
+.transaction-list {
+  &__root {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.transaction-item {
+  &__root {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid #ddd 0.0625rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25rem;
+  }
+}
+
+.small-date {
+  &__root {
+    display: flex;
+    flex-direction: column;
+  }
+  &__month {
+    color: $neutral-darkest;
+  }
+  &__day {
+    font-size: 16px;
+    font-weight: 500;
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 1.4375rem;
+    }
+  }
+}
+
+.description {
+  &__root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 9.25rem;
+    @media (min-width: $breakpoint-tablet) {
+      min-width: 190px;
+    }
+  }
+  &__title {
+    font-weight: 500;
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 1.05rem;
+    }
+  }
+  &__subtitle {
+    font-size: 10px;
+    color: $neutral-darkest;
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.balance {
+  &__root {
+    font-size: 12px;
+    font-weight: 500;
+    margin: auto 0;
+    min-width: 60px;
+    &--minus {
+      @extend .balance__root;
+      color: $error-red;
+    }
+    &--plus {
+      @extend .balance__root;
+      color: $success-green;
+    }
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 1rem;
+      min-width: 80px;
+    }
+  }
+}

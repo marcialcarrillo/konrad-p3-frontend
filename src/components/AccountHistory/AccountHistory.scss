@@ -1,0 +1,108 @@
+.account-history {
+  &__root {
+    @include form-root;
+    align-items: center;
+  }
+  &__wrapper {
+    @include form-wrapper;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 1rem;
+    @media (min-width: $breakpoint-tablet) {
+      width: 80%;
+    }
+  }
+  &__container {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
+    margin-bottom: 1rem;
+    &--slim{
+      @extend .account-history__container;
+      padding: 0.25rem;
+    }
+  }
+  &__form {
+    @include form-form;
+    border: 0;
+    padding: 0;
+  }
+
+  &__load-icon{
+    width: 5rem;
+  }
+
+  &__load-text {
+    font-size: 1.25rem;
+    @include font-content;
+  }
+  &__load-prompt {
+    @include form-form;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__balance {
+    font-size: 1.9rem;
+    color: $background-white;
+    // @include font-content;
+  }
+
+  &__info-wrap {
+    border-top: solid #ddd 0.0625rem;
+    margin-top: 2rem;
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+
+  &__label {
+    @include form-label;
+    font-size: 1.12rem;
+    margin: 0;
+    @include font-content
+  }
+
+  &__title {
+    @include form-title;
+        @include font-title;
+    &--h2 {
+      @include form-title-h2;
+      border-bottom: solid #ddd 0.0625rem;
+      @include font-title;
+    }
+  }
+
+  &__links-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    @media screen and (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__field {
+    @include form-field;
+  }
+
+  &__button {
+    @include form-button;
+    align-self: flex-end;
+    margin-top: 0.5rem;
+    // @include font-title;
+  }
+
+    &__button-wrapper {
+    @include form-button-wrapper;
+    flex-wrap: wrap;
+    margin: 0;
+    
+  }
+  &__select-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+}

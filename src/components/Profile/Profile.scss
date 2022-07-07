@@ -38,7 +38,7 @@
     border-radius: 50%;
     width: 6rem;
     height: 6rem;
-    border: solid $primary 0.25rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgb(0 0 0 / 50%);
     @media (min-width: $breakpoint-mobile) {
       width: 9rem;
       height: 9rem;
