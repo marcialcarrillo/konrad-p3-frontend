@@ -1,4 +1,4 @@
-.transaction-result {
+.pay-service-verify {
   &__root {
     min-height: 27.0625rem;
     display: flex;
@@ -21,10 +21,6 @@
     width: 27rem;
   }
 
-  &__field {
-    font-size: 0.875rem;
-  }
-
   &__form {
     padding: 0.5rem 1rem;
     display: flex;
@@ -45,16 +41,13 @@
       font-size: 1.5rem;
       margin: 0.1rem;
     }
-    &--sub {
-      font-size: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
   }
   &__label {
     font-size: 0.9rem;
     margin: 0.7rem 0rem 0.2rem 0rem;
     font-weight: 500;
   }
+
   &__id-preview {
     width: 13rem;
   }
@@ -71,10 +64,9 @@
     margin-bottom: 0;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    // justify-content: space-between;
+    justify-content: space-between;
     @media (min-width: $breakpoint-tablet) {
-      // justify-content: space-between;
+      justify-content: space-between;
     }
   }
 
@@ -105,8 +97,8 @@
   }
 
   &__button-back {
-    background-color: $highlight;
-    color: white;
+    border: $secondary solid 1px;
+    color: $secondary;
     padding: 0.5rem;
     border-radius: 0.25rem;
     width: 100%;

@@ -85,7 +85,7 @@ const MoneyTransfer = () => {
             <p className={`${block}__helper-text`}></p>
 
             <p className={`${block}__label`}>Available Balance:</p>
-            <p> ₡{balanceToShow} </p>
+            <p className={`${block}__field`}> ₡{balanceToShow} </p>
 
             <label id="transferAmount" className={`${block}__label`}>
               Transfer Amount

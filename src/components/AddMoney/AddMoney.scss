@@ -21,6 +21,10 @@
     width: 27rem;
   }
 
+  &__field {
+    font-size: 0.875rem;
+  }
+
   &__form {
     padding: 0.5rem 1rem;
     display: flex;
@@ -39,7 +43,7 @@
   &__title {
     &--h1 {
       font-size: 1.5rem;
-      margin-bottom: 0.1rem;
+      margin: 0.1rem;
     }
   }
   &__label {

@@ -1,0 +1,88 @@
+.profile {
+  &__banner {
+    height: 12rem;
+    background-color: $secondary;
+    margin: 0 -2rem;
+    display: flex;
+
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__banner-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+
+  &__name {
+    color: $background-white;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  &__id-number {
+    color: $neutral;
+    align-self: flex-end;
+  }
+
+  &__profile-picture {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    border: solid $primary 0.25rem;
+    @media (min-width: $breakpoint-mobile) {
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+
+  &__id-picture {
+    object-fit: cover;
+    // max-height: 15rem;
+    max-width: 14rem;
+    margin: 0 auto;
+    border: solid $primary 0.1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__container {
+    @include form-container;
+    width: 40rem;
+  }
+  &__root {
+    @include form-root;
+  }
+  &__wrapper {
+    @include form-wrapper;
+  }
+  &__form {
+    @include form-form;
+  }
+  &__info-wrap {
+    border-top: solid #ddd 0.0625rem;
+    margin-top: 2rem;
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+
+  &__label {
+    @include form-label;
+    font-size: 1.12rem;
+  }
+  &__title {
+    @include form-title;
+    margin-bottom: 1rem;
+  }
+  &__field {
+    @include form-field;
+  }
+}

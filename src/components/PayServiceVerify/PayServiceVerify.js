@@ -90,8 +90,8 @@ const PayServicesVerify = () => {
           ...redirect,
           toResult: true,
         });
-      } else{
-        console.error(res)
+      } else {
+        console.error(res);
       }
     } catch (e) {
       //TODO: show modal with error
@@ -101,31 +101,37 @@ const PayServicesVerify = () => {
   };
 
   return (
-    <main>
-      <h1>Currently Paying {currentService.serviceName}</h1>
+    <main className={`${block}__root`}>
+      <div className={`${block}__wrapper`}>
+        <div className={`${block}__container`}>
+          <form className={`${block}__form`}>
+            <h1>Currently Paying {currentService.serviceName}</h1>
 
-      <label className={`${block}__label`}>Origin Account</label>
-      <select
-        name="originAccount"
-        id="originAccount"
-        value={currentAccount}
-        onChange={(e) => handleAccChange(e)}
-        className={`${block}__select`}
-      >
-        {optionsArray}
-      </select>
-      <p className={`${block}__helper-text`}></p>
-      <p>Available Balance</p>
-      <p>₡{balanceToShow}</p>
-      <p>Service Payment</p>
-      <p>{currentService.amountToPay}</p>
-
-      <Link to="/pay-services">Go Back</Link>
-      <button onClick={() => makeTransfer()}>Confirm</button>
-
-      {redirect.toResult && (
-        <Navigate to="/transaction-result" replace={true} />
-      )}
+            <label className={`${block}__label`}>Origin Account</label>
+            <select
+              name="originAccount"
+              id="originAccount"
+              value={currentAccount}
+              onChange={(e) => handleAccChange(e)}
+              className={`${block}__select`}
+            >
+              {optionsArray}
+            </select>
+            <p className={`${block}__helper-text`}></p>
+            <p>Available Balance</p>
+            <p>₡{balanceToShow}</p>
+            <p>Service Payment</p>
+            <p>{currentService.amountToPay}</p>
+          </form>
+          <div className={`${block}__button-wrapper`}>
+            <Link to="/pay-services">Go Back</Link>
+            <button onClick={() => makeTransfer()}>Confirm</button>
+          </div>
+          {redirect.toResult && (
+            <Navigate to="/transaction-result" replace={true} />
+          )}
+        </div>
+      </div>
     </main>
   );
 };

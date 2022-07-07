@@ -2,6 +2,7 @@
 @import "./styles/variables/colors.scss";
 @import "./styles/base/base.scss";
 @import "./styles/mixins/utils.scss";
+@import "./styles/mixins/forms.scss";
 @import "./App.scss";
 @import "./components/Header/Header.scss";
 @import "./components/Home/Home.scss";
@@ -20,4 +21,5 @@
 @import "./components/TransferResult/TransferResult.scss";
 @import "./components/PayServices/PayServices.scss";
 @import "./components/LogOut/LogOut.scss";
+@import "./components/Profile/Profile.scss";
 

@@ -121,7 +121,7 @@ const AddMoney = () => {
             <p className={`${block}__helper-text`}></p>
 
             <p className={`${block}__label`}>Current Balance:</p>
-            <p> ₡{balanceToShow} </p>
+            <p className={`${block}__field`}> ₡{balanceToShow} </p>
           </form>
           <div className={`${block}__button-wrapper`}>
             <button
