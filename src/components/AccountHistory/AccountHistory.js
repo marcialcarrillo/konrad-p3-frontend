@@ -17,6 +17,7 @@ const AccountHistory = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { userData, setUserData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
+  const [isTransactionLoaded, setIsTransactionLoaded] = useState(false);
   // const [accountTransactions, setAccountTransactions] = useSessionState(
   //   "transactions",
   //   null
@@ -54,6 +55,7 @@ const AccountHistory = () => {
       setIsLoading(false);
       setAccountTransactions(jsonRes);
       setCurrentLoadedAccount(currentAccount);
+      setIsTransactionLoaded(true);
     } else {
       //TODO modal error
       console.error(res);
@@ -97,23 +99,24 @@ const AccountHistory = () => {
           </div>
         </div>
         <div className={`${block}__container--slim`}>
-          {accountTransactions ?
-          <TransactionList
-            selectedAccount={accNumberToIban(currentLoadedAccount)}
-            transactions={accountTransactions}
-          />
-          :
-          <>
-            <div className={`${block}__load-prompt`}>
-              <div className={`${block}__load-icon`}>
-                <FaSearchDollar size={70} />
+          {accountTransactions && isTransactionLoaded ? (
+            <TransactionList
+              selectedAccount={accNumberToIban(currentLoadedAccount)}
+              transactions={accountTransactions}
+            />
+          ) : (
+            <>
+              <div className={`${block}__load-prompt`}>
+                <div className={`${block}__load-icon`}>
+                  <FaSearchDollar size={70} />
+                </div>
+                <span className={`${block}__load-text`}>
+                  Select an account and press "Load Transactions" to see a list
+                  of the account's movements.
+                </span>
               </div>
-              <span className={`${block}__load-text`}>
-                Select an account and press "Load Transactions" to see a list of
-                the account's movements.
-              </span>
-            </div>
-          </>}
+            </>
+          )}
         </div>
       </div>
     </main>

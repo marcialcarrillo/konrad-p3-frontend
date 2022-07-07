@@ -6,6 +6,7 @@ import { BiTransfer } from "react-icons/bi";
 import { MdOutlinePayment } from "react-icons/md";
 import { RiBillLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { AccountsSummary } from "../AccountsSummary/AccountsSummary";
 
 const Dashboard = () => {
   const block = "dashboard";
@@ -41,7 +42,9 @@ const Dashboard = () => {
 
           <div className={`${block}__banner-balance`}>
             <p className={`${block}__balance-title`}>Total Balance</p>
-            <p className={`${block}__balance`}>₡{totalBalance}</p>
+            <p className={`${block}__balance`}>
+              ₡{Number(totalBalance).toLocaleString()}
+            </p>
           </div>
         </div>
 
@@ -64,6 +67,13 @@ const Dashboard = () => {
                 <RiBillLine size={40} />
               </IconLink>
             </div>
+          </div>
+        </div>
+
+        <div className={`${block}__container`}>
+          <div className={`${block}__form`}>
+            <h2 className={`${block}__title--h2`}>Your Accounts</h2>
+            <AccountsSummary accounts={userData.accounts} />
           </div>
         </div>
       </div>

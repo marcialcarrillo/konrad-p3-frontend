@@ -1,0 +1,65 @@
+.accounts-summary {
+  &__root {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  &__headers {
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-content: space-between;
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+  &__type {
+    @include hide-tablet;
+  }
+  &__status {
+    @include hide-tablet;
+  }
+  &__acc-number {
+    min-width: 9.375rem;
+    @media (min-width: $breakpoint-tablet) {
+      text-align: end;
+    }
+  }
+}
+
+.accounts-item {
+  &__root {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-content: space-between;
+    border-bottom: solid #ddd 0.0625rem;
+    padding-bottom: 0.25rem;
+    margin-top: 0.25rem;
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+  &__type-wrapper {
+    display: flex;
+  }
+
+  &__acc-number {
+    font-size: 0.75rem;
+    padding-top: 0.2rem;
+    min-width: 9.375rem;
+  }
+
+  &__balance {
+    font-size: 0.9rem;
+  }
+
+  &__type-wrapper {
+    @include hide-tablet;
+  }
+  &__status {
+    @include hide-tablet;
+  }
+}

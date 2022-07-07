@@ -1,15 +1,28 @@
-@mixin flex-wide ($width: 100%) {
-    display: flex;
-    width: $width
+@mixin flex-wide($width: 100%) {
+  display: flex;
+  width: $width;
 }
 
-@mixin flex-wrap-wide ($width: 100%) {
-    display: flex;
-    flex-wrap: wrap;
-    width: $width;
+@mixin flex-wrap-wide($width: 100%) {
+  display: flex;
+  flex-wrap: wrap;
+  width: $width;
 }
 
 @mixin flex-wrap {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin hide-mobile{
+  display: none;
+  @media (min-width: $breakpoint-mobile) {
+    display: block;
+  }
+}
+@mixin hide-tablet{
+  display: none;
+  @media (min-width: $breakpoint-tablet) {
+    display: block;
+  }
 }
