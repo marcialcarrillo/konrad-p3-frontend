@@ -1,8 +1,21 @@
 .home {
   &__root {
     min-height: 66vh;
-    background-color: $background-white;
+    height: 200rem;
+    position: relative;
+    // background-color: $background-white;
   }
+  &__title-test {
+    position: absolute;
+    top: 30px;
+    color: $background-white;
+  }
+
+  &__home-cards {
+    display: flex;
+    margin-top: 15rem;
+  }
+
   &__best-wrapper {
     background-color: white;
     margin: 0.5rem;
@@ -14,7 +27,24 @@
     border-bottom: solid #ddd 0.0625rem;
     padding: 0.5rem;
   }
-  &__best-container{
-      padding: 0.5rem;
+  &__best-container {
+    padding: 0.5rem;
+  }
+  &__parallax-bird1 {
+    width: 1080px;
+    height: 1280px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    background-image: url("../../assets/images/bird1.png");
+  }
+  
+  &__content{
+    width: 1080px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    margin-top: 100px;
   }
 }

@@ -83,7 +83,7 @@ const AddMoney = () => {
       <div className={`${block}__wrapper`}>
         <div className={`${block}__container`}>
           <form className={`${block}__form`}>
-            <h1 className={`${block}__title--h1`}>Add Money Page</h1>
+            <h1 className={`${block}__title--h1`}>Add Money</h1>
             <label id="originAccount" className={`${block}__label`}>
               Origin Account
             </label>

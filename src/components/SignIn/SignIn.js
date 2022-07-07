@@ -98,6 +98,7 @@ const SignIn = () => {
             <input
               onChange={(e) => handleChange(e)}
               name="password"
+              type="password"
               className={
                 formErrors.password
                   ? `${block}__input--error`

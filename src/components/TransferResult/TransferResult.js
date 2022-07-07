@@ -44,15 +44,21 @@ const TransferResult = () => {
             <p className={`${block}__title--sub`}>{transferResult.message}</p>
 
             <p className={`${block}__label`}>Origin Account</p>
-            <p>{convertedAccounts.originAccount}</p>
+            <p className={`${block}__field`}>
+              {convertedAccounts.originAccount}
+            </p>
 
             <p className={`${block}__label`}>{transferResult.amountLabel}</p>
-            <p>₡{transferResult.formValues.transferAmount}</p>
+            <p className={`${block}__field`}>
+              ₡{transferResult.formValues.transferAmount}
+            </p>
 
             <p className={`${block}__label`}>
               {transferResult.destinationLabel}
             </p>
-            <p>{convertedAccounts.destinationAccount}</p>
+            <p className={`${block}__field`}>
+              {convertedAccounts.destinationAccount}
+            </p>
           </form>
           <div className={`${block}__button-wrapper`}>
             <Link className={`${block}__button`} to="/dashboard">

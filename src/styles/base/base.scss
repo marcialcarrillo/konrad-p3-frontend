@@ -1,7 +1,8 @@
-*
-html {
+* html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
+
 
 *,
 *:before,
@@ -16,13 +17,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $background-white;
+  // background-color: $background-white;
+  background-image: url("../../assets/images/swirl_pattern.webp");
+  background-repeat: repeat;
   overflow: unset;
-  &.no-scroll{
+  &.no-scroll {
     overflow: hidden;
   }
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

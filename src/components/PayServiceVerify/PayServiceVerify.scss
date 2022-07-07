@@ -1,62 +1,37 @@
 .pay-service-verify {
   &__root {
-    min-height: 27.0625rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include form-root;
   }
 
   &__wrapper {
-    display: flex;
-    justify-content: center;
+    @include form-wrapper;
   }
 
   &__container {
-    background-color: white;
-    padding: 1rem;
-    box-shadow: $shadow-default;
-    max-width: 50rem;
-    margin: 1rem 2.3rem;
-    max-width: 50rem;
-    width: 27rem;
+    @include form-container;
   }
 
   &__form {
-    padding: 0.5rem 1rem;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 1rem;
-    border-bottom: solid #ddd 0.0625rem;
-    &--delivery {
-      @extend .sign-up-form__form;
-    }
-    &--card {
-      @extend .sign-up-form__form;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-  &__title {
-    &--h1 {
-      font-size: 1.5rem;
-      margin: 0.1rem;
-    }
-  }
-  &__label {
-    font-size: 0.9rem;
-    margin: 0.7rem 0rem 0.2rem 0rem;
-    font-weight: 500;
+    @include form-form;
   }
 
-  &__id-preview {
-    width: 13rem;
+  &__title {
+    @include form-title;
   }
+  &__label {
+    @include form-label;
+  }
+
   &__select {
-    border: solid $neutral 0.0625rem;
+    @include form-select;
   }
+
   &__input {
-    border: solid $neutral 0.0625rem;
-    border-radius: 0.1875rem;
+    @include form-input;
+  }
+
+  &__field{
+    @include form-field;
   }
 
   &__button-wrapper {
@@ -76,44 +51,10 @@
   }
 
   &__button {
-    background-color: $secondary;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    width: 10rem;
-    @media (min-width: $breakpoint-tablet) {
-      width: 10rem;
-    }
-    &:disabled {
-      background-color: gray;
-      cursor: default;
-      @media (min-width: $breakpoint-tablet) {
-        width: 13rem;
-      }
-    }
+    @include form-button;
   }
 
   &__button-back {
-    border: $secondary solid 1px;
-    color: $secondary;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    width: 10rem;
-    @media (min-width: $breakpoint-tablet) {
-      width: 10rem;
-    }
-    &:disabled {
-      background-color: gray;
-      cursor: default;
-      @media (min-width: $breakpoint-tablet) {
-        width: 13rem;
-      }
-    }
+    @include form-secondary-button
   }
 }

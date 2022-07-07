@@ -43,7 +43,7 @@ const TransferVerify = () => {
         destinationLabel: "Destination Account",
         amountLabel: "Transfer Amount",
         backlinkLabel: "Make another transfer",
-        message: "The transfer has been made successfully",
+        message: "The transfer has been made successfully.",
         pendingUserData: resJson,
       });
       setRedirect({
@@ -69,14 +69,20 @@ const TransferVerify = () => {
             <h1 className={`${block}__title--h1`}>Verifying Transaction</h1>
 
             <p className={`${block}__label`}>Origin Account</p>
-            <p>{convertedAccounts.originAccount}</p>
+            <p className={`${block}__field`}>
+              {convertedAccounts.originAccount}
+            </p>
             {/* {transferResult.formValues.transactionType === "Internal" && <p></p>} */}
 
             <p className={`${block}__label`}>Transfer Amount</p>
-            <p>₡{transferResult.formValues.transferAmount}</p>
+            <p className={`${block}__field`}>
+              ₡{transferResult.formValues.transferAmount}
+            </p>
 
             <p className={`${block}__label`}>Destination Account</p>
-            <p>{convertedAccounts.destinationAccount}</p>
+            <p className={`${block}__field`}>
+              {convertedAccounts.destinationAccount}
+            </p>
           </form>
 
           <div className={`${block}__button-wrapper`}>

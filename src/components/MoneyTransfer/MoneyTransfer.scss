@@ -21,9 +21,8 @@
     width: 27rem;
   }
 
-  
-  &__field{
-    font-size: 0.875rem;
+  &__field {
+    @include form-field;
   }
 
   &__form {
@@ -48,9 +47,7 @@
     }
   }
   &__label {
-    font-size: 0.9rem;
-    margin: 0.7rem 0rem 0.2rem 0rem;
-    font-weight: 500;
+    @include form-label;
   }
   &__id-preview {
     width: 13rem;

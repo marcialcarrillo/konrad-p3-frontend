@@ -4,7 +4,7 @@ import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
 
 const PayServicesVerify = () => {
-  const block = "pay-services-verify";
+  const block = "pay-service-verify";
   const { service } = useParams();
   const { userData, setUserData } = useContext(userDataContext);
   const { setTransferResult, redirect, setRedirect } = useContext(
@@ -76,12 +76,12 @@ const PayServicesVerify = () => {
         //Construct transferResult for a service payment
         const tResult = {
           formValues: formValues,
-          title: "Payment Completed",
+          title: "Payment Complete",
           destinationLabel: "Service Paid",
           amountLabel: "Amount Paid",
           backlink: "/pay-services",
           backlinkLabel: "Pay another service",
-          message: "The service selected has been paid successfully",
+          message: "The service selected has been paid successfully.",
           pendingUserData: resJson,
         };
 
@@ -105,7 +105,9 @@ const PayServicesVerify = () => {
       <div className={`${block}__wrapper`}>
         <div className={`${block}__container`}>
           <form className={`${block}__form`}>
-            <h1>Currently Paying {currentService.serviceName}</h1>
+            <h1 className={`${block}__title`}>
+              Paying {currentService.serviceName}
+            </h1>
 
             <label className={`${block}__label`}>Origin Account</label>
             <select
@@ -118,14 +120,21 @@ const PayServicesVerify = () => {
               {optionsArray}
             </select>
             <p className={`${block}__helper-text`}></p>
-            <p>Available Balance</p>
-            <p>₡{balanceToShow}</p>
-            <p>Service Payment</p>
-            <p>{currentService.amountToPay}</p>
+            <p className={`${block}__label`}>Available Balance</p>
+            <p className={`${block}__field`}>₡{balanceToShow}</p>
+            <p className={`${block}__label`}>Service Payment</p>
+            <p className={`${block}__field`}>{currentService.amountToPay}</p>
           </form>
           <div className={`${block}__button-wrapper`}>
-            <Link to="/pay-services">Go Back</Link>
-            <button onClick={() => makeTransfer()}>Confirm</button>
+            <Link className={`${block}__button-back`} to="/pay-services">
+              Go Back
+            </Link>
+            <button
+              className={`${block}__button`}
+              onClick={() => makeTransfer()}
+            >
+              Confirm
+            </button>
           </div>
           {redirect.toResult && (
             <Navigate to="/transaction-result" replace={true} />

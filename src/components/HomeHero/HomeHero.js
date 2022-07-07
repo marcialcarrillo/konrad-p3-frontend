@@ -6,7 +6,7 @@ const HomeHero = () => {
       <div className="home-hero__image">
         <div className="home-hero__overlay">
           <p className="home-hero__title">The Big Three</p>
-          <div className="home-hero__description">
+          {/* <div className="home-hero__description">
             <span className="home-hero__description--line">
               For many years, Clarke, Asimov and Heinlein
             </span>
@@ -24,7 +24,7 @@ const HomeHero = () => {
             <Link to="/" className="home-hero__button">
               <strong>Learn More</strong>
             </Link>
-          </section>
+          </section> */}
         </div>
       </div>
     </article>

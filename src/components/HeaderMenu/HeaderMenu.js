@@ -14,27 +14,33 @@ const HeaderMenu = () => {
     <div className={`${block}__wrapper`}>
       <HeaderMenuHamburger isOpen={isOpen} toggleHamburger={toggleHamburger} />
       <ul className={isOpen ? `${block}__root--open` : `${block}__root`}>
-        <Link
-          to="/"
-          onClick={() => toggleHamburger()}
-          className={`${block}__item`}
-        >
-          Home
-        </Link>
-        <Link
-          to="/product-list"
-          onClick={() => toggleHamburger()}
-          className={`${block}__item`}
-        >
-          Product List
-        </Link>
-        <Link
-          to="/cart-page"
-          onClick={() => toggleHamburger()}
-          className={`${block}__item`}
-        >
-          Cart
-        </Link>
+        <li>
+          <Link
+            to="/"
+            onClick={() => toggleHamburger()}
+            className={`${block}__item`}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/product-list"
+            onClick={() => toggleHamburger()}
+            className={`${block}__item`}
+          >
+            Product List
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/cart-page"
+            onClick={() => toggleHamburger()}
+            className={`${block}__item`}
+          >
+            Cart
+          </Link>
+        </li>
       </ul>
     </div>
   );

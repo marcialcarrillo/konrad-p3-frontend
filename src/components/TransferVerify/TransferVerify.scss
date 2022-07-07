@@ -43,9 +43,7 @@
     }
   }
   &__label {
-    font-size: 0.9rem;
-    margin: 0.7rem 0rem 0.2rem 0rem;
-    font-weight: 500;
+    @include form-label;
   }
 
   &__id-preview {
@@ -64,7 +62,7 @@
     margin-bottom: 0;
     display: flex;
     align-items: center;
-          justify-content: space-between;
+    justify-content: space-between;
     @media (min-width: $breakpoint-tablet) {
       justify-content: space-between;
     }
@@ -73,6 +71,10 @@
   &__alternate-link {
     margin-top: 0.4rem;
     font-size: 0.8rem;
+  }
+
+  &__field {
+    @include form-field;
   }
 
   &__button {
