@@ -32,6 +32,13 @@
   font-size: 1.5rem;
   margin: 0.1rem;
 }
+
+@mixin form-title-h2 {
+  font-size: 1.125rem;
+  margin: 0.1rem;
+  padding-bottom: 0.4rem;
+}
+
 @mixin form-label {
   font-size: 0.95rem;
   margin: 0.7rem 0rem 0.2rem 0rem;

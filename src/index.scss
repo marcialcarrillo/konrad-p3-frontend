@@ -3,6 +3,7 @@
 @import "./styles/base/base.scss";
 @import "./styles/mixins/utils.scss";
 @import "./styles/mixins/forms.scss";
+@import "./styles/mixins/fonts.scss";
 @import "./App.scss";
 @import "./components/Header/Header.scss";
 @import "./components/Home/Home.scss";
@@ -25,4 +26,23 @@
 @import "./components/Profile/Profile.scss";
 @import "./components/HomeCard/HomeCard.scss";
 @import "./components/Dashboard/Dashboard.scss";
+@import "./components/IconLink/IconLink.scss";
+
+@font-face {
+font-family: "Kant";
+src: local("Kant"),
+ url("./fonts/KantumruyPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "Lora";
+src: local("Lora"),
+ url("./fonts/Lora-Regular.ttf") format("truetype");
+}
+
+@font-face {
+font-family: "Quest";
+src: local("Quest"),
+ url("./fonts/Questrial-Regular.ttf") format("truetype");
+}
 

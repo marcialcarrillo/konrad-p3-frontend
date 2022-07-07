@@ -37,7 +37,7 @@ const Header = () => {
         <Link to="/" className={`${block}__logo`}>
           <img className={`${block}__logo`} src={logo} alt="big3 logo" />
         </Link>
-        <div className={`${block}__links-wrapper`}>{linkConstructor()}</div>
+        {/* <div className={`${block}__links-wrapper`}>{linkConstructor()}</div> */}
       </div>
     </nav>
   );

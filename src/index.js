@@ -19,6 +19,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import TransferResult from "./components/TransferResult/TransferResult";
 import TransferVerify from "./components/TransferVerify/TransferVerify";
 import Profile from "./components/Profile/Profile";
+import "./fonts/KantumruyPro-Regular.ttf";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

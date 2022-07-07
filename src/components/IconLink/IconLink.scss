@@ -1,0 +1,17 @@
+.icon-link {
+  &__root {
+    display: flex;
+    box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 20%);
+    margin: 0.25rem;
+    justify-content: space-evenly;
+  }
+  &__text {
+    // padding: 1rem;
+    align-self: center;
+    text-align: center;
+    @include font-content;
+  }
+  &__icon-wrapper {
+    // padding: 0 1rem;
+  }
+}
