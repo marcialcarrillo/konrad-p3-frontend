@@ -48,7 +48,7 @@ const Home = () => {
       <InfoBanner
         title="Design Your Card"
         message="Showcase your personality and taste with our custom credit and debit VERMILION® cards. Choose from over 1500 designs that cover all topics and interests!"
-        buttonText="Make Me One"
+        buttonText="Create Card"
       >
         <GrCreditCard size={90} className={`${block}__icon-card`} />
       </InfoBanner>

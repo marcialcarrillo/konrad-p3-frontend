@@ -3,9 +3,11 @@
     @include form-form;
     min-height: unset;
   }
-  
+
   &__root {
     @include form-container;
     width: 75%;
+    margin: 0;
+    margin-top: 0.75rem;
   }
 }

@@ -34,7 +34,7 @@ const Header = () => {
     <nav>
       <div className={`${block}__root`}>
         <HeaderMenu />
-        <Link to="/" className={`${block}__logo`}>
+        <Link to="/dashboard" className={`${block}__logo`}>
           <img className={`${block}__logo`} src={logo} alt="big3 logo" />
         </Link>
         <div className={`${block}__links-wrapper`}>{linkConstructor()}</div>
