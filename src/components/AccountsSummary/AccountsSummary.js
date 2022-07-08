@@ -19,7 +19,7 @@ const AccountsItem = ({ account }) => {
       >
         {accNumberToIban(account.accountNumber)}
       </button>
-      <div className={`${block}__status`}>Active</div>
+      <div className={`${block}__status`}>CRC</div>
       <div className={`${block}__balance`}>
         ₡{Number(account.balance).toLocaleString()}
       </div>
@@ -38,7 +38,7 @@ const AccountsSummary = ({ accounts }) => {
       <div className={`${block}__headers`}>
         <div className={`${block}__type`}>Type</div>
         <div className={`${block}__acc-number`}>Account Number</div>
-        <div className={`${block}__status`}>Status</div>
+        <div className={`${block}__currency`}>Currency</div>
         <div className={`${block}__balance`}>Balance</div>
       </div>
       <ul className={`${block}__root`}>{accountItems}</ul>
