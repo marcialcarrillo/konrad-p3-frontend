@@ -11,9 +11,14 @@ const AccountsItem = ({ account }) => {
         </div> */}
         <span className={`${block}__type-text`}>Savings</span>
       </div>
-      <div className={`${block}__acc-number`}>
+      <button
+        onClick={(e) => {
+          navigator.clipboard.writeText(e.target.innerText);
+        }}
+        className={`${block}__acc-number`}
+      >
         {accNumberToIban(account.accountNumber)}
-      </div>
+      </button>
       <div className={`${block}__status`}>Active</div>
       <div className={`${block}__balance`}>
         ₡{Number(account.balance).toLocaleString()}

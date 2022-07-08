@@ -1,11 +1,21 @@
 import ReactDom from "react-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import modalContext from "../../context/ModalContext";
 import { ReactComponent as Cross } from "../../assets/icons/cross.svg";
 
 const Modal = () => {
   const { modalState, setModalState } = useContext(modalContext);
   const block = "modal";
+
+  // const modalRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (modalState){
+  //     setTimeout(() => {
+  //       modalRef.current.focus();
+  //     }, 1);
+  //   }
+  // }, []);
 
   useEffect(() => {
     !modalState
@@ -19,8 +29,10 @@ const Modal = () => {
         <div className={`${block}__background`}>
           <div className={`${block}__root`} role="dialog" aria-modal="true">
             <div className={`${block}__header`}>
-              <h1 className={`${block}__title--h1`}>{modalState.title ? modalState.title : "Error" }</h1>
-              <button
+              <h1 className={`${block}__title--h1`}>
+                {modalState.title ? modalState.title : "Error"}
+              </h1>
+              <button 
                 className={`${block}__btn-close`}
                 onClick={() => setModalState(null)}
               >
@@ -32,6 +44,7 @@ const Modal = () => {
             </div>
             <div className={`${block}__footer`}>
               <button
+                autoFocus
                 className={`${block}__button`}
                 onClick={() => setModalState(null)}
               >

@@ -92,5 +92,6 @@
         width: 13rem;
       }
     }
+    @include focus;
   }
 }

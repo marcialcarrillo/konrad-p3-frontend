@@ -3,6 +3,17 @@
   scroll-behavior: smooth;
 }
 
+button {
+  @include focus-gray;
+}
+
+// .dropzone {
+//   @include focus-wi-gray;
+//   @include focus-gray;
+//   &:target {
+//     outline: solid gray 0.1875rem;
+//   }
+// }
 
 *,
 *:before,
@@ -64,5 +75,5 @@ input[type="number"] {
 }
 
 .font-kant {
- font-family: "Kant";
+  font-family: "Kant";
 }

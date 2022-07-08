@@ -14,15 +14,37 @@
   flex-wrap: wrap;
 }
 
-@mixin hide-mobile{
+@mixin hide-mobile {
   display: none;
   @media (min-width: $breakpoint-mobile) {
     display: block;
   }
 }
-@mixin hide-tablet{
+@mixin hide-tablet {
   display: none;
   @media (min-width: $breakpoint-tablet) {
     display: block;
+  }
+}
+
+@mixin focus {
+  &:focus {
+    outline: solid $primary 0.1875rem;
+  }
+}
+
+@mixin focus-red {
+  &:focus {
+    outline: solid $secondary 0.1875rem;
+  }
+}
+@mixin focus-gray {
+  &:focus {
+    outline: solid gray 0.1875rem;
+  }
+}
+@mixin focus-wi-gray {
+  &:focus-within {
+    outline: solid gray 0.1875rem;
   }
 }
