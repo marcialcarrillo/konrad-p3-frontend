@@ -43,8 +43,6 @@ function App() {
               <Outlet />
               <Footer />
               {loadingModal ? <LoadingModal /> : <Modal />}
-              {/* <Modal />
-              <LoadingModal /> */}
             </LoadingContext.Provider>
           </ModalContext.Provider>
         </TransferResultContext.Provider>

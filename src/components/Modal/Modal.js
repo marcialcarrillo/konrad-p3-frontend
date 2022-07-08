@@ -6,17 +6,6 @@ import { ReactComponent as Cross } from "../../assets/icons/cross.svg";
 const Modal = () => {
   const { modalState, setModalState } = useContext(modalContext);
   const block = "modal";
-
-  // const modalRef = useRef(null);
-
-  // useEffect(() => {
-  //   if (modalState){
-  //     setTimeout(() => {
-  //       modalRef.current.focus();
-  //     }, 1);
-  //   }
-  // }, []);
-
   useEffect(() => {
     !modalState
       ? document.body.classList.remove("no-scroll")
