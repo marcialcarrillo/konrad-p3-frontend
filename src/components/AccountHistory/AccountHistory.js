@@ -20,10 +20,6 @@ const AccountHistory = () => {
   const { userData, setUserData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
   const [isTransactionLoaded, setIsTransactionLoaded] = useState(false);
-  // const [accountTransactions, setAccountTransactions] = useSessionState(
-  //   "transactions",
-  //   null
-  // );
   const block = "account-history";
 
   //initialize the currently selected account by picking the customer's first

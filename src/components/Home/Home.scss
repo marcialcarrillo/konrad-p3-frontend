@@ -1,8 +1,6 @@
 .home {
   &__root {
     min-height: 66vh;
-    // position: relative;
-    // background-color: $background-white;
   }
   &__title-test {
     position: absolute;
@@ -95,11 +93,6 @@
     display: flex;
     justify-content: center;
     fill: blue;
-  }
-
-  &__button-wrapper {
-    // display: flex;
-    // justify-content: center
   }
 
   &__button {

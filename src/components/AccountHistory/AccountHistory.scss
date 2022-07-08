@@ -46,7 +46,6 @@
   &__balance {
     font-size: 1.9rem;
     color: $background-white;
-    // @include font-content;
   }
 
   &__info-wrap {
@@ -92,7 +91,6 @@
     @include form-button;
     align-self: flex-end;
     margin-top: 0.5rem;
-    // @include font-title;
   }
 
     &__button-wrapper {

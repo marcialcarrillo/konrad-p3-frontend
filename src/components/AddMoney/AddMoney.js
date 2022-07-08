@@ -62,7 +62,6 @@ const AddMoney = () => {
     (acc) => acc.accountNumber === Number(currentAccount)
   );
 
-  //   let balanceToShow = 0;
   let balanceToShow = currentAccObject.balance;
 
   const handleRedirect = () => {

@@ -6,9 +6,6 @@ const AccountsItem = ({ account }) => {
   return (
     <li className={`${block}__root`}>
       <div className={`${block}__type-wrapper`}>
-        {/* <div className={`${block}__type-icon`}>
-          <MdOutlineSavings />
-        </div> */}
         <span className={`${block}__type-text`}>Savings</span>
       </div>
       <button

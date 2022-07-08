@@ -74,7 +74,6 @@ const TransferVerify = () => {
             <p className={`${block}__field`}>
               {convertedAccounts.originAccount}
             </p>
-            {/* {transferResult.formValues.transactionType === "Internal" && <p></p>} */}
 
             <p className={`${block}__label`}>Transfer Amount</p>
             <p className={`${block}__field`}>

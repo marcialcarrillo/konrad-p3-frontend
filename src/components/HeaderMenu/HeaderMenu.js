@@ -51,33 +51,6 @@ const HeaderMenu = () => {
       <HeaderMenuHamburger isOpen={isOpen} toggleHamburger={toggleHamburger} />
       <ul className={isOpen ? `${block}__root--open` : `${block}__root`}>
         {linkConstructor()}
-        {/* <li>
-          <Link
-            to="/"
-            onClick={() => toggleHamburger()}
-            className={`${block}__item`}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/product-list"
-            onClick={() => toggleHamburger()}
-            className={`${block}__item`}
-          >
-            Product List
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/cart-page"
-            onClick={() => toggleHamburger()}
-            className={`${block}__item`}
-          >
-            Cart
-          </Link>
-        </li> */}
       </ul>
     </div>
   );

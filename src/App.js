@@ -25,12 +25,6 @@ function App() {
   const [modalState, setModalState] = useState(null);
   const [loadingModal, setLoadingModal] = useState(false);
 
-  // useEffect(() => {
-  //   if (!loadingModal) {
-  //     setLoadingModal(true);
-  //   }
-  // }, [loadingModal, setLoadingModal]);
-
   return (
     <>
       <UserDataContext.Provider value={{ userData, setUserData }}>
