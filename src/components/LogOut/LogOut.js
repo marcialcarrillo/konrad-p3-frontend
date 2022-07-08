@@ -1,38 +1,34 @@
 import { useContext, useState } from "react";
+import LoadingContext from "../../context/LoadingContext";
+import ModalContext from "../../context/ModalContext";
 import userDataContext from "../../context/UserDataContext";
+import { customErrors } from "../../helpers/utils";
 
 const LogOut = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const block = "log-out";
   const { userData, setUserData } = useContext(userDataContext);
+  const { modalState, setModalState } = useContext(ModalContext);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
 
   const handleLogOut = async () => {
-    setIsLoading(true);
-    let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/logout`, {
-      credentials: "include",
-    });
-    setUserData(null);
-    //TODO set other data to null, delete cookie?
-    setIsLoading(false);
+    let res;
+    try {
+      setLoadingModal(true);
+      res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/logout`, {
+        credentials: "include",
+      });
+    } catch {
+      setLoadingModal(false);
+      setModalState(customErrors.unexpected);
+    }
+    setLoadingModal(false);
+    if (res.ok) {
+      setUserData(null);
+    } else {
+      setModalState(await res.json());
+    }
   };
 
-  if (isLoading && !userData) {
-    return (
-      <main className={`${block}__root`}>
-        <div className={`${block}__wrapper`}>
-          <p>Logging you out... </p>
-        </div>
-      </main>
-    );
-  } else if (!isLoading && !userData) {
-    return (
-      <main className={`${block}__root`}>
-        <div className={`${block}__wrapper`}>
-          <p>You are logged out</p>
-        </div>
-      </main>
-    );
-  }
   if (userData) {
     return (
       <main className={`${block}__main`}>
@@ -53,6 +49,8 @@ const LogOut = () => {
         </div>
       </main>
     );
+  } else {
+    return <></>;
   }
 };
 

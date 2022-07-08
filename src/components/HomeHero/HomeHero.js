@@ -7,11 +7,11 @@ const HomeHero = () => {
         {/* <div className={`${block}__overlay`}> */}
         <div className={`${block}__text-wrapper`}>
           <div className={`${block}__title`}>
-            <p className={`${block}__title--mobile`}>
+            <h1 className={`${block}__title--mobile`}>
               Let Us Do The Banking, While You Do The Living.
-            </p>
-            <p className={`${block}__title--line1`}>Let Us Do The Banking,</p>
-            <p className={`${block}__title--line2`}>While You Do The Living.</p>
+            </h1>
+            <h1 className={`${block}__title--line1`}>Let Us Do The Banking,</h1>
+            <h1 className={`${block}__title--line2`}>While You Do The Living.</h1>
           </div>
           <p className={`${block}__description--line`}>
             You can rest easy knowing that VERMILION has your back, be it for

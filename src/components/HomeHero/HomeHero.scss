@@ -48,12 +48,16 @@
     }
 
     &--line1 {
+      font-size: 3rem;
+      font-weight: 700;
       display: none;
       @media (min-width: $breakpoint-tablet) {
         display: block;
       }
     }
     &--line2 {
+      font-size: 3rem;
+      font-weight: 700;
       text-align: end;
       display: none;
       @media (min-width: $breakpoint-tablet) {

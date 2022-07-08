@@ -1,20 +1,21 @@
 import { useContext, useState } from "react";
-import useSessionState from "../../hooks/useSessionState";
 import userDataContext from "../../context/UserDataContext";
 import LoadingContext from "../../context/LoadingContext";
 import {
   convertAccountsHistory,
   accNumberToIban,
 } from "../../helpers/accounts";
-import { handleDBDate } from "../../helpers/utils";
+import { customErrors, handleDBDate } from "../../helpers/utils";
 import { FaSearchDollar } from "react-icons/fa";
 import {
   SmallDate,
   TransactionItem,
   TransactionList,
 } from "../TransactionsList/TransactionsList";
+import ModalContext from "../../context/ModalContext";
 
 const AccountHistory = () => {
+  const { modalState, setModalState } = useContext(ModalContext);
   const { loadingModal, setLoadingModal } = useContext(LoadingContext);
   const { userData, setUserData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
@@ -45,12 +46,18 @@ const AccountHistory = () => {
 
   const handleTransactionLoad = async () => {
     setLoadingModal(true);
-    let res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/transactions/${currentAccount}`,
-      {
-        credentials: "include",
-      }
-    );
+    let res;
+    try {
+      res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/transactions/${currentAccount}`,
+        {
+          credentials: "include",
+        }
+      );
+    } catch {
+      setLoadingModal(false);
+      setModalState(customErrors.unexpected);
+    }
     setLoadingModal(false);
     if (res.ok) {
       const jsonRes = await res.json();
@@ -58,8 +65,7 @@ const AccountHistory = () => {
       setCurrentLoadedAccount(currentAccount);
       setIsTransactionLoaded(true);
     } else {
-      //TODO modal error
-      console.error(res);
+      setModalState(await res.json());
     }
   };
 

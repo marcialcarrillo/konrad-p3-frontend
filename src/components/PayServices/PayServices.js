@@ -11,7 +11,7 @@ const PayServices = () => {
     return (
       <Link className={`${block}__bill-item`} to={`${serv.id}`} key={serv.id}>
         <p className={`${block}__bill-title`}>{serv.serviceName}</p>
-        <p className={`${block}__bill-price`}>₡{serv.amountToPay}</p>
+        <p className={`${block}__bill-price`}>₡{Number(serv.amountToPay).toLocaleString()}</p>
       </Link>
     );
   });

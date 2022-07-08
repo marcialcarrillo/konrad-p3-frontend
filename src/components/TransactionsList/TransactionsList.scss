@@ -65,6 +65,7 @@
     font-weight: 500;
     margin: auto 0;
     min-width: 3.75rem;
+    text-align: end;
     &--minus {
       @extend .balance__root;
       color: $error-red;

@@ -25,9 +25,8 @@ const AccountsItem = ({ account }) => {
 const AccountsSummary = ({ accounts }) => {
   const block = "accounts-summary";
   const accountItems = accounts.map((account) => {
-    return <AccountsItem account={account} />;
+    return <AccountsItem key={account.accountNumber} account={account} />;
   });
-  console.log(accountItems);
 
   return (
     <>

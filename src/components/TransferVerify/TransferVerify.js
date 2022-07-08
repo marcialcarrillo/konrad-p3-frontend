@@ -2,9 +2,14 @@ import { Link, Navigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import TransferResultContext from "../../context/TransferResultContext";
 import { convertAccounts } from "../../helpers/accounts";
+import ModalContext from "../../context/ModalContext";
+import LoadingContext from "../../context/LoadingContext";
+import { customErrors } from "../../helpers/utils";
 
 const TransferVerify = () => {
   const block = "transfer-verify";
+  const { modalState, setModalState } = useContext(ModalContext);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
   const { transferResult, setTransferResult, redirect, setRedirect } =
     useContext(TransferResultContext);
 
@@ -13,26 +18,23 @@ const TransferVerify = () => {
     redirect.toVerify && setRedirect({ ...redirect, toVerify: false });
   }, [setRedirect, redirect]);
 
-  //get the information to make the transfer with in a state (transfer Result)
-  //   transferResult.formValues;
-
-  //TODO: get the current balance from the appropriate account
-
-  //have a method to send that information in a fetch
-  //redirect after the fetch completes successfully to the result page
   const handleTransfer = async () => {
-    const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/transactions`,
-      {
+    setLoadingModal(true);
+    let res;
+    try {
+      res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/transactions`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(transferResult.formValues),
-      }
-    );
-
+      });
+    } catch {
+      setLoadingModal(false);
+      setModalState(customErrors.unexpected);
+    }
+    setLoadingModal(false);
     if (res.ok) {
       const resJson = await res.json();
 
@@ -51,7 +53,7 @@ const TransferVerify = () => {
         toResult: true,
       });
     } else {
-      console.error(res);
+      setModalState(await res.json());
     }
   };
 
@@ -76,7 +78,10 @@ const TransferVerify = () => {
 
             <p className={`${block}__label`}>Transfer Amount</p>
             <p className={`${block}__field`}>
-              ₡{transferResult.formValues.transferAmount}
+              ₡
+              {Number(
+                transferResult.formValues.transferAmount
+              ).toLocaleString()}
             </p>
 
             <p className={`${block}__label`}>Destination Account</p>

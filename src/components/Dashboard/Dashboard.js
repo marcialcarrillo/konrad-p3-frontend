@@ -22,9 +22,9 @@ const Dashboard = () => {
   return (
     <main className={`${block}__root`}>
       <div className={`${block}__wrapper`}>
-        {/* <div className={`${block}__container`}>
+        <div className={`${block}__container--title`}>
           <h1 className={`${block}__title`}>Dashboard</h1>
-        </div> */}
+        </div>
         <div className={`${block}__banner`}>
           <Link to="/profile">
             <img

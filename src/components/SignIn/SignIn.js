@@ -5,6 +5,7 @@ import UserDataContext from "../../context/UserDataContext";
 import LoadingContext from "../../context/LoadingContext";
 import { logInValidator } from "../../helpers/validation";
 import modalContext from "../../context/ModalContext";
+import { customErrors } from "../../helpers/utils";
 
 const SignIn = () => {
   const block = "sign-in";
@@ -42,9 +43,9 @@ const SignIn = () => {
       //no errors found on form, delete old errors
       setFormErrors(errors);
       setLoadingModal(true);
-      let res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/users/login`,
-        {
+      let res;
+      try {
+        res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
           method: "POST",
           credentials: "include",
           headers: {
@@ -52,23 +53,30 @@ const SignIn = () => {
             "Access-Control-Allow-Credentials": "true",
           },
           body: JSON.stringify(rawJson),
-        }
-      );
+        });
+      } catch {
+        setLoadingModal(false);
+        setModalState(customErrors.unexpected);
+      }
 
       const resJson = await res.json();
-      console.log(resJson);
 
       if (res.ok) {
-        res = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/users/account`,
-          {
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true",
-            },
-          }
-        );
+        try {
+          res = await fetch(
+            `${process.env.REACT_APP_BACKEND_URL}/users/account`,
+            {
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": "true",
+              },
+            }
+          );
+        } catch {
+          setLoadingModal(false);
+          setModalState(customErrors.unexpected);
+        }
         setLoadingModal(false);
         if (res.ok) {
           const jsonRes = await res.json();
@@ -95,8 +103,11 @@ const SignIn = () => {
         <div className={`${block}__container`}>
           <form className={`${block}__form`}>
             <h1 className={`${block}__title--h1`}>Login</h1>
-            <label className={`${block}__label`}>Email</label>
+            <label id="email" className={`${block}__label`}>
+              Email
+            </label>
             <input
+              aria-labelledby="email"
               onChange={(e) => handleChange(e)}
               name="email"
               className={
@@ -105,8 +116,11 @@ const SignIn = () => {
             ></input>
             <p className={`${block}__helper-text`}>{formErrors.email}</p>
 
-            <label className={`${block}__label`}>Password</label>
+            <label id="password" className={`${block}__label`}>
+              Password
+            </label>
             <input
+              aria-labelledby="password"
               onChange={(e) => handleChange(e)}
               name="password"
               type="password"

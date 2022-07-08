@@ -104,6 +104,14 @@ root.render(
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="*"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
           </Route>
         </Routes>
       </ScrollToTop>

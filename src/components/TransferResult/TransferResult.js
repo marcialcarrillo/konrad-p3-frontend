@@ -50,7 +50,7 @@ const TransferResult = () => {
 
             <p className={`${block}__label`}>{transferResult.amountLabel}</p>
             <p className={`${block}__field`}>
-              ₡{transferResult.formValues.transferAmount}
+              ₡{Number(transferResult.formValues.transferAmount).toLocaleString()}
             </p>
 
             <p className={`${block}__label`}>

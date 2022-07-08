@@ -20,4 +20,12 @@ const getSplitDate = (DBDate) => {
   return resultDate;
 };
 
-export { handleDBDate, getSplitDate };
+const customErrors = {};
+
+customErrors.unexpected = {
+  name: "unexpected",
+  title: "Something Went Wrong",
+  message: "It seems we are having some technical issues on our side, please try again later.",
+};
+
+export { handleDBDate, getSplitDate, customErrors };

@@ -9,13 +9,13 @@
     z-index: 1000;
   }
   &__root {
+    min-width: 16.875rem;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
-    margin: 1rem 2.3rem;
     padding: 1rem 1rem 1rem;
     z-index: 1000;
     display: flex;

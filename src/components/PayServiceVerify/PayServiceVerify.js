@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
+import LoadingContext from "../../context/LoadingContext";
+import ModalContext from "../../context/ModalContext";
+import { customErrors } from "../../helpers/utils";
 
 const PayServicesVerify = () => {
   const block = "pay-service-verify";
@@ -10,6 +13,8 @@ const PayServicesVerify = () => {
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
+  const { modalState, setModalState } = useContext(ModalContext);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
 
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
@@ -27,8 +32,6 @@ const PayServicesVerify = () => {
     transferAmount: currentService.amountToPay,
     destinationAccount: currentService.serviceName,
   });
-
-  const [isLoading, setIsLoading] = useState(false);
 
   function handleAccChange(evt) {
     const value = evt.target.value;
@@ -57,6 +60,7 @@ const PayServicesVerify = () => {
 
   const makeTransfer = async () => {
     try {
+      setLoadingModal(true);
       let res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/transactions`,
         {
@@ -68,10 +72,9 @@ const PayServicesVerify = () => {
           body: JSON.stringify(formValues),
         }
       );
+      setLoadingModal(false);
       if (res.ok) {
         const resJson = await res.json();
-
-        //   setUserData(resJson);
 
         //Construct transferResult for a service payment
         const tResult = {
@@ -91,13 +94,12 @@ const PayServicesVerify = () => {
           toResult: true,
         });
       } else {
-        console.error(res);
+        setModalState(await res.json());
       }
-    } catch (e) {
-      //TODO: show modal with error
+    } catch {
+      setLoadingModal(false);
+      setModalState(customErrors.unexpected);
     }
-
-    //TODO: check if error on response, show modal on error
   };
 
   return (
@@ -121,9 +123,13 @@ const PayServicesVerify = () => {
             </select>
             <p className={`${block}__helper-text`}></p>
             <p className={`${block}__label`}>Available Balance</p>
-            <p className={`${block}__field`}>₡{balanceToShow}</p>
+            <p className={`${block}__field`}>
+              ₡{Number(balanceToShow).toLocaleString()}
+            </p>
             <p className={`${block}__label`}>Service Payment</p>
-            <p className={`${block}__field`}>{currentService.amountToPay}</p>
+            <p className={`${block}__field`}>
+              ₡{Number(currentService.amountToPay).toLocaleString()}
+            </p>
           </form>
           <div className={`${block}__button-wrapper`}>
             <Link className={`${block}__button-back`} to="/pay-services">

@@ -4,6 +4,7 @@ import SimpleFileUpload from "react-simple-file-upload";
 import ModalContext from "../../context/ModalContext";
 import { signUpValidator } from "../../helpers/validation";
 import LoadingContext from "../../context/LoadingContext";
+import { customErrors } from "../../helpers/utils";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
@@ -60,16 +61,19 @@ const SignUpForm = () => {
 
       //create the new user
       setLoadingModal(true);
-      let res = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
-        {
+      let res;
+      try {
+        res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
-        }
-      );
+        });
+      } catch {
+        setLoadingModal(false);
+        setModalState(customErrors.unexpected);
+      }
       setLoadingModal(false);
       if (res.ok) {
         setRedirect(true);
@@ -107,7 +111,7 @@ const SignUpForm = () => {
   return (
     <div className={`${block}__root`}>
       {redirect && <Navigate to="/sign-in" />}
-      <h2 className={`${block}__title--h1`}>Create Your Account</h2>
+      <h1 className={`${block}__title--h1`}>Create Your Account</h1>
       <form className={`${block}__form--delivery`}>
         <label className={`${block}__label`}>Full name</label>
         <input
@@ -145,10 +149,12 @@ const SignUpForm = () => {
         />
         <p className={`${block}__helper-text`}>{formErrors.profilePicture}</p>
 
-        <label className={`${block}__label`}>Source of Income</label>
+        <label id="sourceOfIncome" className={`${block}__label`}>
+          Source of Income
+        </label>
         <select
+          aria-labelledby="sourceOfIncome"
           name="sourceOfIncome"
-          id="sourceOfIncome"
           onChange={(e) => handleChange(e)}
           className={`${block}__input`}
         >
@@ -172,8 +178,11 @@ const SignUpForm = () => {
         ></input>
         <p className={`${block}__helper-text`}>{formErrors.email}</p>
 
-        <label className={`${block}__label`}>Password</label>
+        <label id="password" className={`${block}__label`}>
+          Password
+        </label>
         <input
+          aria-labelledby="password"
           type="password"
           onChange={(e) => handleChange(e)}
           name="password"
@@ -183,8 +192,11 @@ const SignUpForm = () => {
         ></input>
         <p className={`${block}__helper-text`}>{formErrors.password}</p>
 
-        <label className={`${block}__label`}>Confirm Password</label>
+        <label id="confirmPassword" className={`${block}__label`}>
+          Confirm Password
+        </label>
         <input
+          aria-labelledby="confirmPassword"
           type="password"
           onChange={(e) => handleChange(e)}
           name="confirmPassword"

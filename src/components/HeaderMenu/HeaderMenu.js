@@ -18,22 +18,22 @@ const HeaderMenu = () => {
     //if user is authenticated
     if (userData) {
       const links = linkHelper.authLinks.map((item) => (
-        <Link
-          key={item.key}
-          to={item.link}
-          onClick={() => toggleHamburger()}
-          className={`${block}__item`}
-        >
-          {item.name}
-        </Link>
+        <li key={item.key}>
+          <Link
+            to={item.link}
+            onClick={() => toggleHamburger()}
+            className={`${block}__item`}
+          >
+            {item.name}
+          </Link>
+        </li>
       ));
       return links;
     } else {
       //if user is not authenticated
       const links = linkHelper.nonAuthLinks.map((item) => (
-        <li>
+        <li key={item.key}>
           <Link
-            key={item.key}
             to={item.link}
             onClick={() => toggleHamburger()}
             className={`${block}__item`}
