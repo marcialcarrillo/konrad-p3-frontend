@@ -1,16 +1,17 @@
 .sign-in {
   &__root {
+    min-height: 27.0625rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__wrapper {
     display: flex;
     justify-content: center;
   }
-  &__wrapper {
-    background-color: white;
-    padding: 1rem;
-    box-shadow: $shadow-default;
-    max-width: 50rem;
-    margin: 1rem 2.3rem;
-    max-width: 50rem;
-    width: 27rem;
+
+  &__container {
+    @include form-container;
   }
 
   &__form {
