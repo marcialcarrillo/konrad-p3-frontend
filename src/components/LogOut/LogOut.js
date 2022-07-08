@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoadingContext from "../../context/LoadingContext";
 import ModalContext from "../../context/ModalContext";
 import userDataContext from "../../context/UserDataContext";
@@ -9,6 +10,7 @@ const LogOut = () => {
   const { userData, setUserData } = useContext(userDataContext);
   const { modalState, setModalState } = useContext(ModalContext);
   const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const navigate = useNavigate();
 
   const handleLogOut = async () => {
     let res;
@@ -37,7 +39,12 @@ const LogOut = () => {
             <h1 className={`${block}__title--h1`}>Logging out...</h1>
             <p>Are you sure you want to log out?</p>
             <div className={`${block}__button-wrapper`}>
-              <button className={`${block}__button-back`}>Back</button>
+              <button
+                onClick={() => navigate(-1)}
+                className={`${block}__button-back`}
+              >
+                Back
+              </button>
               <button
                 className={`${block}__button`}
                 onClick={() => handleLogOut()}
