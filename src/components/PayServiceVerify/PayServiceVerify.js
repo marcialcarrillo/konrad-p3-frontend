@@ -4,7 +4,7 @@ import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
 import LoadingContext from "../../context/LoadingContext";
 import ModalContext from "../../context/ModalContext";
-import { customErrors } from "../../helpers/utils";
+import { customMessages } from "../../helpers/utils";
 
 const PayServicesVerify = () => {
   const block = "pay-service-verify";
@@ -98,7 +98,7 @@ const PayServicesVerify = () => {
       }
     } catch {
       setLoadingModal(false);
-      setModalState(customErrors.unexpected);
+      setModalState(customMessages.unexpected);
     }
   };
 

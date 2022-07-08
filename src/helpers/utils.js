@@ -20,12 +20,20 @@ const getSplitDate = (DBDate) => {
   return resultDate;
 };
 
-const customErrors = {};
+const customMessages = {};
 
-customErrors.unexpected = {
+customMessages.unexpected = {
   name: "unexpected",
   title: "Something Went Wrong",
-  message: "It seems we are having some technical issues on our side, please try again later.",
+  message:
+    "It seems we are having some technical issues on our side, please try again later.",
 };
 
-export { handleDBDate, getSplitDate, customErrors };
+customMessages.accountCreated = {
+  name: "accountCreated",
+  title: "Welcome To Vermilion Bank",
+  message:
+    "Your account has been created successfully. Please log in to start banking!",
+};
+
+export { handleDBDate, getSplitDate, customMessages };

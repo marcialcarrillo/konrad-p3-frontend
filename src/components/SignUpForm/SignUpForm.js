@@ -4,7 +4,7 @@ import SimpleFileUpload from "react-simple-file-upload";
 import ModalContext from "../../context/ModalContext";
 import { signUpValidator } from "../../helpers/validation";
 import LoadingContext from "../../context/LoadingContext";
-import { customErrors } from "../../helpers/utils";
+import { customMessages } from "../../helpers/utils";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
@@ -72,10 +72,11 @@ const SignUpForm = () => {
         });
       } catch {
         setLoadingModal(false);
-        setModalState(customErrors.unexpected);
+        setModalState(customMessages.unexpected);
       }
       setLoadingModal(false);
       if (res.ok) {
+        setModalState(customMessages.accountCreated);
         setRedirect(true);
       } else {
         setModalState(await res.json());

@@ -4,7 +4,7 @@ import TransferResultContext from "../../context/TransferResultContext";
 import { convertAccounts } from "../../helpers/accounts";
 import ModalContext from "../../context/ModalContext";
 import LoadingContext from "../../context/LoadingContext";
-import { customErrors } from "../../helpers/utils";
+import { customMessages } from "../../helpers/utils";
 
 const TransferVerify = () => {
   const block = "transfer-verify";
@@ -32,7 +32,7 @@ const TransferVerify = () => {
       });
     } catch {
       setLoadingModal(false);
-      setModalState(customErrors.unexpected);
+      setModalState(customMessages.unexpected);
     }
     setLoadingModal(false);
     if (res.ok) {

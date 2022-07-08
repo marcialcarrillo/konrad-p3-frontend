@@ -5,7 +5,7 @@ import {
   convertAccountsHistory,
   accNumberToIban,
 } from "../../helpers/accounts";
-import { customErrors, handleDBDate } from "../../helpers/utils";
+import { customMessages, handleDBDate } from "../../helpers/utils";
 import { FaSearchDollar } from "react-icons/fa";
 import {
   SmallDate,
@@ -56,7 +56,7 @@ const AccountHistory = () => {
       );
     } catch {
       setLoadingModal(false);
-      setModalState(customErrors.unexpected);
+      setModalState(customMessages.unexpected);
     }
     setLoadingModal(false);
     if (res.ok) {

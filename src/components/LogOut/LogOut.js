@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import LoadingContext from "../../context/LoadingContext";
 import ModalContext from "../../context/ModalContext";
 import userDataContext from "../../context/UserDataContext";
-import { customErrors } from "../../helpers/utils";
+import { customMessages } from "../../helpers/utils";
 
 const LogOut = () => {
   const block = "log-out";
@@ -19,7 +19,7 @@ const LogOut = () => {
       });
     } catch {
       setLoadingModal(false);
-      setModalState(customErrors.unexpected);
+      setModalState(customMessages.unexpected);
     }
     setLoadingModal(false);
     if (res.ok) {

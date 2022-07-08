@@ -5,7 +5,7 @@ import UserDataContext from "../../context/UserDataContext";
 import LoadingContext from "../../context/LoadingContext";
 import { logInValidator } from "../../helpers/validation";
 import modalContext from "../../context/ModalContext";
-import { customErrors } from "../../helpers/utils";
+import { customMessages } from "../../helpers/utils";
 
 const SignIn = () => {
   const block = "sign-in";
@@ -56,7 +56,7 @@ const SignIn = () => {
         });
       } catch {
         setLoadingModal(false);
-        setModalState(customErrors.unexpected);
+        setModalState(customMessages.unexpected);
       }
 
       const resJson = await res.json();
@@ -75,7 +75,7 @@ const SignIn = () => {
           );
         } catch {
           setLoadingModal(false);
-          setModalState(customErrors.unexpected);
+          setModalState(customMessages.unexpected);
         }
         setLoadingModal(false);
         if (res.ok) {
