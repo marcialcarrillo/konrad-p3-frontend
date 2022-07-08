@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import useSessionState from "../../hooks/useSessionState";
 import userDataContext from "../../context/UserDataContext";
+import LoadingContext from "../../context/LoadingContext";
 import {
   convertAccountsHistory,
   accNumberToIban,
@@ -14,7 +15,7 @@ import {
 } from "../TransactionsList/TransactionsList";
 
 const AccountHistory = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
   const { userData, setUserData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
   const [isTransactionLoaded, setIsTransactionLoaded] = useState(false);
@@ -43,16 +44,16 @@ const AccountHistory = () => {
   });
 
   const handleTransactionLoad = async () => {
-    setIsLoading(true);
+    setLoadingModal(true);
     let res = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/transactions/${currentAccount}`,
       {
         credentials: "include",
       }
     );
+    setLoadingModal(false);
     if (res.ok) {
       const jsonRes = await res.json();
-      setIsLoading(false);
       setAccountTransactions(jsonRes);
       setCurrentLoadedAccount(currentAccount);
       setIsTransactionLoaded(true);

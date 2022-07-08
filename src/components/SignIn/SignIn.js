@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import UserDataContext from "../../context/UserDataContext";
+import LoadingContext from "../../context/LoadingContext";
 import { logInValidator } from "../../helpers/validation";
 import modalContext from "../../context/ModalContext";
 
@@ -10,6 +11,7 @@ const SignIn = () => {
 
   const { modalState, setModalState } = useContext(modalContext);
   const { userData, setUserData } = useContext(UserDataContext);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
   const [redirect, setRedirect] = useState(null);
   const [formErrors, setFormErrors] = useState({});
 
@@ -39,27 +41,35 @@ const SignIn = () => {
     if (Object.keys(errors).length === 0) {
       //no errors found on form, delete old errors
       setFormErrors(errors);
-      let res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true",
-        },
-        body: JSON.stringify(rawJson),
-      });
-      const resJson = await res.json();
-      console.log(resJson);
-      
-      if (res.ok) {
-        res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/account`, {
+      setLoadingModal(true);
+      let res = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/users/login`,
+        {
+          method: "POST",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": "true",
           },
-        });
+          body: JSON.stringify(rawJson),
+        }
+      );
 
+      const resJson = await res.json();
+      console.log(resJson);
+
+      if (res.ok) {
+        res = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/users/account`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true",
+            },
+          }
+        );
+        setLoadingModal(false);
         if (res.ok) {
           const jsonRes = await res.json();
 
@@ -69,6 +79,7 @@ const SignIn = () => {
           console.error(res);
         }
       } else {
+        setLoadingModal(false);
         setModalState(resJson);
       }
     } else {

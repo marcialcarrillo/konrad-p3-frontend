@@ -6,7 +6,7 @@ import logo from "../../assets/icons/logo.png";
 import linkHelper from "../../helpers/navigation";
 
 const Header = () => {
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const block = "header";
 
   //construct links to be used on the header
@@ -37,7 +37,7 @@ const Header = () => {
         <Link to="/" className={`${block}__logo`}>
           <img className={`${block}__logo`} src={logo} alt="big3 logo" />
         </Link>
-        {/* <div className={`${block}__links-wrapper`}>{linkConstructor()}</div> */}
+        <div className={`${block}__links-wrapper`}>{linkConstructor()}</div>
       </div>
     </nav>
   );

@@ -1,27 +1,41 @@
 import { Link } from "react-router-dom";
-
 const HomeHero = () => {
+  const block = "home-hero";
   return (
-    <article className="home-hero__root">
-      <div className="home-hero__image">
-        <div className="home-hero__overlay">
-          <p className="home-hero__title">The Big Three</p>
-          {/* <div className="home-hero__description">
-            <span className="home-hero__description--line">
+    <article className={`${block}__root`}>
+      <div className={`${block}__image`}>
+        {/* <div className={`${block}__overlay`}> */}
+        <div className={`${block}__text-wrapper`}>
+          <div className={`${block}__title`}>
+            <p className={`${block}__title--mobile`}>
+              Let Us Do The Banking, While You Do The Living.
+            </p>
+            <p className={`${block}__title--line1`}>Let Us Do The Banking,</p>
+            <p className={`${block}__title--line2`}>While You Do The Living.</p>
+          </div>
+          <p className={`${block}__description--line`}>
+            You can rest easy knowing that VERMILION has your back, be it for
+            moving money around, paying bills or checking your finances, you can
+            do it all here!
+          </p>
+          {/* </div> */}
+
+          {/* <div className={`${block}__description`}>
+            <span className={`${block}__description--line`}>
               For many years, Clarke, Asimov and Heinlein
             </span>
-            <span className="home-hero__description--line">
+            <span className={`${block}__description--line`}>
               were known as the Big 3 of Science Fiction writing
             </span>
-            <span className="home-hero__description--line">
+            <span className={`${block}__description--line`}>
               crowned as such for their boundless creativity, unmatched prose
             </span>
-            <span className="home-hero__description--line">
+            <span className={`${block}__description--line`}>
               and prolific tenacity. They meet here once again.
             </span>
           </div>
-          <section className="home-hero__footer">
-            <Link to="/" className="home-hero__button">
+          <section className={`${block}__footer`}>
+            <Link to="/" className={`${block}__button`}>
               <strong>Learn More</strong>
             </Link>
           </section> */}

@@ -1,7 +1,9 @@
 .home-card {
   &__wrapper {
-    @include form-root;
+    @include form-form;
+    min-height: unset;
   }
+  
   &__root {
     @include form-container;
     width: 75%;

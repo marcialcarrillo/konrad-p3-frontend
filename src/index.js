@@ -31,7 +31,14 @@ root.render(
             <Route path="/" element={<Home />} />
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
-            <Route path="log-out" element={<LogOut />} />
+            <Route
+              path="log-out"
+              element={
+                <ProtectedRoute>
+                  <LogOut />
+                </ProtectedRoute>
+              }
+            />
             <Route path="account-history" element={<AccountHistory />} />
             <Route
               path="add-money"

@@ -3,10 +3,12 @@ import { Link, Navigate } from "react-router-dom";
 import SimpleFileUpload from "react-simple-file-upload";
 import ModalContext from "../../context/ModalContext";
 import { signUpValidator } from "../../helpers/validation";
+import LoadingContext from "../../context/LoadingContext";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
   const { modalState, setModalState } = useContext(ModalContext);
+  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
   const [redirect, setRedirect] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [formValues, setFormValues] = useState({
@@ -57,6 +59,7 @@ const SignUpForm = () => {
       setFormErrors(errors);
 
       //create the new user
+      setLoadingModal(true);
       let res = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
         {
@@ -67,7 +70,7 @@ const SignUpForm = () => {
           body: JSON.stringify(data),
         }
       );
-
+      setLoadingModal(false);
       if (res.ok) {
         setRedirect(true);
       } else {

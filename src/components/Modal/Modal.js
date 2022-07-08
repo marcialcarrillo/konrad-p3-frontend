@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import modalContext from "../../context/ModalContext";
 import { ReactComponent as Cross } from "../../assets/icons/cross.svg";
 
-const Modal = ({ children, onClose }) => {
+const Modal = () => {
   const { modalState, setModalState } = useContext(modalContext);
   const block = "modal";
 
