@@ -16,9 +16,30 @@
     background-color: #fff;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 10%);
     z-index: 1000;
+    padding: 1rem;
   }
 }
 
 .spinner__image {
   width: 5rem;
+}
+
+.spinner {
+  &__root {
+    border: 16px solid #8322327a;
+    border-radius: 50%;
+    border-top: 16px solid $secondary;
+    width: 5rem;
+    height: 5rem;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }

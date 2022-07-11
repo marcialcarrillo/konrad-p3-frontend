@@ -4,10 +4,10 @@ import loadingContext from "../../context/LoadingContext";
 import loading from "../../assets/icons/loading.gif";
 
 //TODO
-// const LoadingSpinner = () => {
-//   const block = "spinner";
-//   return <div></div>;
-// };
+const LoadingSpinner = () => {
+  const block = "spinner";
+  return <div className={`${block}__root`}></div>;
+};
 
 const LoadingModal = () => {
   const { loadingModal } = useContext(loadingContext);
@@ -24,12 +24,12 @@ const LoadingModal = () => {
       {loadingModal && (
         <div className={`${block}__background`}>
           <div className={`${block}__root`} role="dialog" aria-modal="true">
-            {/* <LoadingSpinner /> */}
-            <img
+            <LoadingSpinner />
+            {/* <img
               src={loading}
               alt="loading animated"
               className="spinner__image"
-            ></img>
+            ></img> */}
           </div>
         </div>
       )}
