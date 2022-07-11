@@ -25,11 +25,6 @@ const LoadingModal = () => {
         <div className={`${block}__background`}>
           <div className={`${block}__root`} role="dialog" aria-modal="true">
             <LoadingSpinner />
-            {/* <img
-              src={loading}
-              alt="loading animated"
-              className="spinner__image"
-            ></img> */}
           </div>
         </div>
       )}
