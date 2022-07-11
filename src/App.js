@@ -5,7 +5,7 @@ import ModalContext from "./context/ModalContext";
 import LoadingContext from "./context/LoadingContext";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useSessionState from "./hooks/useSessionState";
 import Modal from "./components/Modal/Modal";
 import LoadingModal from "./components/LoadingModal/LoadingModal";

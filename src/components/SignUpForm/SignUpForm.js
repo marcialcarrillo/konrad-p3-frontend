@@ -8,8 +8,8 @@ import { customMessages } from "../../helpers/utils";
 
 const SignUpForm = () => {
   const block = "sign-up-form";
-  const { modalState, setModalState } = useContext(ModalContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const { setModalState } = useContext(ModalContext);
+  const {setLoadingModal } = useContext(LoadingContext);
   const [redirect, setRedirect] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [formValues, setFormValues] = useState({

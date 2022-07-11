@@ -1,9 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import userDataContext from "../../context/UserDataContext";
 
 const Profile = () => {
   const block = "profile";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   return (
     <main className={`${block}__root`}>

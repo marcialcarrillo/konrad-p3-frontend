@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 
 const ProtectedRoute = ({ children }) => {
-    const { userData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   if (!userData) {
     return <Navigate to="/" replace />;
   }

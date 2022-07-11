@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import userDataContext from "../../context/UserDataContext";
 import IconLink from "../IconLink/IconLink";
 import { GiReceiveMoney } from "react-icons/gi";
@@ -10,7 +10,7 @@ import { AccountsSummary } from "../AccountsSummary/AccountsSummary";
 
 const Dashboard = () => {
   const block = "dashboard";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   //get customer's total balance
   const totalBalance = userData.accounts.reduce(

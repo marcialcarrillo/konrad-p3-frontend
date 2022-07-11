@@ -1,4 +1,3 @@
-import { MdOutlineSavings } from "react-icons/md";
 import { accNumberToIban } from "../../helpers/accounts";
 
 const AccountsItem = ({ account }) => {

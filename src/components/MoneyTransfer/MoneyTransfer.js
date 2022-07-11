@@ -6,7 +6,7 @@ import TransferResult from "../TransferResult/TransferResult";
 
 const MoneyTransfer = () => {
   const block = "money-transfer";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
@@ -85,7 +85,10 @@ const MoneyTransfer = () => {
             <p className={`${block}__helper-text`}></p>
 
             <p className={`${block}__label`}>Available Balance:</p>
-            <p className={`${block}__field`}> ₡{Number(balanceToShow).toLocaleString()} </p>
+            <p className={`${block}__field`}>
+              {" "}
+              ₡{Number(balanceToShow).toLocaleString()}{" "}
+            </p>
 
             <label id="transferAmount" className={`${block}__label`}>
               Transfer Amount

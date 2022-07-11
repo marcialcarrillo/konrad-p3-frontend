@@ -1,23 +1,16 @@
 import { useContext, useState } from "react";
 import userDataContext from "../../context/UserDataContext";
 import LoadingContext from "../../context/LoadingContext";
-import {
-  convertAccountsHistory,
-  accNumberToIban,
-} from "../../helpers/accounts";
-import { customMessages, handleDBDate } from "../../helpers/utils";
+import { accNumberToIban } from "../../helpers/accounts";
+import { customMessages } from "../../helpers/utils";
 import { FaSearchDollar } from "react-icons/fa";
-import {
-  SmallDate,
-  TransactionItem,
-  TransactionList,
-} from "../TransactionsList/TransactionsList";
+import { TransactionList } from "../TransactionsList/TransactionsList";
 import ModalContext from "../../context/ModalContext";
 
 const AccountHistory = () => {
-  const { modalState, setModalState } = useContext(ModalContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
-  const { userData, setUserData } = useContext(userDataContext);
+  const { setModalState } = useContext(ModalContext);
+  const { setLoadingModal } = useContext(LoadingContext);
+  const { userData } = useContext(userDataContext);
   const [accountTransactions, setAccountTransactions] = useState(null);
   const [isTransactionLoaded, setIsTransactionLoaded] = useState(false);
   const block = "account-history";

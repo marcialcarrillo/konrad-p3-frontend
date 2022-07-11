@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingContext from "../../context/LoadingContext";
 import ModalContext from "../../context/ModalContext";
@@ -8,8 +8,8 @@ import { customMessages } from "../../helpers/utils";
 const LogOut = () => {
   const block = "log-out";
   const { userData, setUserData } = useContext(userDataContext);
-  const { modalState, setModalState } = useContext(ModalContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const { setModalState } = useContext(ModalContext);
+  const { setLoadingModal } = useContext(LoadingContext);
   const navigate = useNavigate();
 
   const handleLogOut = async () => {

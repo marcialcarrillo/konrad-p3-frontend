@@ -1,5 +1,5 @@
 import ReactDom from "react-dom";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import modalContext from "../../context/ModalContext";
 import { ReactComponent as Cross } from "../../assets/icons/cross.svg";
 
@@ -21,7 +21,7 @@ const Modal = () => {
               <h1 className={`${block}__title--h1`}>
                 {modalState.title ? modalState.title : "Error"}
               </h1>
-              <button 
+              <button
                 className={`${block}__btn-close`}
                 onClick={() => setModalState(null)}
               >

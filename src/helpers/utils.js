@@ -1,6 +1,6 @@
 const handleDBDate = (DBDate) => {
   const date = new Date(DBDate);
-  
+
   return date.toLocaleString();
 };
 

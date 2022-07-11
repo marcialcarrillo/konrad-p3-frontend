@@ -10,9 +10,9 @@ import { customMessages } from "../../helpers/utils";
 const SignIn = () => {
   const block = "sign-in";
 
-  const { modalState, setModalState } = useContext(modalContext);
-  const { userData, setUserData } = useContext(UserDataContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const { setModalState } = useContext(modalContext);
+  const { setUserData } = useContext(UserDataContext);
+  const { setLoadingModal } = useContext(LoadingContext);
   const [redirect, setRedirect] = useState(null);
   const [formErrors, setFormErrors] = useState({});
 

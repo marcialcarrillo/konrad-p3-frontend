@@ -1,33 +1,37 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
-import {
-  findAccount,
-  accNumberToIban,
-  convertAccounts,
-} from "../../helpers/accounts";
+import { convertAccounts } from "../../helpers/accounts";
 
 const TransferResult = () => {
   const block = "transaction-result";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { setUserData } = useContext(userDataContext);
   const { transferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
+
+  console.log("re-render check");
 
   useEffect(() => {
     (redirect.toVerify || redirect.toResult) &&
       setRedirect({ toVerify: false, toResult: false });
     setUserData(transferResult.pendingUserData);
-  }, [setRedirect, setUserData, redirect.toResult, redirect.toVerify]);
+  }, [
+    setRedirect,
+    setUserData,
+    redirect.toResult,
+    redirect.toVerify,
+    transferResult.pendingUserData,
+  ]);
 
   //select the account to get the balance from based on the type of transaction
-  let accountToGetBalanceFrom = 0;
-  if (transferResult.formValues.transactionType === "External") {
-    accountToGetBalanceFrom = transferResult.formValues.destinationAccount;
-  } else {
-    accountToGetBalanceFrom = transferResult.formValues.originAccount;
-  }
+  // let accountToGetBalanceFrom = 0;
+  // if (transferResult.formValues.transactionType === "External") {
+  //   accountToGetBalanceFrom = transferResult.formValues.destinationAccount;
+  // } else {
+  //   accountToGetBalanceFrom = transferResult.formValues.originAccount;
+  // }
 
   const convertedAccounts = convertAccounts(
     transferResult.formValues.originAccount,
@@ -50,7 +54,10 @@ const TransferResult = () => {
 
             <p className={`${block}__label`}>{transferResult.amountLabel}</p>
             <p className={`${block}__field`}>
-              ₡{Number(transferResult.formValues.transferAmount).toLocaleString()}
+              ₡
+              {Number(
+                transferResult.formValues.transferAmount
+              ).toLocaleString()}
             </p>
 
             <p className={`${block}__label`}>

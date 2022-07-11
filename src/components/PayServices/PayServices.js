@@ -1,17 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 
 const PayServices = () => {
   const block = "pay-services";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   //construct an array of services for the user to pay
   const serviceElementsArray = userData.bills.map((serv) => {
     return (
       <Link className={`${block}__bill-item`} to={`${serv.id}`} key={serv.id}>
         <p className={`${block}__bill-title`}>{serv.serviceName}</p>
-        <p className={`${block}__bill-price`}>₡{Number(serv.amountToPay).toLocaleString()}</p>
+        <p className={`${block}__bill-price`}>
+          ₡{Number(serv.amountToPay).toLocaleString()}
+        </p>
       </Link>
     );
   });

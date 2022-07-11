@@ -16,7 +16,7 @@ const signUpValidator = (formValues) => {
   }
 
   //check email
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
+  if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
     errors.email = "A valid email address is needed";
   }
 
@@ -30,11 +30,9 @@ const signUpValidator = (formValues) => {
       "The password must be at least 8 characters, have digits, uppercase and lowercase letters.";
   }
 
-    if (        formValues.password !== formValues.confirmPassword
-      ){
-      errors.confirmPassword =
-        "The passwords must match";
-    }
+  if (formValues.password !== formValues.confirmPassword) {
+    errors.confirmPassword = "The passwords must match";
+  }
   //
 
   return errors;
@@ -44,16 +42,16 @@ const logInValidator = (formValues) => {
   let errors = {};
 
   //check email
-  if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
+  if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
     errors.email = "A valid email address is needed";
   }
 
   //check the password is not empty
-    if (!formValues.password) {
-      errors.password = "Please enter a password";
-    }
+  if (!formValues.password) {
+    errors.password = "Please enter a password";
+  }
 
   return errors;
 };
 
-export {signUpValidator, logInValidator};
+export { signUpValidator, logInValidator };

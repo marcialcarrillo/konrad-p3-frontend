@@ -8,8 +8,8 @@ import { customMessages } from "../../helpers/utils";
 
 const TransferVerify = () => {
   const block = "transfer-verify";
-  const { modalState, setModalState } = useContext(ModalContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const { setModalState } = useContext(ModalContext);
+  const { setLoadingModal } = useContext(LoadingContext);
   const { transferResult, setTransferResult, redirect, setRedirect } =
     useContext(TransferResultContext);
 

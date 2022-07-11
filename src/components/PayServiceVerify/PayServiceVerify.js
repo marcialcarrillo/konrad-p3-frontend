@@ -9,12 +9,12 @@ import { customMessages } from "../../helpers/utils";
 const PayServicesVerify = () => {
   const block = "pay-service-verify";
   const { service } = useParams();
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
-  const { modalState, setModalState } = useContext(ModalContext);
-  const { loadingModal, setLoadingModal } = useContext(LoadingContext);
+  const { setModalState } = useContext(ModalContext);
+  const { setLoadingModal } = useContext(LoadingContext);
 
   //initialize the currently selected account by picking the customer's first
   const [currentAccount, setCurrentAccount] = useState(
@@ -37,7 +37,7 @@ const PayServicesVerify = () => {
     const value = evt.target.value;
     setFormValues({
       ...formValues,
-      ["originAccount"]: value,
+      originAccount: value,
     });
     setCurrentAccount(value);
   }

@@ -35,7 +35,7 @@ const useFetch = ({
       .then((res) => res.json())
       .then((_data) => setRes({ data: _data, isLoading: false, error: null }));
   }, [url, _method, data, _headers]);
-  return {res, callAPI};
+  return { res, callAPI };
 };
 
 export default useFetch;

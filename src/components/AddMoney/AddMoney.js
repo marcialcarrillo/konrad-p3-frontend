@@ -6,7 +6,7 @@ import TransferResult from "../TransferResult/TransferResult";
 
 const AddMoney = () => {
   const block = "add-money";
-  const { userData, setUserData } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
@@ -34,11 +34,6 @@ const AddMoney = () => {
       setCurrentAccount(value);
     }
   }
-
-  const handleSelectChange = (evt) => {
-    const value = evt.target.value;
-    setCurrentAccount(value);
-  };
 
   //check if the user is logged in TODO: add a localstorage state
   if (!userData) {
@@ -120,7 +115,10 @@ const AddMoney = () => {
             <p className={`${block}__helper-text`}></p>
 
             <p className={`${block}__label`}>Current Balance:</p>
-            <p className={`${block}__field`}> ₡{Number(balanceToShow).toLocaleString()} </p>
+            <p className={`${block}__field`}>
+              {" "}
+              ₡{Number(balanceToShow).toLocaleString()}{" "}
+            </p>
           </form>
           <div className={`${block}__button-wrapper`}>
             <button
