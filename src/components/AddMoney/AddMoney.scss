@@ -11,6 +11,11 @@
     justify-content: center;
   }
 
+  &__helper-text {
+    color: $error-red;
+    font-size: 0.8125rem;
+  }
+
   &__container {
     background-color: white;
     padding: 1rem;

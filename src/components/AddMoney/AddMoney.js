@@ -3,10 +3,12 @@ import { Navigate } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
 import TransferResult from "../TransferResult/TransferResult";
+import { addMoneyValidator } from "../../helpers/validation";
 
 const AddMoney = () => {
   const block = "add-money";
   const { userData } = useContext(userDataContext);
+  const [formErrors, setFormErrors] = useState({});
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
@@ -60,16 +62,23 @@ const AddMoney = () => {
   let balanceToShow = currentAccObject.balance;
 
   const handleRedirect = () => {
-    setTransferResult({
-      ...TransferResult,
-      backlink: "/add-money",
-      formValues: formValues,
-    });
+    const errors = addMoneyValidator(formValues);
 
-    setRedirect({
-      ...redirect,
-      toVerify: true,
-    });
+    if (Object.keys(errors).length === 0) {
+      setFormErrors(errors);
+      setTransferResult({
+        ...TransferResult,
+        backlink: "/add-money",
+        formValues: formValues,
+      });
+
+      setRedirect({
+        ...redirect,
+        toVerify: true,
+      });
+    } else {
+      setFormErrors(errors);
+    }
   };
 
   return (
@@ -87,7 +96,7 @@ const AddMoney = () => {
               name="originAccount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>{formErrors.originAccount}</p>
 
             <label id="transferAmount" className={`${block}__label`}>
               Transfer Amount
@@ -98,7 +107,7 @@ const AddMoney = () => {
               aria-labelledby="transferAmount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>{formErrors.transferAmount}</p>
 
             <label id="destinationAccount" className={`${block}__label`}>
               Destination Account

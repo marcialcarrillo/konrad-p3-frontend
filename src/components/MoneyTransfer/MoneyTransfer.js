@@ -3,10 +3,12 @@ import { Navigate } from "react-router-dom";
 import userDataContext from "../../context/UserDataContext";
 import TransferResultContext from "../../context/TransferResultContext";
 import TransferResult from "../TransferResult/TransferResult";
+import { transferMoneyValidator } from "../../helpers/validation";
 
 const MoneyTransfer = () => {
   const block = "money-transfer";
   const { userData } = useContext(userDataContext);
+  const [formErrors, setFormErrors] = useState({});
   const { setTransferResult, redirect, setRedirect } = useContext(
     TransferResultContext
   );
@@ -52,16 +54,22 @@ const MoneyTransfer = () => {
   let balanceToShow = currentAccObject.balance;
 
   const handleRedirect = () => {
-    setTransferResult({
-      ...TransferResult,
-      backlink: "/money-transfer",
-      formValues: formValues,
-    });
+    const errors = transferMoneyValidator(formValues);
+    if (Object.keys(errors).length === 0) {
+      setFormErrors(errors);
+      setTransferResult({
+        ...TransferResult,
+        backlink: "/money-transfer",
+        formValues: formValues,
+      });
 
-    setRedirect({
-      ...redirect,
-      toVerify: true,
-    });
+      setRedirect({
+        ...redirect,
+        toVerify: true,
+      });
+    } else {
+      setFormErrors(errors);
+    }
   };
 
   return (
@@ -86,7 +94,6 @@ const MoneyTransfer = () => {
 
             <p className={`${block}__label`}>Available Balance:</p>
             <p className={`${block}__field`}>
-              {" "}
               ₡{Number(balanceToShow).toLocaleString()}{" "}
             </p>
 
@@ -99,7 +106,9 @@ const MoneyTransfer = () => {
               name="transferAmount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>
+              {formErrors.transferAmount}
+            </p>
 
             <label id="destinationAccount" className={`${block}__label`}>
               Destination Account
@@ -110,7 +119,9 @@ const MoneyTransfer = () => {
               name="destinationAccount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}></p>
+            <p className={`${block}__helper-text`}>
+              {formErrors.destinationAccount}
+            </p>
 
             {redirect.toVerify && (
               <Navigate to="/transfer-verify" replace={true} />
