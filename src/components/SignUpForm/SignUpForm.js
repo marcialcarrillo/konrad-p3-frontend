@@ -9,7 +9,7 @@ import { customMessages } from "../../helpers/utils";
 const SignUpForm = () => {
   const block = "sign-up-form";
   const { setModalState } = useContext(ModalContext);
-  const {setLoadingModal } = useContext(LoadingContext);
+  const { setLoadingModal } = useContext(LoadingContext);
   const [redirect, setRedirect] = useState(null);
   const [formErrors, setFormErrors] = useState({});
   const [formValues, setFormValues] = useState({
@@ -31,7 +31,9 @@ const SignUpForm = () => {
     });
   }
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
     const data = {
       fullName: formValues.fullName,
       idNumber: formValues.id,
@@ -101,9 +103,9 @@ const SignUpForm = () => {
     });
   }
 
-  function SubmitButton() {
+  function SubmitButton({ formId, e }) {
     return (
-      <button onClick={() => handleSignUp()} className={`${block}__button`}>
+      <button onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
         Submit
       </button>
     );
@@ -113,7 +115,7 @@ const SignUpForm = () => {
     <div className={`${block}__root`}>
       {redirect && <Navigate to="/sign-in" />}
       <h1 className={`${block}__title--h1`}>Create Your Account</h1>
-      <form className={`${block}__form--delivery`}>
+      <form id="signUpForm" className={`${block}__form--delivery`}>
         <label className={`${block}__label`}>Full name</label>
         <input
           onChange={(e) => handleChange(e)}
@@ -211,7 +213,9 @@ const SignUpForm = () => {
       </form>
 
       <div className={`${block}__button-wrapper`}>
-        <SubmitButton />
+        <button form="signUpForm" type="submit" onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
+          Submit
+        </button>
         <span className={`${block}__alternate-link`}>
           Already have an account?{" "}
           <u>

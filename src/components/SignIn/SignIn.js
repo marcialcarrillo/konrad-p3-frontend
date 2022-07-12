@@ -60,7 +60,7 @@ const SignIn = () => {
       }
 
       const resJson = await res.json();
-
+      console.log(resJson);
       if (res.ok) {
         try {
           res = await fetch(
@@ -101,7 +101,7 @@ const SignIn = () => {
       {redirect && <Navigate to="/dashboard" />}
       <div className={`${block}__wrapper`}>
         <div className={`${block}__container`}>
-          <form className={`${block}__form`}>
+          <form id="signInForm" className={`${block}__form`}>
             <h1 className={`${block}__title--h1`}>Login</h1>
             <label id="email" className={`${block}__label`}>
               Email
@@ -135,6 +135,8 @@ const SignIn = () => {
 
           <div className={`${block}__button-wrapper`}>
             <button
+              form="signInForm"
+              type="submit"
               onClick={(e) => handleLogIn(e)}
               className={`${block}__button`}
             >
