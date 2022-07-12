@@ -1,8 +1,6 @@
 import ReactDom from "react-dom";
 import { useContext, useEffect } from "react";
 import loadingContext from "../../context/LoadingContext";
-import loading from "../../assets/icons/loading.gif";
-
 //TODO
 const LoadingSpinner = () => {
   const block = "spinner";
