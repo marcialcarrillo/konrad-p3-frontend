@@ -16,7 +16,10 @@
 
 @mixin center-main {
   margin: auto 0;
-  padding-bottom: 16.3rem;
+  padding-bottom: 29.2rem;
+  @media (min-width: $breakpoint-tablet) {
+    padding-bottom: 16.3rem;
+  }
 }
 
 @mixin hide-mobile {

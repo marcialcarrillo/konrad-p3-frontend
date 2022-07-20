@@ -25,7 +25,7 @@ The Vermilion Bank is an online banking website with a proper backend and databa
 
 ## Project Duration
 
-12 days with fixes post-completion (see [commits](https://github.com/marcialcarrillo/konrad-p3-frontend/commits/post-immersive) made after July 8).
+12 days with some fixes post-completion (see [commits](https://github.com/marcialcarrillo/konrad-p3-frontend/commits/main) made after July 8).
 
 ## Screenshots
 
