@@ -8,7 +8,7 @@ See the site at [Heroku](https://marcialcv-konrad-project3-fe.herokuapp.com/)
 
 You can check the backend code [here.](https://github.com/marcialcarrillo/konrad-p3-backend)
 
-## Table of Content:
+## Table of Contents:
 
 - [About The Project](#about-the-project)
 - [Project Duration](#project-duration)
