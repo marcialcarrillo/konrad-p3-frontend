@@ -1,6 +1,6 @@
 .home {
   &__root {
-    min-height: 66vh;
+    @include center-main;
   }
   &__title-test {
     position: absolute;
