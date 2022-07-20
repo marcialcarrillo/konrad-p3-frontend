@@ -1,5 +1,5 @@
 @mixin form-root {
-  min-height: 27.0625rem;
+  @include center-main;
   display: flex;
   flex-direction: column;
   justify-content: center;

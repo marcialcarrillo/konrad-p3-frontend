@@ -14,6 +14,11 @@
   flex-wrap: wrap;
 }
 
+@mixin center-main {
+  margin: auto 0;
+  padding-bottom: 15.75rem;
+}
+
 @mixin hide-mobile {
   display: none;
   @media (min-width: $breakpoint-mobile) {

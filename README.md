@@ -64,7 +64,7 @@ This project was created using `React` and `Sass` for the frontend and `Node.js`
 
 Completed.
 
-## Special Thank
+## Special Thanks
 
 - [Konrad's Web Development Immersive Program](https://www.konrad.com/careers/san-jose/web-development-program)
 

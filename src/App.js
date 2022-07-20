@@ -11,7 +11,7 @@ import Modal from "./components/Modal/Modal";
 import LoadingModal from "./components/LoadingModal/LoadingModal";
 
 function App() {
-  // const [userData, setUserData] = useState(null);
+  const block = "app";
 
   const [userData, setUserData] = useSessionState("userData", null);
   const [transferResult, setTransferResult] = useSessionState(
@@ -33,9 +33,11 @@ function App() {
         >
           <ModalContext.Provider value={{ modalState, setModalState }}>
             <LoadingContext.Provider value={{ loadingModal, setLoadingModal }}>
-              <Header />
-              <Outlet />
-              <Footer />
+              <div className={`${block}__root`}>
+                <Header />
+                <Outlet />
+                <Footer />
+              </div>
               {loadingModal ? <LoadingModal /> : <Modal />}
             </LoadingContext.Provider>
           </ModalContext.Provider>

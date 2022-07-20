@@ -1,4 +1,7 @@
 .sign-up {
+  &__root {
+    @include center-main;
+  }
   &__container {
     display: flex;
     justify-content: center;

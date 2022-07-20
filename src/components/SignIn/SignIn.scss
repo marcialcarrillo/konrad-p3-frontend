@@ -1,6 +1,6 @@
 .sign-in {
   &__root {
-    min-height: 27.0625rem;
+    @include center-main;
     display: flex;
     justify-content: center;
     flex-direction: column;
