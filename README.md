@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Third Project - Konrad's Web Development Immersive Program
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Demo link:
 
-## Available Scripts
+See the site at [Heroku](https://marcialcv-konrad-project3-fe.herokuapp.com/)
 
-In the project directory, you can run:
+## Backend Repository:
 
-### `npm start`
+You can check the backend code [here.](https://github.com/marcialcarrillo/konrad-p3-backend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of Content:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [About The Project](#about-the-project)
+- [Project Duration](#project-duration)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Approach](#approach)
+- [Status](#status)
+- [Special Thanks](#special-thanks)
+- [License](#license)
 
-### `npm test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Vermilion Bank is an online banking website with a proper backend and database. The objective of the project was to learn to use node and express to create a backend, use middlewares and authenticate users via JWT.
 
-### `npm run build`
+## Project Duration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+12 days with fixes post-completion (see [commits](https://github.com/marcialcarrillo/konrad-p3-frontend/commits/post-immersive) made after July 8).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Landing Page
+  ![Landing Page](https://i.imgur.com/yngeUQ1.png)
 
-### `npm run eject`
+- Dashboard
+  ![Dashboard](https://i.imgur.com/H8QQKev.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Transfer Money
+  ![Transfer Money](https://i.imgur.com/MDCbZj1.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Transfer Money Verification
+  ![Transfer Money Verification](https://i.imgur.com/C7NIO1X.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Transfer Money Completion
+  ![Transfer Money Completion](https://i.imgur.com/yqw6yAx.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Pay Bills
+  ![Pay Bills](https://i.imgur.com/njd2tyh.png)
 
-## Learn More
+- Account History
+  ![Pay Bills](https://i.imgur.com/Sk1ESMr.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was created using `React` and `Sass` for the frontend and `Node.js`, `Express`, `Sequelize` & `mySql` for the backend.
 
-### Code Splitting
+## Approach
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Mobile first.
+- Accessibility (no [axe](https://www.deque.com/axe/) warnings, keyboard navigation).
+- `BEM` naming convention used.
 
-### Analyzing the Bundle Size
+## Status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Completed.
 
-### Making a Progressive Web App
+## Special Thank
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [Konrad's Web Development Immersive Program](https://www.konrad.com/careers/san-jose/web-development-program)
 
-### Advanced Configuration
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT license
