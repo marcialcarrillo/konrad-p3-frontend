@@ -3,7 +3,12 @@
     display: flex;
     box-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 20%);
     margin: 0.25rem;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    @media (min-width: $breakpoint-mobile) {
+      justify-content: space-evenly;
+      padding: 0;
+    }
   }
   &__text {
     align-self: center;
