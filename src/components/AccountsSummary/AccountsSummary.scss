@@ -17,18 +17,20 @@
   }
   &__type {
     @include hide-tablet;
+    min-width: 3.341rem;
   }
   &__currency {
     @include hide-tablet;
   }
   &__acc-number {
     min-width: 9.375rem;
+    text-align: start;
     @media (min-width: $breakpoint-tablet) {
-      text-align: end;
+      text-align: center;
     }
   }
   &__balance {
-    min-width: 5.4225rem;
+    min-width: 6.4081rem;
     text-align: end;
   }
 }
@@ -69,7 +71,7 @@
     @include hide-tablet;
   }
   &__currency {
-    min-width: 4.0294rem;
+    min-width: 4.0299rem;
     text-align: center;
     @include hide-tablet;
   }
