@@ -41,10 +41,11 @@
     padding: 0 1rem;
     margin: 1rem 0;
     @media (min-width: $breakpoint-mobile) {
-      justify-content: space-between;
       flex-direction: row;
+      justify-content: space-evenly;
     }
     @media (min-width: $breakpoint-tablet) {
+      justify-content: space-between;
       padding: 0 2rem;
     }
   }
