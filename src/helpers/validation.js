@@ -17,7 +17,7 @@ const signUpValidator = (formValues) => {
 
   //check email
   if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
-    errors.email = "A valid email address is needed.";
+    errors.email = "Incorrect email format.";
   }
 
   //check password format
@@ -43,7 +43,7 @@ const logInValidator = (formValues) => {
 
   //check email
   if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {
-    errors.email = "A valid email address is needed.";
+    errors.email = "Incorrect email format.";
   }
 
   //check the password is not empty
@@ -56,18 +56,23 @@ const logInValidator = (formValues) => {
 
 const addMoneyValidator = (formValues) => {
   const minimumTransferAmount = 1000;
+  const maximumTransferAmount = 1000000000;
   let errors = {};
 
   if (!/^[A-Z]{2}[0-9]{20}$/.test(formValues.originAccount)) {
     errors.originAccount =
-      "The account provided doesn't have the correct IBAN format.";
+      "The account provided does not have the correct IBAN format.";
   }
 
   if (
     !formValues.transferAmount ||
     Number(formValues.transferAmount) < minimumTransferAmount
   ) {
-    errors.transferAmount = `The minimum transfer amount is ₡${minimumTransferAmount}.`;
+    errors.transferAmount = `The minimum transfer amount is ₡${minimumTransferAmount.toLocaleString()}.`;
+  }
+
+  if (Number(formValues.transferAmount) > maximumTransferAmount) {
+    errors.transferAmount = `The maximum transfer amount is ₡${maximumTransferAmount.toLocaleString()}.`;
   }
 
   return errors;
@@ -75,18 +80,23 @@ const addMoneyValidator = (formValues) => {
 
 const transferMoneyValidator = (formValues) => {
   const minimumTransferAmount = 1000;
+  const maximumTransferAmount = 1000000000;
   let errors = {};
 
   if (
     !formValues.transferAmount ||
     Number(formValues.transferAmount) < minimumTransferAmount
   ) {
-    errors.transferAmount = `The minimum transfer amount is ₡${minimumTransferAmount}.`;
+    errors.transferAmount = `The minimum transfer amount is ₡${minimumTransferAmount.toLocaleString()}.`;
+  }
+
+  if (Number(formValues.transferAmount) > maximumTransferAmount) {
+    errors.transferAmount = `The maximum transfer amount is ₡${maximumTransferAmount.toLocaleString()}.`;
   }
 
   if (!/^[A-Z]{2}[0-9]{20}$/.test(formValues.destinationAccount)) {
     errors.destinationAccount =
-      "The account provided doesn't have the correct IBAN format.";
+      "The account provided does not have the correct IBAN format.";
   }
 
   return errors;

@@ -104,6 +104,7 @@ const MoneyTransfer = () => {
               aria-labelledby="transferAmount"
               onChange={(e) => handleChange(e)}
               name="transferAmount"
+              type="number"
               className={`${block}__input`}
             ></input>
             <p className={`${block}__helper-text`}>
