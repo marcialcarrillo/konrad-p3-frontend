@@ -27,6 +27,10 @@
       text-align: end;
     }
   }
+  &__balance {
+    min-width: 5.4225rem;
+    text-align: end;
+  }
 }
 
 .accounts-item {
@@ -53,15 +57,20 @@
   }
 
   &__balance {
-    min-width: 3.75rem;
-    font-size: 0.9rem;
+    min-width: 6.4081rem;
+    font-size: 0.8125rem;
     text-align: end;
+    @media (min-width: $breakpoint-mobile) {
+      font-size: 0.9rem;
+    }
   }
 
   &__type-wrapper {
     @include hide-tablet;
   }
   &__currency {
+    min-width: 4.0294rem;
+    text-align: center;
     @include hide-tablet;
   }
 }
