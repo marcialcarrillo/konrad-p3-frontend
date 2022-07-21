@@ -103,18 +103,16 @@ const SignUpForm = () => {
     });
   }
 
-  function SubmitButton({ formId, e }) {
-    return (
-      <button onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
-        Submit
-      </button>
-    );
-  }
-
   return (
     <div className={`${block}__root`}>
       {redirect && <Navigate to="/sign-in" />}
       <h1 className={`${block}__title--h1`}>Create Your Account</h1>
+      <span className={`${block}__alternate-link--guest`}>
+        Or use our{" "}
+        <u>
+          <Link to="/sign-in">Guest Access</Link>
+        </u>
+      </span>
       <form id="signUpForm" className={`${block}__form--delivery`}>
         <label className={`${block}__label`}>Full name</label>
         <input
@@ -140,8 +138,9 @@ const SignUpForm = () => {
         <SimpleFileUpload
           apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           onSuccess={handleIdPhotoUpload}
-          preview="
-          true"
+          preview="true"
+          accepted="image/*"
+          maxFileSize="1"
         />
         <p className={`${block}__helper-text`}>{formErrors.idImage}</p>
         <label className={`${block}__label`}>Profile Picture</label>
@@ -149,6 +148,8 @@ const SignUpForm = () => {
           apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
           onSuccess={handleProfilePictureUpload}
           preview="true"
+          accepted="image/*"
+          maxFileSize="1"
         />
         <p className={`${block}__helper-text`}>{formErrors.profilePicture}</p>
 
@@ -213,7 +214,12 @@ const SignUpForm = () => {
       </form>
 
       <div className={`${block}__button-wrapper`}>
-        <button form="signUpForm" type="submit" onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
+        <button
+          form="signUpForm"
+          type="submit"
+          onClick={(e) => handleSignUp(e)}
+          className={`${block}__button`}
+        >
           Submit
         </button>
         <span className={`${block}__alternate-link`}>

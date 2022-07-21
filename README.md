@@ -12,6 +12,7 @@ You can check the backend code [here.](https://github.com/marcialcarrillo/konrad
 
 - [About The Project](#about-the-project)
 - [Project Duration](#project-duration)
+- [Usage Notes](#usage-notes)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Approach](#approach)
@@ -26,6 +27,11 @@ The Vermilion Bank is an online banking website with a proper backend and databa
 ## Project Duration
 
 12 days with some fixes post-completion (see [commits](https://github.com/marcialcarrillo/konrad-p3-frontend/commits/main) made after July 8).
+
+## Usage Notes
+
+- You can log in as a guest.
+- If registering an account, the email doesn't have to valid, just have the correct format. Images must be 1MB or less for the profile and ID.
 
 ## Screenshots
 

@@ -68,6 +68,10 @@
   &__alternate-link {
     margin-top: 0.4rem;
     font-size: 0.8rem;
+    &--guest{
+      @extend .sign-up-form__alternate-link;
+      margin: 0;
+    }
   }
 
   &__button {

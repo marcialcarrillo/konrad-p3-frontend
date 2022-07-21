@@ -58,16 +58,24 @@
   }
 
   &__button-wrapper {
-    margin: 1rem;
+    margin-top: 1rem;
     margin-bottom: 0;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    width: 100%;
     @media (min-width: $breakpoint-tablet) {
-      justify-content: space-between;
+      justify-content: space-evenly;
+      flex-direction: row;
+      align-items: center;
     }
   }
 
+  @media (min-width: $breakpoint-tablet) {
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
   &__alternate-link {
     margin-top: 0.4rem;
     font-size: 0.8rem;
@@ -82,11 +90,12 @@
     color: white;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    width: 100%;
+    width: 95%;
     text-align: center;
     font-weight: bold;
-    width: 10rem;
+    margin-top: 0.5rem;
     @media (min-width: $breakpoint-tablet) {
+      margin-top: unset;
       width: 10rem;
     }
     &:disabled {
@@ -103,10 +112,9 @@
     color: $secondary;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    width: 100%;
+    width: 95%;
     text-align: center;
     font-weight: bold;
-    width: 10rem;
     @media (min-width: $breakpoint-tablet) {
       width: 10rem;
     }
