@@ -37,11 +37,17 @@
     }
   }
   &__button-wrapper {
-    margin: 1rem;
-    margin-bottom: 0;
+    margin: 1rem 0 0;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    @media (min-width: $breakpoint-tablet) {
+      justify-content: space-evenly;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   &__button {
@@ -49,11 +55,12 @@
     color: white;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    width: 100%;
+    width: 95%;
     text-align: center;
     font-weight: bold;
-    width: 5.3125rem;
+    margin-top: 0.5rem;
     @media (min-width: $breakpoint-tablet) {
+      margin-top: unset;
       width: 5.3125rem;
     }
     &:disabled {
@@ -71,10 +78,9 @@
     color: $secondary;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    width: 100%;
+    width: 95%;
     text-align: center;
     font-weight: bold;
-    width: 5.3125rem;
     @media (min-width: $breakpoint-tablet) {
       width: 5.3125rem;
     }
