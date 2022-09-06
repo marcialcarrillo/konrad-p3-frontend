@@ -31,7 +31,7 @@ The Vermilion Bank is an online banking website with a proper backend and databa
 ## Usage Notes
 
 - You can log in as a guest.
-- If registering an account, the email doesn't have to valid, just have the correct format. Images must be 1MB or less for the profile and ID.
+- If registering a new account, the email doesn't have to be valid, it just needs an appropriate format. Images must be 1MB or less for the profile and ID.
 
 ## Screenshots
 
