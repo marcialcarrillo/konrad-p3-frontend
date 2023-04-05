@@ -1,9 +1,5 @@
 # Third Project - Konrad's Web Development Immersive Program
 
-## Demo link:
-
-See the site at [Heroku](https://marcialcv-konrad-project3-fe.herokuapp.com/)
-
 ## Backend Repository:
 
 You can check the backend code [here.](https://github.com/marcialcarrillo/konrad-p3-backend)
