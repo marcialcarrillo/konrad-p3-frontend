@@ -8,12 +8,6 @@ const signUpValidator = (formValues) => {
   if (!formValues.idNumber) {
     errors.id = "An id number must be provided.";
   }
-  if (!formValues.idImage) {
-    errors.idImage = "A photo of the Id must be uploaded.";
-  }
-  if (!formValues.profilePicture) {
-    errors.profilePicture = "An image of the customer must be uploaded.";
-  }
 
   //check email
   if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formValues.email)) {

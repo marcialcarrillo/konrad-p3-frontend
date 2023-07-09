@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import userDataContext from "../../context/UserDataContext";
+import avatar from "../../assets/images/missingAvatar.png";
 
 const Profile = () => {
   const block = "profile";
@@ -15,7 +16,7 @@ const Profile = () => {
               <img
                 alt="profile"
                 className={`${block}__profile-picture`}
-                src={userData.profilePicture}
+                src={avatar}
               ></img>
 
               <div className={`${block}__banner-name`}>
@@ -24,12 +25,6 @@ const Profile = () => {
               </div>
             </div>
             <div className={`${block}__info-wrap`}>
-              <p className={`${block}__label`}>Id Photo</p>
-              <img
-                alt="identification"
-                className={`${block}__id-picture`}
-                src={userData.idImage}
-              ></img>
               <p className={`${block}__label`}>Source Of Income</p>
               <p>{userData.incomeSource}</p>
             </div>

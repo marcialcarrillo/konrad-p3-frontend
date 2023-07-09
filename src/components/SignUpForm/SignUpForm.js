@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import SimpleFileUpload from "react-simple-file-upload";
 import ModalContext from "../../context/ModalContext";
 import { signUpValidator } from "../../helpers/validation";
 import LoadingContext from "../../context/LoadingContext";
@@ -37,8 +36,6 @@ const SignUpForm = () => {
     const data = {
       fullName: formValues.fullName,
       idNumber: formValues.id,
-      idImage: formValues.idImage,
-      profilePicture: formValues.profilePicture,
       incomeSource: formValues.sourceOfIncome,
       email: formValues.email,
       password: formValues.password,
@@ -89,27 +86,13 @@ const SignUpForm = () => {
     }
   };
 
-  function handleIdPhotoUpload(url) {
-    setFormValues({
-      ...formValues,
-      idImage: url,
-    });
-  }
-
-  function handleProfilePictureUpload(url) {
-    setFormValues({
-      ...formValues,
-      profilePicture: url,
-    });
-  }
-
-  function SubmitButton({ formId, e }) {
-    return (
-      <button onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
-        Submit
-      </button>
-    );
-  }
+  // function SubmitButton({ formId, e }) {
+  //   return (
+  //     <button onClick={(e) => handleSignUp(e)} className={`${block}__button`}>
+  //       Submit
+  //     </button>
+  //   );
+  // }
 
   return (
     <div className={`${block}__root`}>
@@ -136,21 +119,6 @@ const SignUpForm = () => {
           placeholder="11234567890"
         ></input>
         <p className={`${block}__helper-text`}>{formErrors.id}</p>
-        <label className={`${block}__label`}>ID Image</label>
-        <SimpleFileUpload
-          apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
-          onSuccess={handleIdPhotoUpload}
-          preview="
-          true"
-        />
-        <p className={`${block}__helper-text`}>{formErrors.idImage}</p>
-        <label className={`${block}__label`}>Profile Picture</label>
-        <SimpleFileUpload
-          apiKey={process.env.REACT_APP_SIMPLE_FILE_UPLOAD_KEY}
-          onSuccess={handleProfilePictureUpload}
-          preview="true"
-        />
-        <p className={`${block}__helper-text`}>{formErrors.profilePicture}</p>
 
         <label id="sourceOfIncome" className={`${block}__label`}>
           Source of Income
