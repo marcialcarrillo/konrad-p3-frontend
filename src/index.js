@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import "./index.scss";
 import App from "./App";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
@@ -24,7 +24,7 @@ import "./fonts/KantumruyPro-Regular.ttf";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop>
         <Routes>
           <Route path="/" element={<App />}>
@@ -115,7 +115,7 @@ root.render(
           </Route>
         </Routes>
       </ScrollToTop>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
