@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import userDataContext from "../../context/UserDataContext";
 import HeaderMenuHamburger from "../HeaderMenuHamburger/HeaderMenuHamburger";
 import { Link } from "react-router-dom";
@@ -12,6 +12,12 @@ const HeaderMenu = () => {
   const toggleHamburger = () => {
     setIsOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    !isOpen
+      ? document.body.classList.remove("no-scroll")
+      : document.body.classList.add("no-scroll");
+  }, [isOpen]);
 
   //construct links to be used on the menu
   const linkConstructor = () => {

@@ -96,7 +96,9 @@ const AddMoney = () => {
               name="originAccount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}>{formErrors.originAccount}</p>
+            <p className={`${block}__helper-text`}>
+              {formErrors.originAccount}
+            </p>
 
             <label id="transferAmount" className={`${block}__label`}>
               Transfer Amount
@@ -104,10 +106,13 @@ const AddMoney = () => {
             <input
               onChange={(e) => handleChange(e)}
               name="transferAmount"
+              type="number"
               aria-labelledby="transferAmount"
               className={`${block}__input`}
             ></input>
-            <p className={`${block}__helper-text`}>{formErrors.transferAmount}</p>
+            <p className={`${block}__helper-text`}>
+              {formErrors.transferAmount}
+            </p>
 
             <label id="destinationAccount" className={`${block}__label`}>
               Destination Account

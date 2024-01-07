@@ -17,15 +17,21 @@
   }
   &__type {
     @include hide-tablet;
+    min-width: 3.341rem;
   }
   &__currency {
     @include hide-tablet;
   }
   &__acc-number {
     min-width: 9.375rem;
+    text-align: start;
     @media (min-width: $breakpoint-tablet) {
-      text-align: end;
+      text-align: center;
     }
+  }
+  &__balance {
+    min-width: 6.4081rem;
+    text-align: end;
   }
 }
 
@@ -53,15 +59,20 @@
   }
 
   &__balance {
-    min-width: 3.75rem;
-    font-size: 0.9rem;
+    min-width: 6.4081rem;
+    font-size: 0.8125rem;
     text-align: end;
+    @media (min-width: $breakpoint-mobile) {
+      font-size: 0.9rem;
+    }
   }
 
   &__type-wrapper {
     @include hide-tablet;
   }
   &__currency {
+    min-width: 4.0299rem;
+    text-align: center;
     @include hide-tablet;
   }
 }

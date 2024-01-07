@@ -96,6 +96,62 @@ const SignIn = () => {
     }
   };
 
+  const handleGuestLogin = async () => {
+    //construct json object
+    const rawJson = {
+      email: "guest@mail.com",
+      password: "Aaa123456",
+    };
+    setLoadingModal(true);
+    let res;
+    try {
+      res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
+        },
+        body: JSON.stringify(rawJson),
+      });
+    } catch {
+      setLoadingModal(false);
+      setModalState(customMessages.unexpected);
+    }
+
+    const resJson = await res.json();
+    console.log(resJson);
+    if (res.ok) {
+      try {
+        res = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/users/account`,
+          {
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true",
+            },
+          }
+        );
+      } catch {
+        setLoadingModal(false);
+        setModalState(customMessages.unexpected);
+      }
+      setLoadingModal(false);
+      if (res.ok) {
+        const jsonRes = await res.json();
+
+        setUserData(jsonRes);
+        setRedirect(true);
+      } else {
+        console.error(res);
+      }
+    } else {
+      setLoadingModal(false);
+      setModalState(resJson);
+    }
+  };
+
   return (
     <main className={`${block}__root`}>
       {redirect && <Navigate to="/dashboard" />}
@@ -134,16 +190,24 @@ const SignIn = () => {
           </form>
 
           <div className={`${block}__button-wrapper`}>
-            <button
-              form="signInForm"
-              type="submit"
-              onClick={(e) => handleLogIn(e)}
-              className={`${block}__button`}
-            >
-              Log In
-            </button>
+            <div className={`${block}__button-container`}>
+              <button
+                onClick={() => handleGuestLogin()}
+                className={`${block}__button--guest`}
+              >
+                Guest Access
+              </button>
+              <button
+                form="signInForm"
+                type="submit"
+                onClick={(e) => handleLogIn(e)}
+                className={`${block}__button`}
+              >
+                Log In
+              </button>
+            </div>
             <span className={`${block}__alternate-link`}>
-              Don't have an account yet?
+              Don't have an account yet?{" "}
               <u>
                 <Link to="/sign-up">Sign Up!</Link>
               </u>
