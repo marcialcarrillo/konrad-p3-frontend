@@ -7,6 +7,7 @@ import { MdOutlinePayment } from "react-icons/md";
 import { RiBillLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { AccountsSummary } from "../AccountsSummary/AccountsSummary";
+import avatar from "../../assets/images/missingAvatar.png";
 
 const Dashboard = () => {
   const block = "dashboard";
@@ -30,7 +31,7 @@ const Dashboard = () => {
             <img
               alt="profile"
               className={`${block}__profile-picture`}
-              src={userData.profilePicture}
+              src={avatar}
             ></img>
           </Link>
 
