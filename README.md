@@ -4,12 +4,13 @@
 
 You can explore the demo [here](https://makaveko.alwaysdata.net/vermilion/).
 
-### Demo Usage Notes:
+### Notes:
 
 * You can log in using the Guest Access.
 * You can also create an account (no real email required).
 * To add money to your account use an 'Origin Account' that is not linked to any other user (or you), such as: CR12345678998745648888.
 * You can transfer money between your accounts and another user account (you must know the account number).
+* The frontend, backend and database are all hosted on https://www.alwaysdata.com/en/
 
 
 ## Backend Repository:
