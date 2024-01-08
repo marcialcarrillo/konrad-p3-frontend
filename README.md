@@ -1,8 +1,20 @@
 # Third Project - Konrad's Web Development Immersive Program
 
+## Demo:
+
+You can explore the demo [here](https://makaveko.alwaysdata.net/vermilion/).
+
+### Demo Usage Notes:
+
+* You can log in using the Guest Access.
+* You can also create an account (no real email required).
+* To add money to your account use an 'Origin Account' that is not linked to any other user (or you), such as: CR12345678998745648888.
+* You can transfer money between your accounts and another user account (you must know the account number).
+
+
 ## Backend Repository:
 
-You can check the backend code [here.](https://github.com/marcialcarrillo/konrad-p3-backend)
+You can check the backend code [here](https://github.com/marcialcarrillo/konrad-p3-backend).
 
 ## Table of Contents:
 
